@@ -9,13 +9,14 @@
 # 计
 
 - [语言]()
-  - [Go](计\语言\Go.md)
+  - [Go](计/语言/Go.md)
 
 - [云原生]()
-  - [Kuberntes](计\云原生\Kubernetes.md)
+  - [Kuberntes](计/云原生/Kubernetes.md)
 
 - [操作系统]()
-  - [操作系统.Linux.eBPF](计\操作系统\Linux.eBPF.md)
+  - [Linux]()
+    - [Linux.eBPF](计/操作系统/Linux.eBPF.md)
 
 
 
