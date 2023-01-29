@@ -10,13 +10,9 @@
 
 [计](计/README.md)
 
-- [语言.Go.开始.md](计\语言\Go.开始.md)
-- 云原生
-  - [Kuberntes](计\云原生\Kubernetes.md)
-
-- 操作系统
-  - [Linux.ebpf](计\操作系统\Linux.eBPF.md)
-
+- [语言.Go](计\语言\Go.开始.md)
+- [云原生.Kuberntes](计\云原生\Kubernetes.md)
+- [操作系统.Linux.ebpf](计\操作系统\Linux.eBPF.md)
 
 
 
