@@ -1,0 +1,563 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Linux.eBPF - YuanyaDocs</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../index.html">Root</a></li><li class="chapter-item expanded "><a href="../../模板.html"><strong aria-hidden="true">1.</strong> 模板</a></li><li class="chapter-item expanded "><a href="../../番.html"><strong aria-hidden="true">2.</strong> 番</a></li><li class="chapter-item expanded affix "><li class="part-title">计</li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 语言</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../计/语言/Go.html"><strong aria-hidden="true">3.1.</strong> Go</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> 云原生</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../计/云原生/Kubernetes.html"><strong aria-hidden="true">4.1.</strong> Kuberntes</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 操作系统</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">5.1.</strong> Linux</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../计/操作系统/Linux.eBPF.html" class="active"><strong aria-hidden="true">5.1.1.</strong> Linux.eBPF</a></li></ol></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">YuanyaDocs</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <p>+++</p>
+<p>title = &quot;eBPF&quot;
+description = &quot;it.os.linux.eBPF&quot;
+tags = [&quot;it&quot;,&quot;os&quot;,&quot;linux&quot;]</p>
+<p>+++</p>
+<h1 id="ebpf"><a class="header" href="#ebpf">eBPF</a></h1>
+<blockquote>
+<p><a href="https://ebpf.io/">官网</a>；</p>
+<p><a href="https://cilium.readthedocs.io/en/stable/bpf/">eBPF 和 XDP 参考指南</a> &amp; <a href="https://arthurchiao.art/blog/cilium-bpf-xdp-reference-guide-zh/">翻译</a>；</p>
+<p><a href="https://man7.org/linux/man-pages/man7/bpf-helpers.7.html">bpf-helpers</a>；</p>
+<p><a href="https://arthurchiao.art/blog/bpf-advanced-notes-1-zh/">BPF 程序类型详解</a>；</p>
+<p><a href="https://arthurchiao.art/blog/bpf-advanced-notes-2-zh/">BPF Map 类型详解</a>；</p>
+<p><a href="iovisor/bcc">iovisor/bcc</a>；</p>
+<p>使用 python 开发 eBPF 程序；</p>
+<p><a href="cilium/ebpf">cilium/ebpf</a>；</p>
+<p><a href="https://github.com/iovisor/gobpf">iovisor/gobpf</a>；</p>
+<p><a href="https://www.sobyte.net/post/2022-04/go-ebfp/">使用 Go 语言开发 eBPF 程序</a>；</p>
+</blockquote>
+<h2 id="简介"><a class="header" href="#简介">简介</a></h2>
+<blockquote>
+<p><a href="https://ebpf.io/what-is-ebpf#introduction-to-ebpf">eBPF简介</a>；</p>
+</blockquote>
+<p><img src="https://ebpf.io/static/go-1a1bb6f1e64b1ad5597f57dc17cf1350.png" alt="" /></p>
+<h2 id="过程"><a class="header" href="#过程">过程</a></h2>
+<p><img src="./img/Linux.eBPF.%E8%BF%87%E7%A8%8B.svg" alt="" /></p>
+<h2 id="技术栈"><a class="header" href="#技术栈">技术栈</a></h2>
+<blockquote>
+<p><a href="http://arthurchiao.art/blog/bpf-portability-and-co-re-zh/">[译] BPF 可移植性和 CO-RE (compile once - run everywhere)</a>；<a href="https://facebookmicrosites.github.io/bpf/blog/2020/02/19/bpf-portability-and-co-re.html">BPF Portability and CO-RE</a>；</p>
+</blockquote>
+<p><img src="./img/Linux.eBPF.%E6%8A%80%E6%9C%AF%E6%A0%88.svg" alt="" /></p>
+<h2 id="co-re"><a class="header" href="#co-re">CO-RE</a></h2>
+<h3 id="btf"><a class="header" href="#btf">BTF</a></h3>
+<p>检查BTF开启</p>
+<pre><code class="language-shell">$ cat /boot/config-`uname -r` | grep BTF
+CONFIG_VIDEO_SONY_BTF_MPX=m
+CONFIG_DEBUG_INFO_BTF=y
+CONFIG_PAHOLE_HAS_SPLIT_BTF=y
+CONFIG_DEBUG_INFO_BTF_MODULES=y
+</code></pre>
+<h3 id="vmlinuxh"><a class="header" href="#vmlinuxh">vmlinux.h</a></h3>
+<pre><code class="language-shell"># 生成vmlinux.h
+$ bpftool btf dump file /sys/kernel/btf/vmlinux format c &gt; vmlinux.h
+</code></pre>
+<h2 id="ebpf-prog"><a class="header" href="#ebpf-prog">eBPF prog</a></h2>
+<pre><code class="language-c">#include &quot;vmlinux.h&quot;
+
+#include &lt;bpf/bpf_helpers.h&gt;
+#include &lt;bpf/bpf_tracing.h&gt;
+
+SEC(&quot;&lt;bpf_type&gt;/&lt;trace_name&gt;&quot;)
+int kprobe__do_sys_openat2(struct pt_regs *ctx)
+{
+    char file_name[256];
+    bpf_probe_read(file_name, sizeof(file_name), PT_REGS_PARM2(ctx));
+
+    char fmt[] = &quot;open file %s\n&quot;;
+    bpf_trace_printk(fmt, sizeof(fmt), &amp;file_name);
+
+    return 0;
+}
+</code></pre>
+<p>vmlinux.h：见CO-RE vmlinux.h</p>
+<p>bpf_type：不同的类型有不同的使用方式和限制，详见下面<a href="#eBPF%E7%B1%BB%E5%9E%8B">eBPF类型</a>。</p>
+<p>trace_name：对于</p>
+<h2 id="ebpf类型"><a class="header" href="#ebpf类型">eBPF类型</a></h2>
+<h3 id="kprobes"><a class="header" href="#kprobes">kprobes</a></h3>
+<pre><code class="language-c">#include &quot;vmlinux.h&quot;
+
+#include &lt;bpf/bpf_helpers.h&gt;
+#include &lt;bpf/bpf_tracing.h&gt;
+
+SEC(&quot;kprobe/do_sys_openat2&quot;)
+int kprobe__do_sys_openat2(struct pt_regs *ctx)
+{
+    char file_name[256];
+    bpf_probe_read(file_name, sizeof(file_name), PT_REGS_PARM2(ctx));
+
+    char fmt[] = &quot;open file %s\n&quot;;
+    bpf_trace_printk(fmt, sizeof(fmt), &amp;file_name);
+
+    return 0;
+}
+</code></pre>
+<h3 id="tracepoint"><a class="header" href="#tracepoint">tracepoint</a></h3>
+<h3 id="raw_tracepoint"><a class="header" href="#raw_tracepoint">raw_tracepoint</a></h3>
+<h2 id="libbpfgo"><a class="header" href="#libbpfgo">libbpfgo</a></h2>
+<blockquote>
+<p><a href="https://github.com/aquasecurity/libbpfgo">aquasecurity/libbpfgo</a>：一个通过cgo调用libbpf库的go语言封装。</p>
+<p><a href="https://mozillazg.com/2022/05/ebpf-libbpfgo-develop-env-and-hello-world.html">libbpfgo 使用示例：搭建开发环境以及编写第一个 ebpf 程序</a>；</p>
+</blockquote>
+<p>ebpf/c/</p>
+<pre><code class="language-c">#include &quot;vmlinux.h&quot;
+
+#include &lt;bpf/bpf_helpers.h&gt;
+#include &lt;bpf/bpf_tracing.h&gt;
+
+SEC(&quot;kprobe/do_sys_openat2&quot;)
+int kprobe__do_sys_openat2(struct pt_regs *ctx)
+{
+    char file_name[256];
+    bpf_probe_read(file_name, sizeof(file_name), PT_REGS_PARM2(ctx));
+
+    char fmt[] = &quot;open file %s\n&quot;;
+    bpf_trace_printk(fmt, sizeof(fmt), &amp;file_name);
+
+    return 0;
+}
+</code></pre>
+<pre><code class="language-shell">clang -D__TARGET_ARCH_x86 -I. -I../c/  -target bpf -c bpf.o.c -o bpf.o
+</code></pre>
+<h2 id="实验基于-ebpf-的网络观测"><a class="header" href="#实验基于-ebpf-的网络观测">实验：基于 eBPF 的网络观测</a></h2>
+<blockquote>
+<p><a href="https://blog.csdn.net/flynetcn/article/details/119487894">Linux网络新技术基石：eBPF and XDP</a>；</p>
+</blockquote>
+<h2 id="tracee二次开发"><a class="header" href="#tracee二次开发">tracee二次开发</a></h2>
+<blockquote>
+<p><a href="https://github.com/aquasecurity/tracee">aquasecurity/tracee</a>：使用 Linux <strong>eBPF 技术</strong>在运行时<strong>跟踪您的系统和应用程序，并分析收集的事件以检测</strong>可疑的行为模式。</p>
+<p>tracee 依赖于 libbpf</p>
+</blockquote>
+<h3 id="libbpf"><a class="header" href="#libbpf">libbpf</a></h3>
+<blockquote>
+<p><a href="https://github.com/libbpf/libbpf">libbpf</a>：可以构建支持 <a href="https://github.com/libbpf/libbpf#bpflibbpf-usage-and-questions">BPF CO-RE(Compile Once – Run Everywhere)</a> 的高可移植性 BPF 程序。与 <a href="https://github.com/iovisor/bcc/">BCC</a> 相比，它不需要将 Clang/LLVM 运行时部署到目标服务器，并且不依赖于可用的内核开发头文件。</p>
+<p>BTF：libbpf 依赖于内核 BTF，RHEL 8.2+、Ubuntu 20.10 等发行版都已经内置内核 BTF；内核 BTF 需要在<strong>编译</strong>内核时设置<code>CONFIG_DEBUG_INFO_BTF=y</code>构建选项；通过查看是否存在文件<code>/sys/kernel/btf/vmlinux</code>以检查内核是否内置 BTF</p>
+</blockquote>
+<p>安装</p>
+<pre><code class="language-shell"># 
+
+# libbpf 在 tracee 项目 make 中的安装方式
+CC=&quot;clang&quot; \
+CFLAGS=&quot;&quot;-fPIC&quot;&quot; \
+LD_FLAGS=&quot;&quot; \
+make \
+-C ./3rdparty/libbpf/src \
+BUILD_STATIC_ONLY=1 \
+DESTDIR=/root/projects/github.com/tracee/dist/libbpf \
+OBJDIR=/root/projects/github.com/tracee/dist/libbpf/obj \
+INCLUDEDIR= LIBDIR= UAPIDIR= prefix= libdir= \
+install install_uapi_headers
+</code></pre>
+<h3 id="启动流程"><a class="header" href="#启动流程">启动流程</a></h3>
+<h3 id="追踪流程"><a class="header" href="#追踪流程">追踪流程</a></h3>
+<h3 id="实现新的追踪"><a class="header" href="#实现新的追踪">实现新的追踪</a></h3>
+<p>tracee 实现了 vfs_write 追踪但并没有实现 vfs_read 追踪，这里参考 vfs_write 追踪<strong>实现 vfs_read 追踪</strong>。得益于 tracee 的代码可扩展性，只需要如下两步：</p>
+<ol>
+<li>在 go 代码中添加 vfs_read 事件定义</li>
+</ol>
+<pre><code class="language-go">// pkg/events/events.go
+
+const (
+	VfsRead  // 添加 vfs_read 事件ID
+    VfsWrite
+)
+
+var Definitions = eventDefinitions{
+	events: map[ID]Event{
+        // 参考 VfsWrite 定义实现 VfsRead 定义
+        VfsRead: {
+			ID32Bit: sys32undefined,
+			Name:    &quot;vfs_read&quot;,
+			Probes: []probeDependency{
+				{Handle: probes.VfsRead, Required: true},
+				{Handle: probes.VfsReadRet, Required: true},
+			},
+			Sets: []string{},
+			Params: []trace.ArgMeta{
+				{Type: &quot;const char*&quot;, Name: &quot;pathname&quot;},
+				{Type: &quot;dev_t&quot;, Name: &quot;dev&quot;},
+				{Type: &quot;unsigned long&quot;, Name: &quot;inode&quot;},
+				{Type: &quot;size_t&quot;, Name: &quot;count&quot;},
+				{Type: &quot;off_t&quot;, Name: &quot;pos&quot;},
+				{Type: &quot;unsigned int&quot;, Name: &quot;flags&quot;}, // 顺手添加一个 flags
+			},
+		},
+        VfsWrite: { /*...*/ },
+    }
+}
+</code></pre>
+<pre><code class="language-go">// pkg/ebpf/probes/probes.go
+
+const (
+	VfsRead    // 添加入参处理标识
+    VfsReadRet // 添加出参处理标识
+	VfsWrite
+	VfsWriteRet
+)
+
+// Init initializes a Probes interface
+func Init(module *bpf.Module, netEnabled bool) (Probes, error) {
+	allProbes := map[Handle]Probe{
+		VfsRead:                   &amp;traceProbe{eventName: &quot;vfs_read&quot;, probeType: kprobe, programName: &quot;trace_vfs_read&quot;},        // 注册入参探针
+		VfsReadRet:                &amp;traceProbe{eventName: &quot;vfs_read&quot;, probeType: kretprobe, programName: &quot;trace_ret_vfs_read&quot;}, // 注册出参探针
+		VfsWrite:                   &amp;traceProbe{eventName: &quot;vfs_write&quot;, probeType: kprobe, programName: &quot;trace_vfs_write&quot;},
+		VfsWriteRet:                &amp;traceProbe{eventName: &quot;vfs_write&quot;, probeType: kretprobe, programName: &quot;trace_ret_vfs_write&quot;},
+    }
+}
+</code></pre>
+<ol start="2">
+<li>编写 bpf 代码</li>
+</ol>
+<pre><code class="language-c">// pkg/ebpf/c/tracee.bpf.c
+
+enum tail_call_id_e // 原有内容
+{
+    TAIL_VFS_READ,
+    TAIL_VFS_WRITE, // 原有内容
+}
+
+enum event_id_e // 原有内容
+{
+    VFS_READ,
+    VFS_WRITE, // 原有内容
+}
+
+// 参考方法 get_inode_nr_from_file，通过宏 READ_KERN 获取，否则将报错寄存器内存未初始化
+static __always_inline unsigned int get_flags_from_file(struct file *file)
+{
+    return READ_KERN(file-&gt;f_flags);
+}
+
+static __always_inline int
+do_file_read_operation(struct pt_regs *ctx, u32 event_id, u32 tail_call_id)
+{
+    args_t saved_args;
+    if (load_args(&amp;saved_args, event_id) != 0) {
+        // missed entry or not traced
+        return 0;
+    }
+
+    int zero = 0;
+    config_entry_t *config = bpf_map_lookup_elem(&amp;config_map, &amp;zero);
+    if (config == NULL)
+        return 0;
+
+    if (!should_submit(VFS_READ, config)) {
+        bpf_tail_call(ctx, &amp;prog_array, tail_call_id);
+        return 0;
+    }
+
+    loff_t start_pos;
+    void *ptr;
+    struct iovec *vec;
+    size_t count;
+
+    struct file *file = (struct file *) saved_args.args[0];
+    void *file_path = get_path_str(GET_FIELD_ADDR(file-&gt;f_path));
+    unsigned int flags = get_flags_from_file(file); // 顺手加个 flags
+
+    ptr = (void *) saved_args.args[1];
+    count = (size_t) saved_args.args[2];
+    loff_t *pos = (loff_t *) saved_args.args[3];
+
+    // Extract device id, inode number, and pos (offset)
+    dev_t s_dev = get_dev_from_file(file);
+    unsigned long inode_nr = get_inode_nr_from_file(file);
+    bpf_probe_read(&amp;start_pos, sizeof(off_t), pos);
+
+    bool char_dev = (start_pos == 0);
+    u32 bytes_read = PT_REGS_RC(ctx);
+
+    // Calculate read start offset
+    if (start_pos != 0)
+        start_pos -= bytes_read;
+
+    event_data_t data = {};
+    if (!init_event_data(&amp;data, ctx))
+        return 0;
+
+    if (should_submit(VFS_READ, data.config)) {
+        save_str_to_buf(&amp;data, file_path, 0);
+        save_to_submit_buf(&amp;data, &amp;s_dev, sizeof(dev_t), 1);
+        save_to_submit_buf(&amp;data, &amp;inode_nr, sizeof(unsigned long), 2);
+        save_to_submit_buf(&amp;data, &amp;count, sizeof(size_t), 3);
+        save_to_submit_buf(&amp;data, &amp;start_pos, sizeof(off_t), 4);
+        save_to_submit_buf(&amp;data, &amp;flags, sizeof(int), 5); // flags
+
+        // Submit vfs_read(v) event
+        events_perf_submit(&amp;data, event_id, PT_REGS_RC(ctx));
+    }
+
+    bpf_tail_call(ctx, &amp;prog_array, tail_call_id);
+    return 0;
+}
+
+SEC(&quot;kprobe/vfs_read&quot;)
+TRACE_ENT_FUNC(vfs_read, VFS_READ);
+
+SEC(&quot;kretprobe/vfs_read&quot;)
+int BPF_KPROBE(trace_ret_vfs_read)
+{
+    return do_file_read_operation(ctx, VFS_READ, TAIL_VFS_READ);
+}
+</code></pre>
+<p>重新编译并执行</p>
+<pre><code class="language-shell">$ make
+make ./dist/tracee.bpf
+clang \
+	-D__TARGET_ARCH_x86 \
+	-D__BPF_TRACING__ \
+	-DCORE \
+	-I./pkg/ebpf/c/ \
+	-I./dist/tracee.bpf \
+	-target bpf \
+	-O2 -g \
+	-march=bpf -mcpu=v2 \
+	-c ./pkg/ebpf/c/tracee.bpf.c \
+	-o dist/tracee.bpf.core.o
+make ./dist/btfhub
+make btfhub
+GOOS=linux CC=clang GOARCH=amd64 CGO_CFLAGS=&quot;-I/root/projects/github.com/tracee/dist/libbpf&quot; CGO_LDFLAGS=&quot;-lelf  -lz  /root/projects/github.com/tracee/dist/libbpf/libbpf.a&quot; go build \
+	-tags core,ebpf \
+	-ldflags=&quot;-w \
+		-extldflags \&quot;\&quot; \
+		-X main.version=\&quot;v0.8.0\&quot; \
+		&quot; \
+	-v -o dist/tracee-ebpf \
+	./cmd/tracee-ebpf
+make[1]: “dist/btfhub”已是最新。
+make[1]: 对“btfhub”无需做任何事。
+github.com/aquasecurity/tracee
+github.com/aquasecurity/tracee/pkg/events
+github.com/aquasecurity/tracee/pkg/events/derive
+github.com/aquasecurity/tracee/pkg/bufferdecoder
+github.com/aquasecurity/tracee/pkg/ebpf
+github.com/aquasecurity/tracee/cmd/tracee-ebpf/internal/flags
+github.com/aquasecurity/tracee/cmd/tracee-ebpf
+
+$ ./dist/tracee-ebpf --trace event=vfs_read
+TIME             UID    COMM             PID     TID     RET              EVENT                ARGS
+22:14:26:651850  0      kubelet          17433   17433   549              vfs_read             pathname: /etc/selinux/config, dev: 265289728, inode: 51223044, count: 4096, pos: 0, flags: 32768
+...
+</code></pre>
+<h3 id="容器运行"><a class="header" href="#容器运行">容器运行</a></h3>
+<p>builder 目录中提供了一些 Makefile &amp; Dockerfile</p>
+<h3 id="自定义容器运行"><a class="header" href="#自定义容器运行">自定义容器运行</a></h3>
+<p>tracee 提供的 Makefile &amp; Dockerfile 中做了很多事情，包括在容器中下载一些编译执行依赖。但我更想让 tracee-ebpf 可执行文件拷贝到我自己自定义的容器中直接运行</p>
+<ol>
+<li>编写 makefile.minimal</li>
+</ol>
+<pre><code class="language-makefile">.PHONY: build-binary build-container run-container clean
+
+build-binary:
+	GOOS=linux CC=clang GOARCH=amd64 CGO_CFLAGS=&quot;-I/root/projects/github.com/tracee/dist/libbpf&quot; CGO_LDFLAGS=&quot;-lelf  -lz  /root/projects/github.com/tracee/dist/libbpf/libbpf.a&quot; go build \
+    	-tags core,ebpf \
+    	-ldflags=&quot;-w \
+    		-extldflags \&quot;\&quot; \
+    		-X main.version=\&quot;v0.8.0\&quot; \
+    		&quot; \
+    	-v -o bin/tracee-ebpf \
+    	./cmd/tracee-ebpf
+
+build-container: build-binary
+	docker build -f Dockerfile.minimal -t tracee-minimal:0.1 .
+
+run-container: build-container
+	docker run -it --name tracee-minimal tracee-minimal:0.1
+
+clean:
+	docker rm tracee-minimal
+	docker rmi tracee-minimal:0.1
+</code></pre>
+<ol start="2">
+<li>编写 dockerfile.minimal</li>
+</ol>
+<pre><code class="language-dockerfile">FROM alpine:3.15
+
+# 因为 bpf 程序依赖于一些 so 库，所以也需要一一拷贝
+COPY /usr/lib64/libelf.so.1 /lib64/libelf.so.1
+
+COPY bin/tracee-ebpf /tracee/tracee-ebpf
+
+ENTRYPOINT [&quot;sh&quot;,&quot;-c&quot;,&quot;/tracee/tracee-ebpf --trace container --trace event=vfs_write --trace event=vfs_read&quot;]
+</code></pre>
+<p>测试运行</p>
+<pre><code class="language-shell">$ make -f Makefile.minimal run-container
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../计/云原生/Kubernetes.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../计/云原生/Kubernetes.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
+
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

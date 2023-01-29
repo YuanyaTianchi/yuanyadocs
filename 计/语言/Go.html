@@ -1,0 +1,353 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Go - YuanyaDocs</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../index.html">Root</a></li><li class="chapter-item expanded "><a href="../../模板.html"><strong aria-hidden="true">1.</strong> 模板</a></li><li class="chapter-item expanded "><a href="../../番.html"><strong aria-hidden="true">2.</strong> 番</a></li><li class="chapter-item expanded affix "><li class="part-title">计</li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 语言</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../计/语言/Go.html" class="active"><strong aria-hidden="true">3.1.</strong> Go</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> 云原生</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../计/云原生/Kubernetes.html"><strong aria-hidden="true">4.1.</strong> Kuberntes</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 操作系统</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">5.1.</strong> Linux</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../计/操作系统/Linux.eBPF.html"><strong aria-hidden="true">5.1.1.</strong> Linux.eBPF</a></li></ol></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">YuanyaDocs</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <p>+++</p>
+<p>title = &quot;go.0开始&quot;
+description = &quot;go.0开始&quot;
+tags = [&quot;it&quot;,&quot;lang&quot;,&quot;go&quot;]</p>
+<p>+++</p>
+<h1 id="go开始"><a class="header" href="#go开始">go.开始</a></h1>
+<blockquote>
+<p><a href="https://go.dev/">官网</a>。</p>
+</blockquote>
+<h2 id="go"><a class="header" href="#go">go</a></h2>
+<p><a href="https://go.dev/dl/">下载</a>并解压：linux 选择 .linux-amd64.tar.gz，win 选择 .windows-amd64.zip</p>
+<p>环境变量：配置 GOROOT &amp; GOPATH，并将其 bin 目录添加到 PATH 后，go install 安装的程序将保存到 <code>$GOPATH/bin</code> 下</p>
+<pre><code class="language-shell"># 向 ~/.bashrc (或 /etc/profile) 添加环境变量
+sed -i '$a\
+\
+\
+# go\
+export PATH=$PATH:~/langs/go1.19.3/bin:~/langs/gopath/bin\
+export GOROOT=~/langs/go1.19.3\
+export GOPATH=~/langs/gopath\
+export GOPROXY=https://goproxy.cn,direct\
+alias goland=&quot;nohup ~/langs/goland-2021.2.3//bin/goland.sh &gt;/dev/null &amp; 2&gt;&amp;1&quot;' ~/.bashrc
+# 刷新
+source ~/.bashrc
+</code></pre>
+<p>配置</p>
+<pre><code class="language-shell"># 必要配置
+go env -w GOROOT=~/it/go/go
+go env -w GOPATH=~/it/go/gopath
+
+# 七牛云代理。&quot;goproxy.io&quot;、&quot;goproxy.cn&quot;、&quot;mirrors.aliyun.com/goproxy/&quot; 等任选其一
+go env -w GOPROXY=https://goproxy.cn,direct
+# gomod，1.14后默认开启
+go env -w GO111MODULE=on
+
+# 可选配置
+# 设置GOPRIVATE来跳过私有库，比如常用的Gitlab或Gitee，中间使用逗号分隔
+go env -w GOPRIVATE=*.gitlab.com,*.gitee.com 
+# 如果在运行go mod vendor时，提示Get https://sum.golang.org/lookup/xxxxxx: dial tcp 216.58.200.49:443: i/o timeout，则是因为Go 1.13设置了默认的GOSUMDB=sum.golang.org，这个网站是被墙了的，用于验证包的有效性，可以通过这个命令关闭。私有仓库自动忽略验证
+go env -w GOSUMDB=off 
+# 可以设置 GOSUMDB=&quot;sum.golang.google.cn&quot;， 这个是专门为国内提供的sum 验证服务
+go env -w GOSUMDB=&quot;sum.golang.google.cn&quot; 
+</code></pre>
+<h2 id="goland"><a class="header" href="#goland">goland</a></h2>
+<p>下载并解压：https://www.jetbrains.com/go/download/other.html</p>
+<pre><code class="language-sh"># 别名。使 goland nohup，并将其产生的 stdout 重定向到 /dev/null
+$ vim /etc/profile
+#添加如下内容，goland将不输出任何信息，也不会产生 nohup.out
+alias goland='nohup ~/go/goland/bin/goland.sh &gt;/dev/null &amp; 2&gt;&amp;1'
+</code></pre>
+<h3 id="常用设置"><a class="header" href="#常用设置">常用设置</a></h3>
+<ol>
+<li>
+<p>go</p>
+</li>
+<li>
+<p>go mod：开启即可</p>
+</li>
+<li>
+<p>proto import</p>
+<ol>
+<li>Goland插件Protocol Buffer Editor：Configure → Setting → Protocol Buffers → 取消勾选Configure automatically → 添加所需目录
+<ol>
+<li>一般是当前project或module的上一级目录，以使生成的go文件依然保持正确的包导入路径，且前缀统一更具可读性；D:/it/go/GoProject/pkg/mod</li>
+<li>如果用到go mod导入的内容，还需要添加go mod包所在目录。D:/it/go/GoProject/pkg/mod</li>
+</ol>
+</li>
+<li>如果是<code>protoc</code>命令工具：则添加 <code>-I</code> 参数指定目录</li>
+</ol>
+</li>
+<li>
+<p>编码：Configure → Setting → Editor → File Encodings</p>
+</li>
+<li>
+<p>全选为UTF-8，with NO BOM</p>
+<ol start="2">
+<li>Transparent native-to-ascii conversion自动转换ASCII编码：建议勾选。可能意思是，在文件中输入文字时他会自动的转换为Unicode编码，然后在idea中发开文件时他会自动转回文字来显示</li>
+</ol>
+</li>
+<li>
+<p>注解生效激活：Configure → Setting → Compiler → Annotation Processors</p>
+<ol>
+<li>Enable annotation processing</li>
+</ol>
+</li>
+<li>
+<p>文件过滤：Configure → Setting → Editor → File Types</p>
+<ol>
+<li>ActionScript → Ignore files and folders：添加 *.idea;*.iml; 进去</li>
+</ol>
+</li>
+<li>
+<p>字体：Configure → Setting → Editor → Font</p>
+</li>
+<li>
+<p>主题：Configure → Setting → Editor → Color Scheme</p>
+</li>
+<li>
+<p>背景图：Ctrl+Shift+A，搜索set background Image</p>
+</li>
+<li>
+<p>参数名提示：Ctrl+Shift+A，搜索show parameter name hints</p>
+</li>
+<li>
+<p>文档模板注释：</p>
+<pre><code class="language-java">   /* 类文档注释模板配置
+   1.file - settings - editor - file and data templates
+   2.includs - file header - 右空白框内复制下面类文档注释模板
+   3.新建类时自动生成文档注释
+   */
+   /** 类文档模板
+   @title: ${NAME}
+   @projectName ${PROJECT_NAME}
+   @description: TODO
+   @author ${USER}
+   @date ${DATE}${TIME}
+    */
+   public class DocumentAnnotationTemplate {
+       /* 方法文档注释模板配置
+       1.file - settings - editor - live templates
+       2.右+号 - template group - 名aaa(在最前比较方便)
+       3.选中aaa - live template - 名ann - 描述ann - 空白框内复制下面方法注释模板 - define - everywhere
+       3.新建方法后在方法上面输入ann - 按tab补全
+       */
+       /** 方法模板
+       @description: TODO
+       @param ${tags}
+       @return ${return_type}
+       @throws
+       @author ${USER}
+       @date ${DATE}${TIME}
+        */
+       public void function() { }
+}
+</code></pre>
+</li>
+<li>
+<p>evaluate expression：https://www.cnblogs.com/mrmoo/p/9942605.html</p>
+</li>
+</ol>
+<h3 id="重置试用"><a class="header" href="#重置试用">重置试用</a></h3>
+<p>方式1：删除家目录下的试用配置文件夹</p>
+<pre><code class="language-shell">rm -rf ~/.config/JetBrains/GoLand20xx.x/eval/
+# win下为~\AppData\Local\JetBrains\GoLand2021.2
+</code></pre>
+<p>方式2：安装插件 Eval Reset，点击 help-&gt;Eval Reset-&gt;reset 即可无限<a href="https://zhile.io/2020/11/18/jetbrains-eval-reset-deprecated.html">重置试用</a>。适用于 2021.2.3 及以前，2021.2.4 开始必须联网登录账号才能使用。可以勾选 Auto reset before per restart</p>
+<p>方式3：破解。破解前打开 goland，选择试用；下载破解文件 jetbrains-agent.jar 2020版本，将 jetbrains-agent.jar 拖入goland窗口，会提示restart，点击restart即可完成破解。适用于2021.1.2及其以前（现在好像2021.1.2已经不行了）</p>
+<h2 id="hello"><a class="header" href="#hello">hello</a></h2>
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func main() {
+	fmt.Println(&quot;Hello world!&quot;)
+}
+</code></pre>
+<pre><code class="language-shell">$ go run main.go
+Hello world!
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../番.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../计/云原生/Kubernetes.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../番.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../计/云原生/Kubernetes.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
+
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>
