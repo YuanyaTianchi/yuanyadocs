@@ -79,7 +79,9 @@ CONFIG_DEBUG_INFO_BTF_MODULES=y
 $ bpftool btf dump file /sys/kernel/btf/vmlinux format c > vmlinux.h
 ```
 
-## eBPF prog
+
+
+## BPF prog
 
 ```c
 #include "vmlinux.h"
@@ -106,7 +108,14 @@ bpf_type：不同的类型有不同的使用方式和限制，详见下面[eBPF�
 
 trace_name：对于
 
-## eBPF类型
+### 编译
+
+```makefile
+```
+
+
+
+### 类型
 
 ### kprobes
 
@@ -135,15 +144,27 @@ int kprobe__do_sys_openat2(struct pt_regs *ctx)
 
 ### raw_tracepoint
 
+## BPF map
 
 
 
+## vmlinux
 
 ## libbpfgo
 
 > [aquasecurity/libbpfgo](https://github.com/aquasecurity/libbpfgo)：一个通过cgo调用libbpf库的go语言封装。
 >
 > [libbpfgo 使用示例：搭建开发环境以及编写第一个 ebpf 程序](https://mozillazg.com/2022/05/ebpf-libbpfgo-develop-env-and-hello-world.html)；
+>
+> [文档](https://libbpf.readthedocs.io/en/latest/program_types.html)；
+
+### 依赖
+
+```shell
+apt install -y clang llvm libelf-dev
+```
+
+
 
 ebpf/c/
 

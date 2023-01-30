@@ -178,6 +178,12 @@ EOF
 netplan apply
 ```
 
+### https访问
+
+```shell
+apt install ca-certificates -y
+```
+
 
 
 ### apt源
@@ -541,3 +547,5 @@ deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted unive
 
 
 ****
+
+ubuntu20.04配置apt源
