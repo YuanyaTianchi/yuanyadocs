@@ -184,7 +184,7 @@ CONFIG_DEBUG_INFO_BTF_MODULES=y
 <pre><code class="language-shell"># 生成vmlinux.h
 $ bpftool btf dump file /sys/kernel/btf/vmlinux format c &gt; vmlinux.h
 </code></pre>
-<h2 id="ebpf-prog"><a class="header" href="#ebpf-prog">eBPF prog</a></h2>
+<h2 id="bpf-prog"><a class="header" href="#bpf-prog">BPF prog</a></h2>
 <pre><code class="language-c">#include &quot;vmlinux.h&quot;
 
 #include &lt;bpf/bpf_helpers.h&gt;
@@ -205,7 +205,9 @@ int kprobe__do_sys_openat2(struct pt_regs *ctx)
 <p>vmlinux.h：见CO-RE vmlinux.h</p>
 <p>bpf_type：不同的类型有不同的使用方式和限制，详见下面<a href="#eBPF%E7%B1%BB%E5%9E%8B">eBPF类型</a>。</p>
 <p>trace_name：对于</p>
-<h2 id="ebpf类型"><a class="header" href="#ebpf类型">eBPF类型</a></h2>
+<h3 id="编译"><a class="header" href="#编译">编译</a></h3>
+<pre><code class="language-makefile"></code></pre>
+<h3 id="类型"><a class="header" href="#类型">类型</a></h3>
 <h3 id="kprobes"><a class="header" href="#kprobes">kprobes</a></h3>
 <pre><code class="language-c">#include &quot;vmlinux.h&quot;
 
@@ -226,11 +228,17 @@ int kprobe__do_sys_openat2(struct pt_regs *ctx)
 </code></pre>
 <h3 id="tracepoint"><a class="header" href="#tracepoint">tracepoint</a></h3>
 <h3 id="raw_tracepoint"><a class="header" href="#raw_tracepoint">raw_tracepoint</a></h3>
+<h2 id="bpf-map"><a class="header" href="#bpf-map">BPF map</a></h2>
+<h2 id="vmlinux"><a class="header" href="#vmlinux">vmlinux</a></h2>
 <h2 id="libbpfgo"><a class="header" href="#libbpfgo">libbpfgo</a></h2>
 <blockquote>
 <p><a href="https://github.com/aquasecurity/libbpfgo">aquasecurity/libbpfgo</a>：一个通过cgo调用libbpf库的go语言封装。</p>
 <p><a href="https://mozillazg.com/2022/05/ebpf-libbpfgo-develop-env-and-hello-world.html">libbpfgo 使用示例：搭建开发环境以及编写第一个 ebpf 程序</a>；</p>
+<p><a href="https://libbpf.readthedocs.io/en/latest/program_types.html">文档</a>；</p>
 </blockquote>
+<h3 id="依赖"><a class="header" href="#依赖">依赖</a></h3>
+<pre><code class="language-shell">apt install -y clang llvm libelf-dev
+</code></pre>
 <p>ebpf/c/</p>
 <pre><code class="language-c">#include &quot;vmlinux.h&quot;
 
