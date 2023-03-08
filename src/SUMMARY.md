@@ -15,7 +15,7 @@
   - [Kuberntes](计/云原生/Kubernetes.md)
 
 - [操作系统]()
-  - [Linux]()
+  - [Linux](计/操作系统/Linux.md)
     - [Linux.eBPF](计/操作系统/Linux.eBPF.md)
 
 

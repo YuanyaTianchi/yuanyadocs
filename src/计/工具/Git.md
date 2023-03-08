@@ -37,7 +37,7 @@ cat > ~/.gitconfig <<EOF
   br = branch
   st = status
   lg = log --graph --abbrev-commit --pretty=oneline
-  ru = remote update origin --prune
+  rebh = git rebase HEADE^
 [http]
   # http 代理
   proxy = http://<proxy_server_ip>:<port>

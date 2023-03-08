@@ -1,29 +1,28 @@
 
 
+
+
 +++
 
 title = "Linux"
-description = "Linux"
-tags = ["it","os","Linux"]
+description = "Linux quick start"
+tags = ["techn", "computer", "os", "Linux", "__quick_start"]
 
 +++
 
 
 
-# Linux.快速开始
+# Linux
 
-- Linux
-  - Linus Benedict Torvalds（Linux之父）编写的开源操作系统的内核
-  - 广义上的基于 Linux内核 的 Linux操作系统
-- 内核版本：https://www.kernel.org/
-  - 内核版本分为三个部分：主版本号、次版本号、末版本号
-  - 次版本号是奇数为开发版，偶数为稳定版。但是实际上在2.6以后不这么区分了
-- 发行版本：RedHat Enterprise Linux、Fedora、CentOS、Debian、Ubuntu...
-- 终端：图形终端，命令行终端，远程终端（SSH、VNC）
+> [官网](https://www.kernel.org/)；
+>
+> [仓库](https://git.kernel.org/)；
+>
+> [Linus Torvalds](https://en.wikipedia.org/wiki/Linus_Torvalds)；
 
 
 
-
+## Release-Ubuntu
 
 ## VirtualBox
 
