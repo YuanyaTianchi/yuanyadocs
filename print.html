@@ -71,10 +71,12 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -82,7 +84,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Root</a></li><li class="chapter-item expanded "><a href="模板.html"><strong aria-hidden="true">1.</strong> 模板</a></li><li class="chapter-item expanded "><a href="番.html"><strong aria-hidden="true">2.</strong> 番</a></li><li class="chapter-item expanded affix "><li class="part-title">计</li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 语言</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="计/语言/Go.html"><strong aria-hidden="true">3.1.</strong> Go</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> 云原生</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="计/云原生/Kubernetes.html"><strong aria-hidden="true">4.1.</strong> Kuberntes</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 操作系统</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">5.1.</strong> Linux</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="计/操作系统/Linux.eBPF.html"><strong aria-hidden="true">5.1.1.</strong> Linux.eBPF</a></li></ol></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Root</a></li><li class="chapter-item expanded "><a href="模板.html"><strong aria-hidden="true">1.</strong> 模板</a></li><li class="chapter-item expanded "><a href="番.html"><strong aria-hidden="true">2.</strong> 番</a></li><li class="chapter-item expanded affix "><li class="part-title">计</li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 语言</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="计/语言/Go.html"><strong aria-hidden="true">3.1.</strong> Go</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> 云原生</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="计/云原生/Kubernetes.html"><strong aria-hidden="true">4.1.</strong> Kuberntes</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 操作系统</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="计/操作系统/Linux.html"><strong aria-hidden="true">5.1.</strong> Linux</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="计/操作系统/Linux.eBPF.html"><strong aria-hidden="true">5.1.1.</strong> Linux.eBPF</a></li></ol></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -160,13 +162,16 @@ Here are some ideas to get you started:
 -->
 <p><img src="./img/%E6%A0%88.svg" alt="" /></p>
 <div style="break-before: page; page-break-before: always;"></div><p>+++</p>
-<p>title = &quot;Title&quot;
-description = &quot;it.tag.tag.Title&quot;
-tags = [&quot;it&quot;,&quot;tag&quot;,&quot;tag&quot;]</p>
+<p>title = &quot;Title.sub_title&quot;
+description = &quot;Title sub_title quick_start&quot;
+tags = [&quot;techn&quot;, &quot;computer&quot;, &quot;tagx&quot;, &quot;Title&quot;, &quot;_sub_title&quot;, &quot;__quick_start(content)&quot;]</p>
 <p>+++</p>
-<h1 id="title"><a class="header" href="#title">Title</a></h1>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="追番"><a class="header" href="#追番">追番</a></h1>
-<h2 id="2022"><a class="header" href="#2022">2022</a></h2>
+<h1 id="titlesub_title"><a class="header" href="#titlesub_title">Title.sub_title</a></h1>
+<blockquote>
+<p><a href="">官网</a>；</p>
+</blockquote>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="番"><a class="header" href="#番">番</a></h1>
+<h2 id="2023"><a class="header" href="#2023">2023</a></h2>
 <p>【202301】【日】fate/strangeFake-0</p>
 <p>【202301】【日】high card-周一0</p>
 <p>【202211】【日】阿尔斯的巨兽-0</p>
@@ -184,6 +189,7 @@ tags = [&quot;it&quot;,&quot;tag&quot;,&quot;tag&quot;]</p>
 <p>【202301】【日】伊藤润二2-0</p>
 <p>【202301】【日】<a href="https://www.bilibili.com/bangumi/media/md28412511/">因为太怕痛就全点防御力了</a>-周三4</p>
 <p>【202301】【日】<a href="https://www.agemys.net/play/20220186">最强阴阳师的异世界转生记</a>-周日2</p>
+<h2 id="2022"><a class="header" href="#2022">2022</a></h2>
 <p>【202211】【日】<a href="https://www.yhdmp.cc/showp/22099.html">JOJO的奇妙冒险6石之海Part3</a></p>
 <p>【202210】【日】<a href="https://www.yhdmp.cc/showp/22465.html"><strong>4个人各自有着自己的秘密</strong></a></p>
 <p>【202210】【日】<a href="https://www.yhdmp.cc/showp/22508.html">飙速宅男5</a>-周一10</p>
@@ -207,16 +213,16 @@ tags = [&quot;it&quot;,&quot;tag&quot;,&quot;tag&quot;]</p>
 <p>【202207】【日】<a href="https://www.yhdmp.cc/showp/20181.html"><strong>来自深渊2 烈日的黄金乡</strong></a></p>
 <p>【202207】【日】<a href="https://www.agemys.net/play/20220134">异世界舅舅</a>-周12</p>
 <p>【202207】【日】<a href="https://www.yhdmp.cc/showp/22084.html">租界女友2</a>-周六18</p>
-<p>【202201】【日】<a href="https://www.yhdmp.cc/showp/21157.html">处刑少女的生存之道</a></p>
-<p>【202201】【日】<a href="https://www.yhdmp.cc/showp/21104.html"><strong>辉夜大小姐想让我告白3</strong></a></p>
-<p>【202201】【日】<a href="https://www.yhdmp.cc/showp/22164.html"><strong>间谍过家家</strong></a></p>
-<p>【202201】【日】<a href="https://www.bilibili.com/bangumi/play/ss39725/">理科生坠入情网，故尝试证明2</a>-周六4</p>
-<p>【202201】【日】<a href="https://www.bilibili.com/bangumi/play/ss41418/"><strong>恋爱要在征服世界后</strong></a></p>
-<p>【202201】【日】<a href="https://www.bilibili.com/bangumi/play/ep478912">恋爱游戏世界对路人角色很不友好</a></p>
-<p>【202201】【日】<a href="https://www.yhdmp.cc/showp/22172.html">派对浪客诸葛孔明</a></p>
-<p>【202201】【日】<a href="https://www.yhdmp.cc/showp/22165.html">朋友游戏1</a></p>
-<p>【202201】【日】<a href="https://www.yhdmp.cc/showp/22162.html"><strong>青之芦苇</strong></a></p>
-<p>【202201】【日】<a href="https://www.yhdmp.cc/showp/22174.html">夏日重现</a></p>
+<p>【202204】【日】<a href="https://www.yhdmp.cc/showp/21157.html">处刑少女的生存之道</a></p>
+<p>【202204】【日】<a href="https://www.yhdmp.cc/showp/21104.html"><strong>辉夜大小姐想让我告白3</strong></a></p>
+<p>【202204】【日】<a href="https://www.yhdmp.cc/showp/22164.html"><strong>间谍过家家</strong></a></p>
+<p>【202204】【日】<a href="https://www.bilibili.com/bangumi/play/ss39725/">理科生坠入情网，故尝试证明2</a>-周六4</p>
+<p>【202204】【日】<a href="https://www.bilibili.com/bangumi/play/ss41418/"><strong>恋爱要在征服世界后</strong></a></p>
+<p>【202204】【日】<a href="https://www.bilibili.com/bangumi/play/ep478912">恋爱游戏世界对路人角色很不友好</a></p>
+<p>【202204】【日】<a href="https://www.yhdmp.cc/showp/22172.html">派对浪客诸葛孔明</a></p>
+<p>【202204】【日】<a href="https://www.yhdmp.cc/showp/22165.html">朋友游戏1</a></p>
+<p>【202204】【日】<a href="https://www.yhdmp.cc/showp/22162.html"><strong>青之芦苇</strong></a></p>
+<p>【202204】【日】<a href="https://www.yhdmp.cc/showp/22174.html">夏日重现</a></p>
 <p>【202201】【日】鬼灭之刃3游郭篇</p>
 <p>【202201】【日】<strong>进击的巨人最终季part2</strong></p>
 <p>【202201】【日】天才王子的赤字国家振兴术</p>
@@ -498,153 +504,49 @@ tags = [&quot;it&quot;,&quot;tag&quot;,&quot;tag&quot;]</p>
 <h2 id="1995"><a class="header" href="#1995">1995</a></h2>
 <p>【199510】【日】新世纪福音战士</p>
 <div style="break-before: page; page-break-before: always;"></div><p>+++</p>
-<p>title = &quot;go.0开始&quot;
-description = &quot;go.0开始&quot;
-tags = [&quot;it&quot;,&quot;lang&quot;,&quot;go&quot;]</p>
+<p>title = &quot;Go&quot;
+description = &quot;Go quick start&quot;
+tags = [&quot;techn&quot;, &quot;computer&quot;, &quot;lang&quot;, &quot;Go&quot;, &quot;__quick_start&quot;]</p>
 <p>+++</p>
-<h1 id="go开始"><a class="header" href="#go开始">go.开始</a></h1>
+<h1 id="go"><a class="header" href="#go">Go</a></h1>
 <blockquote>
-<p><a href="https://go.dev/">官网</a>。</p>
+<p><a href="https://go.dev/">官网</a>；</p>
 </blockquote>
-<h2 id="go"><a class="header" href="#go">go</a></h2>
-<p><a href="https://go.dev/dl/">下载</a>并解压：linux 选择 .linux-amd64.tar.gz，win 选择 .windows-amd64.zip</p>
-<p>环境变量：配置 GOROOT &amp; GOPATH，并将其 bin 目录添加到 PATH 后，go install 安装的程序将保存到 <code>$GOPATH/bin</code> 下</p>
-<pre><code class="language-shell"># 向 ~/.bashrc (或 /etc/profile) 添加环境变量
-sed -i '$a\
-\
-\
-# go\
-export PATH=$PATH:~/langs/go1.19.3/bin:~/langs/gopath/bin\
-export GOROOT=~/langs/go1.19.3\
-export GOPATH=~/langs/gopath\
-export GOPROXY=https://goproxy.cn,direct\
-alias goland=&quot;nohup ~/langs/goland-2021.2.3//bin/goland.sh &gt;/dev/null &amp; 2&gt;&amp;1&quot;' ~/.bashrc
-# 刷新
+<h2 id="go-1"><a class="header" href="#go-1">go</a></h2>
+<blockquote>
+<p><a href="https://go.dev/dl/">下载</a>：选择 <code>.linux-amd64.tar.gz</code>，Win 选择 .windows-amd64.zip；</p>
+</blockquote>
+<p>安装：解压即可</p>
+<pre><code class="language-shell">tar -zxf gox.x.x.linux-amd64.tar.gz
+</code></pre>
+<p>环境变量：导入到系统环境变量，或者通过命令如 <code>go env -w GOROOT=</code> 写入</p>
+<pre><code class="language-shell">export GOROOT=~/compute/lang/go/go
+export GOPATH=~/compute/lang/go/path
+# go install 安装的程序将保存到 $GOPATH/bin 下
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+# 代理：七牛云代理 goproxy.cn,direct；阿里代理 mirrors.aliyun.com/goproxy/
+export GOPROXY=https://goproxy.cn,direct
+
+# gomod：go 1.14 后默认开启
+export GO111MODULE=on
+# 私有库：设置私有库以跳过代理，比如公司使用 Gitlab、Gitee 等，多私有库逗号分隔
+export GOPRIVATE=*.gitlab.com,*.gitee.com
+# 用于验证包的有效性的服务地址，默认 sum.golang.org。有时候如 go mod vendor 会用到，无法连接则设置可连接的地址如 sum.golang.google.cn，这是专为国内提供的 sum 验证服务地址，或者直接关闭即可。私有仓库自动忽略验证
+export GOSUMDB=off
+
+# 如写入 ~/.bashrc 则刷新
 source ~/.bashrc
 </code></pre>
-<p>配置</p>
-<pre><code class="language-shell"># 必要配置
-go env -w GOROOT=~/it/go/go
-go env -w GOPATH=~/it/go/gopath
-
-# 七牛云代理。&quot;goproxy.io&quot;、&quot;goproxy.cn&quot;、&quot;mirrors.aliyun.com/goproxy/&quot; 等任选其一
-go env -w GOPROXY=https://goproxy.cn,direct
-# gomod，1.14后默认开启
-go env -w GO111MODULE=on
-
-# 可选配置
-# 设置GOPRIVATE来跳过私有库，比如常用的Gitlab或Gitee，中间使用逗号分隔
-go env -w GOPRIVATE=*.gitlab.com,*.gitee.com 
-# 如果在运行go mod vendor时，提示Get https://sum.golang.org/lookup/xxxxxx: dial tcp 216.58.200.49:443: i/o timeout，则是因为Go 1.13设置了默认的GOSUMDB=sum.golang.org，这个网站是被墙了的，用于验证包的有效性，可以通过这个命令关闭。私有仓库自动忽略验证
-go env -w GOSUMDB=off 
-# 可以设置 GOSUMDB=&quot;sum.golang.google.cn&quot;， 这个是专门为国内提供的sum 验证服务
-go env -w GOSUMDB=&quot;sum.golang.google.cn&quot; 
-</code></pre>
-<h2 id="goland"><a class="header" href="#goland">goland</a></h2>
-<p>下载并解压：https://www.jetbrains.com/go/download/other.html</p>
-<pre><code class="language-sh"># 别名。使 goland nohup，并将其产生的 stdout 重定向到 /dev/null
-$ vim /etc/profile
-#添加如下内容，goland将不输出任何信息，也不会产生 nohup.out
-alias goland='nohup ~/go/goland/bin/goland.sh &gt;/dev/null &amp; 2&gt;&amp;1'
-</code></pre>
-<h3 id="常用设置"><a class="header" href="#常用设置">常用设置</a></h3>
+<h2 id="vs-code"><a class="header" href="#vs-code">vs code</a></h2>
+<blockquote>
+<p><a href="https://learn.microsoft.com/zh-cn/azure/developer/go/configure-visual-studio-code">为 Go 开发配置 Visual Studio Code</a>；</p>
+</blockquote>
 <ol>
-<li>
-<p>go</p>
-</li>
-<li>
-<p>go mod：开启即可</p>
-</li>
-<li>
-<p>proto import</p>
-<ol>
-<li>Goland插件Protocol Buffer Editor：Configure → Setting → Protocol Buffers → 取消勾选Configure automatically → 添加所需目录
-<ol>
-<li>一般是当前project或module的上一级目录，以使生成的go文件依然保持正确的包导入路径，且前缀统一更具可读性；D:/it/go/GoProject/pkg/mod</li>
-<li>如果用到go mod导入的内容，还需要添加go mod包所在目录。D:/it/go/GoProject/pkg/mod</li>
+<li><code>Ctrl+Shift+X</code> 打开扩展视图，搜索 <code>Go</code> 插件并安装</li>
+<li><code>Ctrl+Shift+P</code> 打开 vs code 命令框，搜索 <code>Go: Install/Update tools</code> 并执行</li>
 </ol>
-</li>
-<li>如果是<code>protoc</code>命令工具：则添加 <code>-I</code> 参数指定目录</li>
-</ol>
-</li>
-<li>
-<p>编码：Configure → Setting → Editor → File Encodings</p>
-</li>
-<li>
-<p>全选为UTF-8，with NO BOM</p>
-<ol start="2">
-<li>Transparent native-to-ascii conversion自动转换ASCII编码：建议勾选。可能意思是，在文件中输入文字时他会自动的转换为Unicode编码，然后在idea中发开文件时他会自动转回文字来显示</li>
-</ol>
-</li>
-<li>
-<p>注解生效激活：Configure → Setting → Compiler → Annotation Processors</p>
-<ol>
-<li>Enable annotation processing</li>
-</ol>
-</li>
-<li>
-<p>文件过滤：Configure → Setting → Editor → File Types</p>
-<ol>
-<li>ActionScript → Ignore files and folders：添加 *.idea;*.iml; 进去</li>
-</ol>
-</li>
-<li>
-<p>字体：Configure → Setting → Editor → Font</p>
-</li>
-<li>
-<p>主题：Configure → Setting → Editor → Color Scheme</p>
-</li>
-<li>
-<p>背景图：Ctrl+Shift+A，搜索set background Image</p>
-</li>
-<li>
-<p>参数名提示：Ctrl+Shift+A，搜索show parameter name hints</p>
-</li>
-<li>
-<p>文档模板注释：</p>
-<pre><code class="language-java">   /* 类文档注释模板配置
-   1.file - settings - editor - file and data templates
-   2.includs - file header - 右空白框内复制下面类文档注释模板
-   3.新建类时自动生成文档注释
-   */
-   /** 类文档模板
-   @title: ${NAME}
-   @projectName ${PROJECT_NAME}
-   @description: TODO
-   @author ${USER}
-   @date ${DATE}${TIME}
-    */
-   public class DocumentAnnotationTemplate {
-       /* 方法文档注释模板配置
-       1.file - settings - editor - live templates
-       2.右+号 - template group - 名aaa(在最前比较方便)
-       3.选中aaa - live template - 名ann - 描述ann - 空白框内复制下面方法注释模板 - define - everywhere
-       3.新建方法后在方法上面输入ann - 按tab补全
-       */
-       /** 方法模板
-       @description: TODO
-       @param ${tags}
-       @return ${return_type}
-       @throws
-       @author ${USER}
-       @date ${DATE}${TIME}
-        */
-       public void function() { }
-}
-</code></pre>
-</li>
-<li>
-<p>evaluate expression：https://www.cnblogs.com/mrmoo/p/9942605.html</p>
-</li>
-</ol>
-<h3 id="重置试用"><a class="header" href="#重置试用">重置试用</a></h3>
-<p>方式1：删除家目录下的试用配置文件夹</p>
-<pre><code class="language-shell">rm -rf ~/.config/JetBrains/GoLand20xx.x/eval/
-# win下为~\AppData\Local\JetBrains\GoLand2021.2
-</code></pre>
-<p>方式2：安装插件 Eval Reset，点击 help-&gt;Eval Reset-&gt;reset 即可无限<a href="https://zhile.io/2020/11/18/jetbrains-eval-reset-deprecated.html">重置试用</a>。适用于 2021.2.3 及以前，2021.2.4 开始必须联网登录账号才能使用。可以勾选 Auto reset before per restart</p>
-<p>方式3：破解。破解前打开 goland，选择试用；下载破解文件 jetbrains-agent.jar 2020版本，将 jetbrains-agent.jar 拖入goland窗口，会提示restart，点击restart即可完成破解。适用于2021.1.2及其以前（现在好像2021.1.2已经不行了）</p>
-<h2 id="hello"><a class="header" href="#hello">hello</a></h2>
+<h2 id="hello-world"><a class="header" href="#hello-world">hello world</a></h2>
+<p>helloworld.go</p>
 <pre><code class="language-go">package main
 
 import &quot;fmt&quot;
@@ -653,7 +555,8 @@ func main() {
 	fmt.Println(&quot;Hello world!&quot;)
 }
 </code></pre>
-<pre><code class="language-shell">$ go run main.go
+<pre><code class="language-shell">$ go build -o ./helloworld-exec ./helloworld.go
+$ ./helloworld-exec
 Hello world!
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><p>+++</p>
@@ -1443,6 +1346,115 @@ EOF
 # 更新
 source .bashrc
 </code></pre>
+<div style="break-before: page; page-break-before: always;"></div><p>+++</p>
+<p>title = &quot;Linux&quot;
+description = &quot;Linux quick start&quot;
+tags = [&quot;techn&quot;, &quot;computer&quot;, &quot;os&quot;, &quot;Linux&quot;, &quot;__quick_start&quot;]</p>
+<p>+++</p>
+<h1 id="linux"><a class="header" href="#linux">Linux</a></h1>
+<blockquote>
+<p><a href="https://www.kernel.org/">官网</a>；</p>
+<p><a href="https://git.kernel.org/">仓库</a>；</p>
+<p><a href="https://en.wikipedia.org/wiki/Linus_Torvalds">Linus Torvalds</a>；</p>
+</blockquote>
+<h1 id="ubuntu-1"><a class="header" href="#ubuntu-1">Ubuntu</a></h1>
+<blockquote>
+<p><a href="https://mirrors.aliyun.com/ubuntu-releases/">ubuntu阿里云镜像</a>；</p>
+</blockquote>
+<h3 id="root密码重设"><a class="header" href="#root密码重设">root密码重设</a></h3>
+<pre><code class="language-shell">sudo passwd
+
+# 登录root
+su root
+</code></pre>
+<h3 id="root图形界面登录"><a class="header" href="#root图形界面登录">root图形界面登录</a></h3>
+<pre><code class="language-shell"># ubuntu桌面版不允许图形界面登录root用户，须注释`/etc/pam.d/gdm-password`&amp;`/etc/pam.d/gdm-autologin`文件中 auth required pam_succeed_if.so user != root quiet_success 所在行
+sed -i 's/auth.*required.*pam_succeed_if.so user != root quiet_success/# auth\trequired\tpam_succeed_if.so user != root quiet_success/g' /etc/pam.d/gdm-password
+sed -i 's/auth.*required.*pam_succeed_if.so user != root quiet_success/# auth\trequired\tpam_succeed_if.so user != root quiet_success/g' /etc/pam.d/gdm-autologin
+</code></pre>
+<h3 id="vi"><a class="header" href="#vi">vi</a></h3>
+<pre><code class="language-shell"># vi 默认情况下上下左右、backspace等按键非正常作用，须配置`/etc/vim/vimrc.tiny`
+cat &gt;&gt; /etc/vim/vimrc.tiny &lt;&lt; EOF
+
+set nocompatible
+set backspace=2
+EOF
+</code></pre>
+<h3 id="快速关机"><a class="header" href="#快速关机">快速关机</a></h3>
+<pre><code class="language-shell"># 快速关机
+sed -i '/#DefaultTimeoutStartSec=90s/aDefaultTimeoutStartSec=5s' /etc/systemd/system.conf
+sed -i '/#DefaultTimeoutStopSec=90s/aDefaultTimeoutStopSec=5s' /etc/systemd/system.conf
+</code></pre>
+<h3 id="ssh服务启用"><a class="header" href="#ssh服务启用">ssh服务启用</a></h3>
+<pre><code class="language-shell"># 安装
+apt install -y openssh-server
+# 默认禁止远程登录，需 /etc/ssh/sshd_config 中 PermitRootLogin 字段
+sed -i '/#PermitRootLogin prohibit-password/aPermitRootLogin yes' /etc/ssh/sshd_config
+# 重启
+systemctl restart sshd
+# 查看状态
+systemctl status sshd
+</code></pre>
+<h3 id="网卡配置"><a class="header" href="#网卡配置">网卡配置</a></h3>
+<p>系统会读取<code>/etc/netplan/*.yaml</code></p>
+<pre><code class="language-shell">cat &gt;&gt; /etc/netplan/02.yaml &lt;&lt; EOF
+network:
+  version: 2
+  renderer: NetworkManager
+  ethernets:
+    enp0s3:
+      dhcp4: false
+      # gateway4: 192.168.31.1
+      routes:
+      - to: default
+        via: 192.168.31.1  # gateway, same as gateway4
+      addresses:
+      - 192.168.31.10/24
+      nameservers:
+        addresses: [192.168.31.1,8.8.8.8] # DNS
+        search: []
+EOF
+
+# 应用配置
+netplan apply
+</code></pre>
+<h3 id="https访问"><a class="header" href="#https访问">https访问</a></h3>
+<pre><code class="language-shell">apt install ca-certificates -y
+</code></pre>
+<h3 id="apt源"><a class="header" href="#apt源">apt源</a></h3>
+<pre><code class="language-shell">$ mv /etc/apt/sources.list /etc/apt/sources.list.bk
+$ cat &gt; /etc/apt/sources.list &lt;&lt; EOF
+deb http://mirrors.aliyun.com/ubuntu/ jammy main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ jammy main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ jammy-security main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ jammy-security main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ jammy-updates main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ jammy-updates main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ jammy-proposed main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ jammy-proposed main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ jammy-backports main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ jammy-backports main restricted universe multiverse
+EOF
+# 更新源
+$ apt update
+</code></pre>
+<h3 id="用户文件夹"><a class="header" href="#用户文件夹">用户文件夹</a></h3>
+<p>指定Desktop、Downloads等</p>
+<pre><code class="language-shell">sed -i 's/XDG_DESKTOP_DIR=.*/XDG_DESKTOP_DIR=&quot;$HOME\/dirs\/Desktop&quot;/g' ~/.config/user-dirs.dirs
+sed -i 's/XDG_DOWNLOAD_DIR=.*/XDG_DOWNLOAD_DIR=&quot;$HOME\/dirs\/Downloads&quot;/g' ~/.config/user-dirs.dirs
+sed -i 's/XDG_TEMPLATES_DIR=.*/XDG_TEMPLATES_DIR=&quot;$HOME\/dirs\/Templates&quot;/g' ~/.config/user-dirs.dirs
+sed -i 's/XDG_PUBLICSHARE_DIR=.*/XDG_PUBLICSHARE_DIR=&quot;$HOME\/dirs\/Public&quot;/g' ~/.config/user-dirs.dirs
+sed -i 's/XDG_DOCUMENTS_DIR=.*/XDG_DOCUMENTS_DIR=&quot;$HOME\/dirs\/Documents&quot;/g' ~/.config/user-dirs.dirs
+sed -i 's/XDG_MUSIC_DIR=.*/XDG_MUSIC_DIR=&quot;$HOME\/dirs\/Music&quot;/g' ~/.config/user-dirs.dirs
+sed -i 's/XDG_PICTURES_DIR=.*/XDG_PICTURES_DIR=&quot;$HOME\/dirs\/Pictures&quot;/g' ~/.config/user-dirs.dirs
+sed -i 's/XDG_VIDEOS_DIR=.*/XDG_VIDEOS_DIR=&quot;$HOME\/dirs\/Videos&quot;/g' ~/.config/user-dirs.dirs
+# 现在使用
+nautilus -q
+</code></pre>
+<h1 id="centos-1"><a class="header" href="#centos-1">CentOS</a></h1>
+<blockquote>
+<p><a href="https://mirrors.aliyun.com/ubuntu-releases/">centos阿里云镜像</a>；</p>
+</blockquote>
 <div style="break-before: page; page-break-before: always;"></div><p>+++</p>
 <p>title = &quot;eBPF&quot;
 description = &quot;it.os.linux.eBPF&quot;

@@ -70,10 +70,12 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -81,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Root</a></li><li class="chapter-item expanded "><a href="模板.html"><strong aria-hidden="true">1.</strong> 模板</a></li><li class="chapter-item expanded "><a href="番.html" class="active"><strong aria-hidden="true">2.</strong> 番</a></li><li class="chapter-item expanded affix "><li class="part-title">计</li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 语言</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="计/语言/Go.html"><strong aria-hidden="true">3.1.</strong> Go</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> 云原生</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="计/云原生/Kubernetes.html"><strong aria-hidden="true">4.1.</strong> Kuberntes</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 操作系统</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">5.1.</strong> Linux</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="计/操作系统/Linux.eBPF.html"><strong aria-hidden="true">5.1.1.</strong> Linux.eBPF</a></li></ol></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Root</a></li><li class="chapter-item expanded "><a href="模板.html"><strong aria-hidden="true">1.</strong> 模板</a></li><li class="chapter-item expanded "><a href="番.html" class="active"><strong aria-hidden="true">2.</strong> 番</a></li><li class="chapter-item expanded affix "><li class="part-title">计</li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 语言</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="计/语言/Go.html"><strong aria-hidden="true">3.1.</strong> Go</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> 云原生</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="计/云原生/Kubernetes.html"><strong aria-hidden="true">4.1.</strong> Kuberntes</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 操作系统</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="计/操作系统/Linux.html"><strong aria-hidden="true">5.1.</strong> Linux</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="计/操作系统/Linux.eBPF.html"><strong aria-hidden="true">5.1.1.</strong> Linux.eBPF</a></li></ol></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -142,8 +144,8 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="追番"><a class="header" href="#追番">追番</a></h1>
-<h2 id="2022"><a class="header" href="#2022">2022</a></h2>
+                        <h1 id="番"><a class="header" href="#番">番</a></h1>
+<h2 id="2023"><a class="header" href="#2023">2023</a></h2>
 <p>【202301】【日】fate/strangeFake-0</p>
 <p>【202301】【日】high card-周一0</p>
 <p>【202211】【日】阿尔斯的巨兽-0</p>
@@ -161,6 +163,7 @@
 <p>【202301】【日】伊藤润二2-0</p>
 <p>【202301】【日】<a href="https://www.bilibili.com/bangumi/media/md28412511/">因为太怕痛就全点防御力了</a>-周三4</p>
 <p>【202301】【日】<a href="https://www.agemys.net/play/20220186">最强阴阳师的异世界转生记</a>-周日2</p>
+<h2 id="2022"><a class="header" href="#2022">2022</a></h2>
 <p>【202211】【日】<a href="https://www.yhdmp.cc/showp/22099.html">JOJO的奇妙冒险6石之海Part3</a></p>
 <p>【202210】【日】<a href="https://www.yhdmp.cc/showp/22465.html"><strong>4个人各自有着自己的秘密</strong></a></p>
 <p>【202210】【日】<a href="https://www.yhdmp.cc/showp/22508.html">飙速宅男5</a>-周一10</p>
@@ -184,16 +187,16 @@
 <p>【202207】【日】<a href="https://www.yhdmp.cc/showp/20181.html"><strong>来自深渊2 烈日的黄金乡</strong></a></p>
 <p>【202207】【日】<a href="https://www.agemys.net/play/20220134">异世界舅舅</a>-周12</p>
 <p>【202207】【日】<a href="https://www.yhdmp.cc/showp/22084.html">租界女友2</a>-周六18</p>
-<p>【202201】【日】<a href="https://www.yhdmp.cc/showp/21157.html">处刑少女的生存之道</a></p>
-<p>【202201】【日】<a href="https://www.yhdmp.cc/showp/21104.html"><strong>辉夜大小姐想让我告白3</strong></a></p>
-<p>【202201】【日】<a href="https://www.yhdmp.cc/showp/22164.html"><strong>间谍过家家</strong></a></p>
-<p>【202201】【日】<a href="https://www.bilibili.com/bangumi/play/ss39725/">理科生坠入情网，故尝试证明2</a>-周六4</p>
-<p>【202201】【日】<a href="https://www.bilibili.com/bangumi/play/ss41418/"><strong>恋爱要在征服世界后</strong></a></p>
-<p>【202201】【日】<a href="https://www.bilibili.com/bangumi/play/ep478912">恋爱游戏世界对路人角色很不友好</a></p>
-<p>【202201】【日】<a href="https://www.yhdmp.cc/showp/22172.html">派对浪客诸葛孔明</a></p>
-<p>【202201】【日】<a href="https://www.yhdmp.cc/showp/22165.html">朋友游戏1</a></p>
-<p>【202201】【日】<a href="https://www.yhdmp.cc/showp/22162.html"><strong>青之芦苇</strong></a></p>
-<p>【202201】【日】<a href="https://www.yhdmp.cc/showp/22174.html">夏日重现</a></p>
+<p>【202204】【日】<a href="https://www.yhdmp.cc/showp/21157.html">处刑少女的生存之道</a></p>
+<p>【202204】【日】<a href="https://www.yhdmp.cc/showp/21104.html"><strong>辉夜大小姐想让我告白3</strong></a></p>
+<p>【202204】【日】<a href="https://www.yhdmp.cc/showp/22164.html"><strong>间谍过家家</strong></a></p>
+<p>【202204】【日】<a href="https://www.bilibili.com/bangumi/play/ss39725/">理科生坠入情网，故尝试证明2</a>-周六4</p>
+<p>【202204】【日】<a href="https://www.bilibili.com/bangumi/play/ss41418/"><strong>恋爱要在征服世界后</strong></a></p>
+<p>【202204】【日】<a href="https://www.bilibili.com/bangumi/play/ep478912">恋爱游戏世界对路人角色很不友好</a></p>
+<p>【202204】【日】<a href="https://www.yhdmp.cc/showp/22172.html">派对浪客诸葛孔明</a></p>
+<p>【202204】【日】<a href="https://www.yhdmp.cc/showp/22165.html">朋友游戏1</a></p>
+<p>【202204】【日】<a href="https://www.yhdmp.cc/showp/22162.html"><strong>青之芦苇</strong></a></p>
+<p>【202204】【日】<a href="https://www.yhdmp.cc/showp/22174.html">夏日重现</a></p>
 <p>【202201】【日】鬼灭之刃3游郭篇</p>
 <p>【202201】【日】<strong>进击的巨人最终季part2</strong></p>
 <p>【202201】【日】天才王子的赤字国家振兴术</p>

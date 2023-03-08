@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Go - YuanyaDocs</title>
+        <title>Linux - YuanyaDocs</title>
 
 
         <!-- Custom HTML head -->
@@ -83,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../index.html">Root</a></li><li class="chapter-item expanded "><a href="../../模板.html"><strong aria-hidden="true">1.</strong> 模板</a></li><li class="chapter-item expanded "><a href="../../番.html"><strong aria-hidden="true">2.</strong> 番</a></li><li class="chapter-item expanded affix "><li class="part-title">计</li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 语言</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../计/语言/Go.html" class="active"><strong aria-hidden="true">3.1.</strong> Go</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> 云原生</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../计/云原生/Kubernetes.html"><strong aria-hidden="true">4.1.</strong> Kuberntes</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 操作系统</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../计/操作系统/Linux.html"><strong aria-hidden="true">5.1.</strong> Linux</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../计/操作系统/Linux.eBPF.html"><strong aria-hidden="true">5.1.1.</strong> Linux.eBPF</a></li></ol></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../index.html">Root</a></li><li class="chapter-item expanded "><a href="../../模板.html"><strong aria-hidden="true">1.</strong> 模板</a></li><li class="chapter-item expanded "><a href="../../番.html"><strong aria-hidden="true">2.</strong> 番</a></li><li class="chapter-item expanded affix "><li class="part-title">计</li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 语言</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../计/语言/Go.html"><strong aria-hidden="true">3.1.</strong> Go</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> 云原生</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../计/云原生/Kubernetes.html"><strong aria-hidden="true">4.1.</strong> Kuberntes</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 操作系统</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../计/操作系统/Linux.html" class="active"><strong aria-hidden="true">5.1.</strong> Linux</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../计/操作系统/Linux.eBPF.html"><strong aria-hidden="true">5.1.1.</strong> Linux.eBPF</a></li></ol></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -145,71 +145,124 @@
                 <div id="content" class="content">
                     <main>
                         <p>+++</p>
-<p>title = &quot;Go&quot;
-description = &quot;Go quick start&quot;
-tags = [&quot;techn&quot;, &quot;computer&quot;, &quot;lang&quot;, &quot;Go&quot;, &quot;__quick_start&quot;]</p>
+<p>title = &quot;Linux&quot;
+description = &quot;Linux quick start&quot;
+tags = [&quot;techn&quot;, &quot;computer&quot;, &quot;os&quot;, &quot;Linux&quot;, &quot;__quick_start&quot;]</p>
 <p>+++</p>
-<h1 id="go"><a class="header" href="#go">Go</a></h1>
+<h1 id="linux"><a class="header" href="#linux">Linux</a></h1>
 <blockquote>
-<p><a href="https://go.dev/">官网</a>；</p>
+<p><a href="https://www.kernel.org/">官网</a>；</p>
+<p><a href="https://git.kernel.org/">仓库</a>；</p>
+<p><a href="https://en.wikipedia.org/wiki/Linus_Torvalds">Linus Torvalds</a>；</p>
 </blockquote>
-<h2 id="go-1"><a class="header" href="#go-1">go</a></h2>
+<h1 id="ubuntu"><a class="header" href="#ubuntu">Ubuntu</a></h1>
 <blockquote>
-<p><a href="https://go.dev/dl/">下载</a>：选择 <code>.linux-amd64.tar.gz</code>，Win 选择 .windows-amd64.zip；</p>
+<p><a href="https://mirrors.aliyun.com/ubuntu-releases/">ubuntu阿里云镜像</a>；</p>
 </blockquote>
-<p>安装：解压即可</p>
-<pre><code class="language-shell">tar -zxf gox.x.x.linux-amd64.tar.gz
-</code></pre>
-<p>环境变量：导入到系统环境变量，或者通过命令如 <code>go env -w GOROOT=</code> 写入</p>
-<pre><code class="language-shell">export GOROOT=~/compute/lang/go/go
-export GOPATH=~/compute/lang/go/path
-# go install 安装的程序将保存到 $GOPATH/bin 下
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
-# 代理：七牛云代理 goproxy.cn,direct；阿里代理 mirrors.aliyun.com/goproxy/
-export GOPROXY=https://goproxy.cn,direct
+<h3 id="root密码重设"><a class="header" href="#root密码重设">root密码重设</a></h3>
+<pre><code class="language-shell">sudo passwd
 
-# gomod：go 1.14 后默认开启
-export GO111MODULE=on
-# 私有库：设置私有库以跳过代理，比如公司使用 Gitlab、Gitee 等，多私有库逗号分隔
-export GOPRIVATE=*.gitlab.com,*.gitee.com
-# 用于验证包的有效性的服务地址，默认 sum.golang.org。有时候如 go mod vendor 会用到，无法连接则设置可连接的地址如 sum.golang.google.cn，这是专为国内提供的 sum 验证服务地址，或者直接关闭即可。私有仓库自动忽略验证
-export GOSUMDB=off
-
-# 如写入 ~/.bashrc 则刷新
-source ~/.bashrc
+# 登录root
+su root
 </code></pre>
-<h2 id="vs-code"><a class="header" href="#vs-code">vs code</a></h2>
+<h3 id="root图形界面登录"><a class="header" href="#root图形界面登录">root图形界面登录</a></h3>
+<pre><code class="language-shell"># ubuntu桌面版不允许图形界面登录root用户，须注释`/etc/pam.d/gdm-password`&amp;`/etc/pam.d/gdm-autologin`文件中 auth required pam_succeed_if.so user != root quiet_success 所在行
+sed -i 's/auth.*required.*pam_succeed_if.so user != root quiet_success/# auth\trequired\tpam_succeed_if.so user != root quiet_success/g' /etc/pam.d/gdm-password
+sed -i 's/auth.*required.*pam_succeed_if.so user != root quiet_success/# auth\trequired\tpam_succeed_if.so user != root quiet_success/g' /etc/pam.d/gdm-autologin
+</code></pre>
+<h3 id="vi"><a class="header" href="#vi">vi</a></h3>
+<pre><code class="language-shell"># vi 默认情况下上下左右、backspace等按键非正常作用，须配置`/etc/vim/vimrc.tiny`
+cat &gt;&gt; /etc/vim/vimrc.tiny &lt;&lt; EOF
+
+set nocompatible
+set backspace=2
+EOF
+</code></pre>
+<h3 id="快速关机"><a class="header" href="#快速关机">快速关机</a></h3>
+<pre><code class="language-shell"># 快速关机
+sed -i '/#DefaultTimeoutStartSec=90s/aDefaultTimeoutStartSec=5s' /etc/systemd/system.conf
+sed -i '/#DefaultTimeoutStopSec=90s/aDefaultTimeoutStopSec=5s' /etc/systemd/system.conf
+</code></pre>
+<h3 id="ssh服务启用"><a class="header" href="#ssh服务启用">ssh服务启用</a></h3>
+<pre><code class="language-shell"># 安装
+apt install -y openssh-server
+# 默认禁止远程登录，需 /etc/ssh/sshd_config 中 PermitRootLogin 字段
+sed -i '/#PermitRootLogin prohibit-password/aPermitRootLogin yes' /etc/ssh/sshd_config
+# 重启
+systemctl restart sshd
+# 查看状态
+systemctl status sshd
+</code></pre>
+<h3 id="网卡配置"><a class="header" href="#网卡配置">网卡配置</a></h3>
+<p>系统会读取<code>/etc/netplan/*.yaml</code></p>
+<pre><code class="language-shell">cat &gt;&gt; /etc/netplan/02.yaml &lt;&lt; EOF
+network:
+  version: 2
+  renderer: NetworkManager
+  ethernets:
+    enp0s3:
+      dhcp4: false
+      # gateway4: 192.168.31.1
+      routes:
+      - to: default
+        via: 192.168.31.1  # gateway, same as gateway4
+      addresses:
+      - 192.168.31.10/24
+      nameservers:
+        addresses: [192.168.31.1,8.8.8.8] # DNS
+        search: []
+EOF
+
+# 应用配置
+netplan apply
+</code></pre>
+<h3 id="https访问"><a class="header" href="#https访问">https访问</a></h3>
+<pre><code class="language-shell">apt install ca-certificates -y
+</code></pre>
+<h3 id="apt源"><a class="header" href="#apt源">apt源</a></h3>
+<pre><code class="language-shell">$ mv /etc/apt/sources.list /etc/apt/sources.list.bk
+$ cat &gt; /etc/apt/sources.list &lt;&lt; EOF
+deb http://mirrors.aliyun.com/ubuntu/ jammy main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ jammy main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ jammy-security main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ jammy-security main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ jammy-updates main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ jammy-updates main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ jammy-proposed main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ jammy-proposed main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ jammy-backports main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ jammy-backports main restricted universe multiverse
+EOF
+# 更新源
+$ apt update
+</code></pre>
+<h3 id="用户文件夹"><a class="header" href="#用户文件夹">用户文件夹</a></h3>
+<p>指定Desktop、Downloads等</p>
+<pre><code class="language-shell">sed -i 's/XDG_DESKTOP_DIR=.*/XDG_DESKTOP_DIR=&quot;$HOME\/dirs\/Desktop&quot;/g' ~/.config/user-dirs.dirs
+sed -i 's/XDG_DOWNLOAD_DIR=.*/XDG_DOWNLOAD_DIR=&quot;$HOME\/dirs\/Downloads&quot;/g' ~/.config/user-dirs.dirs
+sed -i 's/XDG_TEMPLATES_DIR=.*/XDG_TEMPLATES_DIR=&quot;$HOME\/dirs\/Templates&quot;/g' ~/.config/user-dirs.dirs
+sed -i 's/XDG_PUBLICSHARE_DIR=.*/XDG_PUBLICSHARE_DIR=&quot;$HOME\/dirs\/Public&quot;/g' ~/.config/user-dirs.dirs
+sed -i 's/XDG_DOCUMENTS_DIR=.*/XDG_DOCUMENTS_DIR=&quot;$HOME\/dirs\/Documents&quot;/g' ~/.config/user-dirs.dirs
+sed -i 's/XDG_MUSIC_DIR=.*/XDG_MUSIC_DIR=&quot;$HOME\/dirs\/Music&quot;/g' ~/.config/user-dirs.dirs
+sed -i 's/XDG_PICTURES_DIR=.*/XDG_PICTURES_DIR=&quot;$HOME\/dirs\/Pictures&quot;/g' ~/.config/user-dirs.dirs
+sed -i 's/XDG_VIDEOS_DIR=.*/XDG_VIDEOS_DIR=&quot;$HOME\/dirs\/Videos&quot;/g' ~/.config/user-dirs.dirs
+# 现在使用
+nautilus -q
+</code></pre>
+<h1 id="centos"><a class="header" href="#centos">CentOS</a></h1>
 <blockquote>
-<p><a href="https://learn.microsoft.com/zh-cn/azure/developer/go/configure-visual-studio-code">为 Go 开发配置 Visual Studio Code</a>；</p>
+<p><a href="https://mirrors.aliyun.com/ubuntu-releases/">centos阿里云镜像</a>；</p>
 </blockquote>
-<ol>
-<li><code>Ctrl+Shift+X</code> 打开扩展视图，搜索 <code>Go</code> 插件并安装</li>
-<li><code>Ctrl+Shift+P</code> 打开 vs code 命令框，搜索 <code>Go: Install/Update tools</code> 并执行</li>
-</ol>
-<h2 id="hello-world"><a class="header" href="#hello-world">hello world</a></h2>
-<p>helloworld.go</p>
-<pre><code class="language-go">package main
-
-import &quot;fmt&quot;
-
-func main() {
-	fmt.Println(&quot;Hello world!&quot;)
-}
-</code></pre>
-<pre><code class="language-shell">$ go build -o ./helloworld-exec ./helloworld.go
-$ ./helloworld-exec
-Hello world!
-</code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../../番.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../计/云原生/Kubernetes.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="../../计/云原生/Kubernetes.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../../计/操作系统/Linux.eBPF.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -219,11 +272,11 @@ Hello world!
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../../番.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../计/云原生/Kubernetes.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="../../计/云原生/Kubernetes.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../../计/操作系统/Linux.eBPF.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
