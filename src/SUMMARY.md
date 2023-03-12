@@ -20,32 +20,6 @@
 
 
 
-模板
-
-```
-
-
-+++
-
-title = "Title.sub_title"
-description = "Title sub_title quick_start"
-tags = ["techn", "computer", "tagx", "Title", "_sub_title", "__quick_start(content)"]
-
-+++
-
-
-
-# Title.sub_title
-
-> [官网]()；
-
-
-```
-
-
-
-
-
 
 ## 计
 
