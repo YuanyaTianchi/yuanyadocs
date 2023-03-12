@@ -24,11 +24,11 @@ tags = ["techn", "computer", "os", "Linux", "__quick_start"]
 
 # Ubuntu
 
-> [ubuntu阿里云镜像](https://mirrors.aliyun.com/ubuntu-releases/)；
+> [ubuntu 阿里云镜像](https://mirrors.aliyun.com/ubuntu-releases/)；
 
 
 
-### root密码重设
+### root 密码设置
 
 ```shell
 sudo passwd
@@ -37,13 +37,20 @@ sudo passwd
 su root
 ```
 
-### root图形界面登录
+
+
+### ssh服务启用
 
 ```shell
-# ubuntu桌面版不允许图形界面登录root用户，须注释`/etc/pam.d/gdm-password`&`/etc/pam.d/gdm-autologin`文件中 auth required pam_succeed_if.so user != root quiet_success 所在行
-sed -i 's/auth.*required.*pam_succeed_if.so user != root quiet_success/# auth\trequired\tpam_succeed_if.so user != root quiet_success/g' /etc/pam.d/gdm-password
-sed -i 's/auth.*required.*pam_succeed_if.so user != root quiet_success/# auth\trequired\tpam_succeed_if.so user != root quiet_success/g' /etc/pam.d/gdm-autologin
+# 安装
+apt install -y openssh-server
+# 默认禁止远程登录，需 /etc/ssh/sshd_config 中 PermitRootLogin 字段
+sed -i '/#PermitRootLogin prohibit-password/aPermitRootLogin yes' /etc/ssh/sshd_config
+# 重启
+systemctl restart sshd
 ```
+
+
 
 ### vi
 
@@ -56,6 +63,8 @@ set backspace=2
 EOF
 ```
 
+
+
 ### 快速关机
 
 ```shell
@@ -64,18 +73,7 @@ sed -i '/#DefaultTimeoutStartSec=90s/aDefaultTimeoutStartSec=5s' /etc/systemd/sy
 sed -i '/#DefaultTimeoutStopSec=90s/aDefaultTimeoutStopSec=5s' /etc/systemd/system.conf
 ```
 
-### ssh服务启用
 
-```shell
-# 安装
-apt install -y openssh-server
-# 默认禁止远程登录，需 /etc/ssh/sshd_config 中 PermitRootLogin 字段
-sed -i '/#PermitRootLogin prohibit-password/aPermitRootLogin yes' /etc/ssh/sshd_config
-# 重启
-systemctl restart sshd
-# 查看状态
-systemctl status sshd
-```
 
 ### 网卡配置
 
@@ -104,12 +102,6 @@ EOF
 netplan apply
 ```
 
-### https访问
-
-```shell
-apt install ca-certificates -y
-```
-
 
 
 ### apt源
@@ -131,6 +123,26 @@ EOF
 # 更新源
 $ apt update
 ```
+
+
+
+### https访问
+
+```shell
+apt install ca-certificates -y
+```
+
+
+
+### root图形界面登录
+
+```shell
+# ubuntu桌面版不允许图形界面登录root用户，须注释`/etc/pam.d/gdm-password`&`/etc/pam.d/gdm-autologin`文件中 auth required pam_succeed_if.so user != root quiet_success 所在行
+sed -i 's/auth.*required.*pam_succeed_if.so user != root quiet_success/# auth\trequired\tpam_succeed_if.so user != root quiet_success/g' /etc/pam.d/gdm-password
+sed -i 's/auth.*required.*pam_succeed_if.so user != root quiet_success/# auth\trequired\tpam_succeed_if.so user != root quiet_success/g' /etc/pam.d/gdm-autologin
+```
+
+
 
 ### 用户文件夹
 
