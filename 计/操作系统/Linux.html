@@ -83,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../index.html">Root</a></li><li class="chapter-item expanded "><a href="../../模板.html"><strong aria-hidden="true">1.</strong> 模板</a></li><li class="chapter-item expanded "><a href="../../番.html"><strong aria-hidden="true">2.</strong> 番</a></li><li class="chapter-item expanded affix "><li class="part-title">计</li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 语言</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../计/语言/Go.html"><strong aria-hidden="true">3.1.</strong> Go</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> 云原生</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../计/云原生/Kubernetes.html"><strong aria-hidden="true">4.1.</strong> Kuberntes</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 操作系统</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../计/操作系统/Linux.html" class="active"><strong aria-hidden="true">5.1.</strong> Linux</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../计/操作系统/Linux.eBPF.html"><strong aria-hidden="true">5.1.1.</strong> Linux.eBPF</a></li></ol></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../index.html">Root</a></li><li class="chapter-item expanded "><a href="../../模板.html"><strong aria-hidden="true">1.</strong> 模板</a></li><li class="chapter-item expanded "><a href="../../番.html"><strong aria-hidden="true">2.</strong> 番</a></li><li class="chapter-item expanded affix "><li class="part-title">计</li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 语言</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../计/语言/Go.html"><strong aria-hidden="true">3.1.</strong> Go</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> 云原生</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../计/云原生/Kubernetes.html"><strong aria-hidden="true">4.1.</strong> Kuberntes</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 虚拟化</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../计/虚拟化/虚拟网络.html"><strong aria-hidden="true">5.1.</strong> 虚拟网络</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> 操作系统</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../计/操作系统/Linux.html" class="active"><strong aria-hidden="true">6.1.</strong> Linux</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../计/操作系统/Linux.eBPF.html"><strong aria-hidden="true">6.1.1.</strong> Linux.eBPF</a></li></ol></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -157,18 +157,21 @@ tags = [&quot;techn&quot;, &quot;computer&quot;, &quot;os&quot;, &quot;Linux&quo
 </blockquote>
 <h1 id="ubuntu"><a class="header" href="#ubuntu">Ubuntu</a></h1>
 <blockquote>
-<p><a href="https://mirrors.aliyun.com/ubuntu-releases/">ubuntu阿里云镜像</a>；</p>
+<p><a href="https://mirrors.aliyun.com/ubuntu-releases/">ubuntu 阿里云镜像</a>；</p>
 </blockquote>
-<h3 id="root密码重设"><a class="header" href="#root密码重设">root密码重设</a></h3>
+<h3 id="root-密码设置"><a class="header" href="#root-密码设置">root 密码设置</a></h3>
 <pre><code class="language-shell">sudo passwd
 
 # 登录root
 su root
 </code></pre>
-<h3 id="root图形界面登录"><a class="header" href="#root图形界面登录">root图形界面登录</a></h3>
-<pre><code class="language-shell"># ubuntu桌面版不允许图形界面登录root用户，须注释`/etc/pam.d/gdm-password`&amp;`/etc/pam.d/gdm-autologin`文件中 auth required pam_succeed_if.so user != root quiet_success 所在行
-sed -i 's/auth.*required.*pam_succeed_if.so user != root quiet_success/# auth\trequired\tpam_succeed_if.so user != root quiet_success/g' /etc/pam.d/gdm-password
-sed -i 's/auth.*required.*pam_succeed_if.so user != root quiet_success/# auth\trequired\tpam_succeed_if.so user != root quiet_success/g' /etc/pam.d/gdm-autologin
+<h3 id="ssh服务启用"><a class="header" href="#ssh服务启用">ssh服务启用</a></h3>
+<pre><code class="language-shell"># 安装
+apt install -y openssh-server
+# 默认禁止远程登录，需 /etc/ssh/sshd_config 中 PermitRootLogin 字段
+sed -i '/#PermitRootLogin prohibit-password/aPermitRootLogin yes' /etc/ssh/sshd_config
+# 重启
+systemctl restart sshd
 </code></pre>
 <h3 id="vi"><a class="header" href="#vi">vi</a></h3>
 <pre><code class="language-shell"># vi 默认情况下上下左右、backspace等按键非正常作用，须配置`/etc/vim/vimrc.tiny`
@@ -182,16 +185,6 @@ EOF
 <pre><code class="language-shell"># 快速关机
 sed -i '/#DefaultTimeoutStartSec=90s/aDefaultTimeoutStartSec=5s' /etc/systemd/system.conf
 sed -i '/#DefaultTimeoutStopSec=90s/aDefaultTimeoutStopSec=5s' /etc/systemd/system.conf
-</code></pre>
-<h3 id="ssh服务启用"><a class="header" href="#ssh服务启用">ssh服务启用</a></h3>
-<pre><code class="language-shell"># 安装
-apt install -y openssh-server
-# 默认禁止远程登录，需 /etc/ssh/sshd_config 中 PermitRootLogin 字段
-sed -i '/#PermitRootLogin prohibit-password/aPermitRootLogin yes' /etc/ssh/sshd_config
-# 重启
-systemctl restart sshd
-# 查看状态
-systemctl status sshd
 </code></pre>
 <h3 id="网卡配置"><a class="header" href="#网卡配置">网卡配置</a></h3>
 <p>系统会读取<code>/etc/netplan/*.yaml</code></p>
@@ -216,9 +209,6 @@ EOF
 # 应用配置
 netplan apply
 </code></pre>
-<h3 id="https访问"><a class="header" href="#https访问">https访问</a></h3>
-<pre><code class="language-shell">apt install ca-certificates -y
-</code></pre>
 <h3 id="apt源"><a class="header" href="#apt源">apt源</a></h3>
 <pre><code class="language-shell">$ mv /etc/apt/sources.list /etc/apt/sources.list.bk
 $ cat &gt; /etc/apt/sources.list &lt;&lt; EOF
@@ -235,6 +225,14 @@ deb-src http://mirrors.aliyun.com/ubuntu/ jammy-backports main restricted univer
 EOF
 # 更新源
 $ apt update
+</code></pre>
+<h3 id="https访问"><a class="header" href="#https访问">https访问</a></h3>
+<pre><code class="language-shell">apt install ca-certificates -y
+</code></pre>
+<h3 id="root图形界面登录"><a class="header" href="#root图形界面登录">root图形界面登录</a></h3>
+<pre><code class="language-shell"># ubuntu桌面版不允许图形界面登录root用户，须注释`/etc/pam.d/gdm-password`&amp;`/etc/pam.d/gdm-autologin`文件中 auth required pam_succeed_if.so user != root quiet_success 所在行
+sed -i 's/auth.*required.*pam_succeed_if.so user != root quiet_success/# auth\trequired\tpam_succeed_if.so user != root quiet_success/g' /etc/pam.d/gdm-password
+sed -i 's/auth.*required.*pam_succeed_if.so user != root quiet_success/# auth\trequired\tpam_succeed_if.so user != root quiet_success/g' /etc/pam.d/gdm-autologin
 </code></pre>
 <h3 id="用户文件夹"><a class="header" href="#用户文件夹">用户文件夹</a></h3>
 <p>指定Desktop、Downloads等</p>
@@ -258,7 +256,7 @@ nautilus -q
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../../计/云原生/Kubernetes.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../计/虚拟化/虚拟网络.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
@@ -272,7 +270,7 @@ nautilus -q
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../../计/云原生/Kubernetes.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../计/虚拟化/虚拟网络.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
