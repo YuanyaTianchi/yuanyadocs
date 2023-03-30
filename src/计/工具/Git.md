@@ -12,32 +12,42 @@ tags = ["it", "versioncontrol"]
 
 # Git
 
-## 安装
+> [官网](https://git-scm.com/)；
 
-> [Git官网](https://git-scm.com/)
+## 快开
+
+### 安装
+
+> [下载](https://git-scm.com/downloads)；
 
 ```shell
 apt install -y git
 ```
 
+### 配置
 
-
-## 配置
-
-全局配置：家目录下创建 .gitconfig 并写入如下配置
+- 仓库配置：`<git-repository>/.git/config`；
+- 全局配置：`~/.gitconfig`；
 
 ```shell
 cat > ~/.gitconfig <<EOF
+[core]
+  # 关闭 quotepath，使中文不以八进制的字符编码显示，而是显示汉字
+  quotepath=false
 [user]
   name = YuanyaTianchi
   email = yuanyatianchi@gmail.com
 [alias]
-  ch = checkout
-  co = commit
-  br = branch
   st = status
+  co = commit
+  ch = checkout
+  br = branch
   lg = log --graph --abbrev-commit --pretty=oneline
-  rebh = git rebase HEADE^
+  rebh = git rebase -i HEAD~
+  
+[core]
+  # 关闭 quotepath，使中文不以八进制的字符编码显示，而是显示汉字
+  quotepath=false
 [http]
   # http 代理
   proxy = http://<proxy_server_ip>:<port>
@@ -52,8 +62,6 @@ git config --list
 ```
 
 
-
-仓库配置：每个仓库的Git配置文件都放在`.git/config`文件中
 
 ### .gitignore
 

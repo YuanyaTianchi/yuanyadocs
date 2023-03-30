@@ -37,6 +37,28 @@ wsl --update
 
 然后可以打开 ubuntu，在 windows terminal 中也可以选择
 
+## 桥接网络
+
+> [WSL2设置桥接网络](https://www.midlane.top/wiki/pages/viewpage.action?pageId=49676341)；
+
+配置桥接设备，需要在 windows 功能中开启 Hyper-V，才能使用虚拟化管理工具。
+
+创建用于桥接的设备：打开 `Hyper-V 管理器`，在右侧 `操作` 栏，连接到本地计算机虚拟服务，选择 `虚拟交换机管理器`，创建名为 wslbr0 的 `外部网络` 类型链接到 `有网网卡设备`（我这里是 WIFI 设备）的虚拟交换机
+
+家目录下配置 `.wslconfig` 文件
+
+```toml
+[wsl2]
+networkingMode=bridged
+vmSwitch=wslbr0 # 前面创建的虚拟交换机名称
+ipv6=true
+```
+
+```shell
+# 重启
+wsl --shutdown
+```
+
 
 
 ## vscode插件
@@ -187,6 +209,116 @@ sudo apt install -y lsb-core
 
 
 
-## Nvidia显卡驱动
+## Nvidia cuda
 
-用于ai学习
+WSL2 上无需安装 Nvidia 驱动，Win 上安装了即可，WSL2 上仅需安装 cuda。一下方式二选一即可
+
+### WSL 上直接安装
+
+> [Enable NVIDIA CUDA on WSL](https://learn.microsoft.com/en-us/windows/ai/directml/gpu-cuda-in-wsl)；
+>
+> [CUDA 工具包下载](https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&Distribution=WSL-Ubuntu&target_version=2.0&target_type=deb_local)；[cudnn 下载](https://developer.nvidia.com/rdp/cudnn-download)；
+>
+> [Windows10/11 WSL2 ubuntu安装nvidia-cuda驱动](https://www.jianshu.com/p/be669d9359e2)；
+>
+> [win10的wsl2安装cuda并配置pytorch](https://zhuanlan.zhihu.com/p/350399229)；
+
+```shell
+# 删除旧的
+sudo apt autoremove -y --purge cuda cuda-12-1 cuda-toolkit-12-1
+
+# cuda
+wget https://developer.download.nvidia.cn/compute/cuda/repos/wsl-ubuntu/x86_64/cuda-wsl-ubuntu.pin
+sudo mv cuda-wsl-ubuntu.pin /etc/apt/preferences.d/cuda-repository-pin-600
+wget https://developer.download.nvidia.cn/compute/cuda/12.1.0/local_installers/cuda-repo-wsl-ubuntu-12-1-local_12.1.0-1_amd64.deb
+sudo dpkg -i cuda-repo-wsl-ubuntu-12-1-local_12.1.0-1_amd64.deb
+sudo cp /var/cuda-repo-wsl-ubuntu-12-1-local/cuda-*-keyring.gpg /usr/share/keyrings/
+sudo apt update
+sudo apt -y install cuda-toolkit-12-1
+
+# cudnn，须登录下载
+tar -xf cudnn-linux-x86_64-8.8.1.3_cuda12-archive.tar.xz
+sudo cp /root/compute/ai/cuda/cudnn-linux-x86_64-8.8.1.3_cuda12-archive/lib/libcudnn* /usr/local/cuda-12.1/lib64/
+sudo cp /root/compute/ai/cuda/cudnn-linux-x86_64-8.8.1.3_cuda12-archive/include/cudnn* /usr/local/cuda-12.1/include/
+```
+
+### nvidia-docker
+
+> [nvidia-docker](https://github.com/NVIDIA/nvidia-docker)；
+>
+> [安装指南](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker)；
+>
+> [5步搭建wsl2+cuda+docker解决windows深度学习开发问题](https://zhuanlan.zhihu.com/p/408403790)；
+
+```shell
+# 此前须先安装 docker(-ce)
+distribution=$(. /etc/os-release;echo $ID$VERSION_ID) \
+      && curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \
+      && curl -s -L https://nvidia.github.io/libnvidia-container/$distribution/libnvidia-container.list | \
+            sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \
+            sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
+
+sudo apt update && sudo apt install -y nvidia-container-toolkit
+```
+
+最后一行报错`/sbin/ldconfig.real: /usr/lib/wsl/lib/libcuda.so.1 is not a symbolic link`
+
+```shell
+# 软链
+sudo mv /usr/lib/wsl/lib/libcuda.so.1 /usr/lib/wsl/lib/libcuda.so.1.bk && sudo ln -s /usr/lib/wsl/lib/libcuda.so.1.1 /usr/lib/wsl/lib/libcuda.so.1
+
+sudo apt install -y nvidia-container-toolkit
+```
+
+```shell
+# 配置 Docker 守护进程以识别 NVIDIA 容器运行时
+sudo nvidia-ctk runtime configure --runtime=docker
+
+sudo systemctl restart docker
+
+# test
+docker run -it --rm --gpus all --name pytorch-sd -u 1000:1000 \
+-p 7860:7860 -v /mnt/adocker/stable-diffusion:/workspace/stable-diffusion \
+pytorch/pytorch:2.0.0-cuda11.7-cudnn8-runtime bash
+```
+
+```shell
+# 进入容器后运行一下命令查看是否支持 cuda 计算
+python -c 'import torch; print(torch.cuda.is_available())'
+```
+
+
+
+```shell
+# 第一次先激活 conda activate 命令
+# 激活环境
+source activate
+# 退出环境
+source deactivate
+# 创建 sdwebui 虚拟环境
+conda create --name sdwebui
+# 激活 sdwebui
+conda activate sdwebui
+
+```
+
+### stable-diffusion-docker
+
+> [stable-diffusion-webui-docker Setup](https://github.com/AbdBarho/stable-diffusion-webui-docker/wiki/Setup#make-sure-you-have-the-latest-version-of-docker-and-docker-compose-installed)；
+>
+> [aria2 errorCode=19](https://github.com/aria2/aria2/issues/1117)；
+
+```shell
+git clone https://github.com/AbdBarho/stable-diffusion-webui-docker.git
+cd stable-diffusion-webui-docker
+# 运行 webui-docker-download-1 容器，完成后自动停止。将下载所有必需的模型/文件，并验证它们的完整性。有些模型下载失败无所谓，或者手动从错误上下文中下载并拷贝到对应目录
+docker compose --profile download up --build
+# [ui] 从 invoke | auto | auto-cpu | sygil | sygil-sl 中选择，我们选择最流行的 auto
+docker compose --profile auto up --build
+```
+
+
+
+### stable-diffusion-docker-2
+
+> [Docker版Stable Diffusion WebUI](https://zhuanlan.zhihu.com/p/614421868)；
