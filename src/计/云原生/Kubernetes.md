@@ -186,7 +186,7 @@ mv kubectl /usr/local/bin
 >
 > [kubelet配置systemd作cgroup驱动](https://kubernetes.io/zh/docs/tasks/administer-cluster/kubeadm/configure-cgroup-driver/#%E9%85%8D%E7%BD%AE-kubelet-%E7%9A%84-cgroup-%E9%A9%B1%E5%8A%A8)；
 
-1.22及之后`kubeadm init`默认使用 `systemd` 作为 kubelet 的 cgroup 驱动，而不是 `cgroupfs`。这里顺手加上[阿里云 docker 镜像源](https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors)。
+1.22及之后`kubeadm init`默认使用 `systemd` 作为 kubelet 的 cgroup 驱动，而不是 `cgroupfs`。这里顺手加上。
 
 ```shell
 # docker配置systemd作cgroup驱动。
