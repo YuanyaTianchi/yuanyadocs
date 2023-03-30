@@ -154,27 +154,27 @@ tags = [&quot;it&quot;, &quot;container&quot;]</p>
 <p>仓库：https://hub.docker.com/</p>
 <p>文档：https://docs.docker.com/reference/</p>
 <p>命令：https://docs.docker.com/engine/reference/commandline/docker/</p>
-<h2 id="安装"><a class="header" href="#安装">安装</a></h2>
-<pre><code class="language-shell">$ uname -r #查看centOS系统内核版本，Docker要求内核版本高于3.10
-$ yum update #升级软件包及内核（选做）
-</code></pre>
-<h3 id="ubuntu"><a class="header" href="#ubuntu">ubuntu</a></h3>
+<h2 id="快开"><a class="header" href="#快开">快开</a></h2>
+<h3 id="安装"><a class="header" href="#安装">安装</a></h3>
+<blockquote>
+<p><a href="https://docs.docker.com/engine/install/">Install Docker Engine</a>；</p>
+</blockquote>
+<h4 id="ubuntu"><a class="header" href="#ubuntu">ubuntu</a></h4>
 <blockquote>
 <p><a href="https://docs.docker.com/engine/install/ubuntu/">Install Docker Engine on Ubuntu</a>；</p>
 </blockquote>
-<pre><code class="language-shell"># 添加阿里 docker-ce GPG 密钥
+<pre><code class="language-shell"># GPG 密钥
 curl -fsSL https://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-# 设置存储库
-echo \
-  &quot;deb [arch=&quot;$(dpkg --print-architecture)&quot; signed-by=/etc/apt/keyrings/docker.gpg] https://mirrors.aliyun.com/docker-ce/linux/ubuntu \
-  &quot;$(. /etc/os-release &amp;&amp; echo &quot;$VERSION_CODENAME&quot;)&quot; stable&quot; | \
-  sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
+# 存储库
+echo &quot;deb [arch=&quot;$(dpkg --print-architecture)&quot; signed-by=/etc/apt/keyrings/docker.gpg] https://mirrors.aliyun.com/docker-ce/linux/ubuntu &quot;$(. /etc/os-release &amp;&amp; echo &quot;$VERSION_CODENAME&quot;)&quot; stable&quot; | sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
 # 安装
 sudo apt update
 sudo apt install -y docker-ce docker-ce-cli containerd.io
 </code></pre>
-<h3 id="centos"><a class="header" href="#centos">centos</a></h3>
-<p>安装 docker：<a href="https://docs.docker.com/engine/install/rhel/#set-up-the-repository">设置存储库</a>，然后<a href="https://docs.docker.com/engine/install/rhel/#install-docker-engine">安装 Docker Engine 和 containerd</a> 。</p>
+<h4 id="centos"><a class="header" href="#centos">centos</a></h4>
+<blockquote>
+<p><a href="https://docs.docker.com/engine/install/rhel/">Install Docker Engine on RHEL</a>；</p>
+</blockquote>
 <pre><code class="language-sh"># 设置存储库
 cat &gt;/etc/yum.repos.d/docker.repo&lt;&lt;EOF
 [docker-ce-stable]
@@ -191,10 +191,46 @@ yum install -y --allowerasing docker-ce docker-ce-cli containerd.io
 # 设置开机启动并立即启动
 systemctl enable --now docker
 </code></pre>
-<p>信息</p>
-<pre><code class="language-shell">$ docker --help
-$ docker version #版本信息
-$ docker info #相信信息
+<h3 id="开机启动"><a class="header" href="#开机启动">开机启动</a></h3>
+<pre><code class="language-shell">#检查
+docker version
+# 开机启动
+systemctl enable --now docker
+</code></pre>
+<h3 id="配置"><a class="header" href="#配置">配置</a></h3>
+<blockquote>
+<p>cgroup 驱动：<a href="https://kubernetes.io/zh/docs/setup/production-environment/container-runtimes/#docker">systemd</a>；</p>
+<p>存储驱动：；</p>
+<p>容器镜像仓库：<a href="https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors">阿里云</a>；</p>
+</blockquote>
+<pre><code class="language-shell"># 通用配置
+cat &gt; /etc/docker/daemon.json &lt;&lt; EOF
+{
+  &quot;exec-opts&quot;: [&quot;native.cgroupdriver=systemd&quot;],
+  &quot;log-driver&quot;: &quot;json-file&quot;,
+  &quot;log-opts&quot;: {
+    &quot;max-size&quot;: &quot;100m&quot;
+  },
+  
+  &quot;storage-driver&quot;: &quot;overlay2&quot;,
+  
+  &quot;registry-mirrors&quot;: [&quot;mirror.xxx.com&quot;,&quot;https://ohm5orzk.mirror.aliyuncs.com&quot;],
+  &quot;insecure-registries&quot;: [&quot;192.168.xxx.xxx:5000&quot;,&quot;registry.aliyuncs.com&quot;]
+}
+EOF
+
+# 检查
+docker info
+</code></pre>
+<h3 id="代理"><a class="header" href="#代理">代理</a></h3>
+<pre><code class="language-shell">
+# dockerd 代理配置
+cat &gt; /etc/systemd/system/docker.service.d/proxy.conf &lt;&lt; EOF
+[Service]
+Environment=&quot;HTTP_PROXY=http://proxy.example.com:8080/&quot;
+Environment=&quot;HTTPS_PROXY=https://proxy.example.com:8080/&quot;
+Environment=&quot;NO_PROXY=127.0.0.1,私有仓库ip,example.com&quot;
+EOF
 </code></pre>
 <h2 id="镜像"><a class="header" href="#镜像">镜像</a></h2>
 <h3 id="镜像加速配置"><a class="header" href="#镜像加速配置">镜像加速配置</a></h3>
@@ -430,7 +466,7 @@ hello
 <p>启动</p>
 <p>停止</p>
 <h2 id="网络"><a class="header" href="#网络">网络</a></h2>
-<h3 id="代理"><a class="header" href="#代理">代理</a></h3>
+<h3 id="代理-1"><a class="header" href="#代理-1">代理</a></h3>
 <p>https://note.qidong.name/2020/05/docker-proxy/</p>
 <p>有时因为网络原因，比如公司NAT，或其它啥的，需要使用代理。 Docker的代理配置，略显复杂，因为有三种场景。 但基本原理都是一致的，都是利用Linux的<code>http_proxy</code>等环境变量。</p>
 <h4 id="dockerd"><a class="header" href="#dockerd">dockerd</a></h4>

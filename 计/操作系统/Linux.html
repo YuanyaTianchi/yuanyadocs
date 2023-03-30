@@ -155,7 +155,7 @@ tags = [&quot;techn&quot;, &quot;computer&quot;, &quot;os&quot;, &quot;Linux&quo
 <p><a href="https://git.kernel.org/">仓库</a>；</p>
 <p><a href="https://en.wikipedia.org/wiki/Linus_Torvalds">Linus Torvalds</a>；</p>
 </blockquote>
-<h1 id="ubuntu"><a class="header" href="#ubuntu">Ubuntu</a></h1>
+<h2 id="ubuntu"><a class="header" href="#ubuntu">Ubuntu</a></h2>
 <blockquote>
 <p><a href="https://mirrors.aliyun.com/ubuntu-releases/">ubuntu 阿里云镜像</a>；</p>
 </blockquote>
@@ -164,14 +164,6 @@ tags = [&quot;techn&quot;, &quot;computer&quot;, &quot;os&quot;, &quot;Linux&quo
 
 # 登录root
 su root
-</code></pre>
-<h3 id="ssh服务启用"><a class="header" href="#ssh服务启用">ssh服务启用</a></h3>
-<pre><code class="language-shell"># 安装
-apt install -y openssh-server
-# 默认禁止远程登录，需 /etc/ssh/sshd_config 中 PermitRootLogin 字段
-sed -i '/#PermitRootLogin prohibit-password/aPermitRootLogin yes' /etc/ssh/sshd_config
-# 重启
-systemctl restart sshd
 </code></pre>
 <h3 id="vi"><a class="header" href="#vi">vi</a></h3>
 <pre><code class="language-shell"># vi 默认情况下上下左右、backspace等按键非正常作用，须配置`/etc/vim/vimrc.tiny`
@@ -187,17 +179,28 @@ sed -i '/#DefaultTimeoutStartSec=90s/aDefaultTimeoutStartSec=5s' /etc/systemd/sy
 sed -i '/#DefaultTimeoutStopSec=90s/aDefaultTimeoutStopSec=5s' /etc/systemd/system.conf
 </code></pre>
 <h3 id="网卡配置"><a class="header" href="#网卡配置">网卡配置</a></h3>
-<p>系统会读取<code>/etc/netplan/*.yaml</code></p>
-<pre><code class="language-shell">cat &gt;&gt; /etc/netplan/02.yaml &lt;&lt; EOF
+<pre><code class="language-shell"># 系统会读取 `/etc/netplan/*.yaml`
+cat &gt;&gt; /etc/netplan/02.yaml &lt;&lt; EOF
 network:
   version: 2
   renderer: NetworkManager
   ethernets:
+    enp0s0:
+      dhcp4: false
+      # gateway4: 192.168.1.1
+      routes:
+      - to: default
+        via: 192.168.1.1  # gateway, same as gateway4
+      addresses:
+      - 192.168.1.10/24
+      nameservers:
+        addresses: [192.168.1.1,8.8.8.8] # DNS
+        search: []
     enp0s3:
       dhcp4: false
       # gateway4: 192.168.31.1
       routes:
-      - to: default
+      - to: 192.168.31.0/24
         via: 192.168.31.1  # gateway, same as gateway4
       addresses:
       - 192.168.31.10/24
@@ -209,7 +212,7 @@ EOF
 # 应用配置
 netplan apply
 </code></pre>
-<h3 id="apt源"><a class="header" href="#apt源">apt源</a></h3>
+<h3 id="apt-源"><a class="header" href="#apt-源">apt 源</a></h3>
 <pre><code class="language-shell">$ mv /etc/apt/sources.list /etc/apt/sources.list.bk
 $ cat &gt; /etc/apt/sources.list &lt;&lt; EOF
 deb http://mirrors.aliyun.com/ubuntu/ jammy main restricted universe multiverse
@@ -226,10 +229,19 @@ EOF
 # 更新源
 $ apt update
 </code></pre>
-<h3 id="https访问"><a class="header" href="#https访问">https访问</a></h3>
-<pre><code class="language-shell">apt install ca-certificates -y
+<h3 id="ssh-服务启用"><a class="header" href="#ssh-服务启用">ssh 服务启用</a></h3>
+<pre><code class="language-shell"># 安装
+apt install -y openssh-server
+# 默认禁止远程登录，需 /etc/ssh/sshd_config 中 PermitRootLogin 字段
+sed -i '/#PermitRootLogin prohibit-password/aPermitRootLogin yes' /etc/ssh/sshd_config
+# 重启
+systemctl restart sshd
 </code></pre>
-<h3 id="root图形界面登录"><a class="header" href="#root图形界面登录">root图形界面登录</a></h3>
+<h3 id="http-代理"><a class="header" href="#http-代理">http 代理</a></h3>
+<h3 id="https-访问"><a class="header" href="#https-访问">https 访问</a></h3>
+<pre><code class="language-shell">apt install -y ca-certificates curl gnupg
+</code></pre>
+<h3 id="root-图形界面登录"><a class="header" href="#root-图形界面登录">root 图形界面登录</a></h3>
 <pre><code class="language-shell"># ubuntu桌面版不允许图形界面登录root用户，须注释`/etc/pam.d/gdm-password`&amp;`/etc/pam.d/gdm-autologin`文件中 auth required pam_succeed_if.so user != root quiet_success 所在行
 sed -i 's/auth.*required.*pam_succeed_if.so user != root quiet_success/# auth\trequired\tpam_succeed_if.so user != root quiet_success/g' /etc/pam.d/gdm-password
 sed -i 's/auth.*required.*pam_succeed_if.so user != root quiet_success/# auth\trequired\tpam_succeed_if.so user != root quiet_success/g' /etc/pam.d/gdm-autologin
@@ -247,7 +259,7 @@ sed -i 's/XDG_VIDEOS_DIR=.*/XDG_VIDEOS_DIR=&quot;$HOME\/dirs\/Videos&quot;/g' ~/
 # 现在使用
 nautilus -q
 </code></pre>
-<h1 id="centos"><a class="header" href="#centos">CentOS</a></h1>
+<h2 id="centos"><a class="header" href="#centos">CentOS</a></h2>
 <blockquote>
 <p><a href="https://mirrors.aliyun.com/ubuntu-releases/">centos阿里云镜像</a>；</p>
 </blockquote>

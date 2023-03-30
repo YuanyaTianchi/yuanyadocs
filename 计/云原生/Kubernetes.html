@@ -289,7 +289,7 @@ mv kubectl /usr/local/bin
 <p><a href="https://kubernetes.io/zh/docs/setup/production-environment/container-runtimes/#docker">dokcer配置systemd作cgroup驱动</a>；</p>
 <p><a href="https://kubernetes.io/zh/docs/tasks/administer-cluster/kubeadm/configure-cgroup-driver/#%E9%85%8D%E7%BD%AE-kubelet-%E7%9A%84-cgroup-%E9%A9%B1%E5%8A%A8">kubelet配置systemd作cgroup驱动</a>；</p>
 </blockquote>
-<p>1.22及之后<code>kubeadm init</code>默认使用 <code>systemd</code> 作为 kubelet 的 cgroup 驱动，而不是 <code>cgroupfs</code>。这里顺手加上<a href="https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors">阿里云 docker 镜像源</a>。</p>
+<p>1.22及之后<code>kubeadm init</code>默认使用 <code>systemd</code> 作为 kubelet 的 cgroup 驱动，而不是 <code>cgroupfs</code>。这里顺手加上。</p>
 <pre><code class="language-shell"># docker配置systemd作cgroup驱动。
 # 否则kubeadm init报错dial tcp 127.0.0.1:10248: connect: connection refused
 # 另外配置了日志、镜像源、免证书验证仓库
