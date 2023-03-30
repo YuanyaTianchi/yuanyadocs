@@ -1,0 +1,681 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Git - YuanyaDocs</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../index.html">Root</a></li><li class="chapter-item expanded "><a href="../../模板.html"><strong aria-hidden="true">1.</strong> 模板</a></li><li class="chapter-item expanded "><a href="../../番.html"><strong aria-hidden="true">2.</strong> 番</a></li><li class="chapter-item expanded affix "><li class="part-title">计</li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 操作系统</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../计/操作系统/Linux.html"><strong aria-hidden="true">3.1.</strong> Linux</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../计/操作系统/Linux.eBPF.html"><strong aria-hidden="true">3.1.1.</strong> Linux.eBPF</a></li></ol></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> 虚拟化</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../OVN/OVS.html"><strong aria-hidden="true">4.1.</strong> OVN/OVS</a></li><li class="chapter-item expanded "><a href="../../计/虚拟化/虚拟网络.html"><strong aria-hidden="true">4.2.</strong> 虚拟网络技术</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 云原生</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../计/云原生/容器.Docker.html"><strong aria-hidden="true">5.1.</strong> Docker</a></li><li class="chapter-item expanded "><a href="../../计/云原生/Kubernetes.html"><strong aria-hidden="true">5.2.</strong> Kuberntes</a></li><li class="chapter-item expanded "><a href="../../计/云原生/Prometheus.html"><strong aria-hidden="true">5.3.</strong> Prometheus</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.4.</strong> OVN-on-Kube</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> 语言</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../计/语言/Go.html"><strong aria-hidden="true">6.1.</strong> Go</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.</strong> 工具</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../计/工具/Git.html" class="active"><strong aria-hidden="true">7.1.</strong> Git</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">YuanyaDocs</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <p>+++</p>
+<p>title = &quot;Git&quot;
+description = &quot;Git&quot;
+tags = [&quot;it&quot;, &quot;versioncontrol&quot;]</p>
+<p>+++</p>
+<h1 id="git"><a class="header" href="#git">Git</a></h1>
+<blockquote>
+<p><a href="https://git-scm.com/">官网</a>；</p>
+</blockquote>
+<h2 id="快开"><a class="header" href="#快开">快开</a></h2>
+<h3 id="安装"><a class="header" href="#安装">安装</a></h3>
+<blockquote>
+<p><a href="https://git-scm.com/downloads">下载</a>；</p>
+</blockquote>
+<pre><code class="language-shell">apt install -y git
+</code></pre>
+<h3 id="配置"><a class="header" href="#配置">配置</a></h3>
+<ul>
+<li>仓库配置：<code>&lt;git-repository&gt;/.git/config</code>；</li>
+<li>全局配置：<code>~/.gitconfig</code>；</li>
+</ul>
+<pre><code class="language-shell">cat &gt; ~/.gitconfig &lt;&lt;EOF
+[core]
+  # 关闭 quotepath，使中文不以八进制的字符编码显示，而是显示汉字
+  quotepath=false
+[user]
+  name = YuanyaTianchi
+  email = yuanyatianchi@gmail.com
+[alias]
+  st = status
+  co = commit
+  ch = checkout
+  br = branch
+  lg = log --graph --abbrev-commit --pretty=oneline
+  rebh = git rebase -i HEAD~
+  
+[core]
+  # 关闭 quotepath，使中文不以八进制的字符编码显示，而是显示汉字
+  quotepath=false
+[http]
+  # http 代理
+  proxy = http://&lt;proxy_server_ip&gt;:&lt;port&gt;
+[https]
+  # https 代理
+  proxy = https://&lt;proxy_server_ip&gt;:&lt;port&gt;
+  # 关闭证书校验
+  sslVerify = false
+EOF
+# 查看
+git config --list
+</code></pre>
+<h3 id="gitignore"><a class="header" href="#gitignore">.gitignore</a></h3>
+<blockquote>
+<p><a href="https://gist.github.com/octocat/9257657">.gitignore常用配置</a></p>
+</blockquote>
+<h2 id="概念"><a class="header" href="#概念">概念</a></h2>
+<ul>
+<li>192.30.253.113 <a href="http://github.com">github.com</a>：修改host，提高GitHub的push和pull速度</li>
+<li>命令行符号
+<ul>
+<li>[ ]：可写可不写</li>
+<li>&lt;&gt;：必须写且需要用你自己的内容替换</li>
+<li>{ }：必须在其中做出选择(选项之间以 | 隔开)</li>
+</ul>
+</li>
+<li>结构
+<ul>
+<li>工作区</li>
+<li>暂存区</li>
+<li>本地库</li>
+</ul>
+</li>
+</ul>
+<p>https://www.yiibai.com/git</p>
+<h2 id="操作"><a class="header" href="#操作">操作</a></h2>
+<h3 id="推拉"><a class="header" href="#推拉">推拉</a></h3>
+<h4 id="pull"><a class="header" href="#pull">pull</a></h4>
+<ul>
+<li><code>git pull [option]... &lt;远程主机名&gt; [branch-name]:[local-branch-name]</code>
+<ul>
+<li>-q：</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-shell">git pull origin remoteBranch:localBranch #获取远程origin上的分支branch1，并合并到本地的分支branch2
+</code></pre>
+<h4 id="push"><a class="header" href="#push">push</a></h4>
+<h4 id="clone"><a class="header" href="#clone">clone</a></h4>
+<p>clone。一般建议使用ssh，https有可能出一些不知所以的问题</p>
+<pre><code class="language-shell">#ssh
+git clone git@github.com:YuanyaTianchi/yuanyatianchi.git
+#https
+git clone https://github.com/YuanyaTianchi/yuanyatianchi.git
+</code></pre>
+<h3 id="版本"><a class="header" href="#版本">版本</a></h3>
+<h4 id="log"><a class="header" href="#log">log</a></h4>
+<ul>
+<li>git log</li>
+</ul>
+<pre><code class="language-shell">git log --graph --abbrev-commit --pretty=oneline #图形化，hash值简化，单行
+</code></pre>
+<h4 id="revert"><a class="header" href="#revert">revert</a></h4>
+<p>https://juejin.im/post/6844903614767448072</p>
+<p>重提回退版本</p>
+<pre><code class="language-shell">git revert -n xxxxxxx
+git commit -m &quot;恢复到xxxxxxx版本&quot;
+</code></pre>
+<p>重提回退到指定版本，将此次回退作为新的提交重提，不删除该版本之后的提交。效果如下</p>
+<pre><code class="language-shell">$ git log
+xxxxxx3 第3次提交
+xxxxxx2 第2次提交
+xxxxxx1 第1次提交
+$ git revert -n xxxxxx2
+$ git commit -m &quot;恢复到第2次提交&quot;
+$ git log
+xxxxxx4 恢复到第2次提交
+xxxxxx3 第3次提交
+xxxxxx2 第2次提交
+xxxxxx1 第1次提交
+</code></pre>
+<p>推荐使用，尤其是在将回退版本的后面的提交已推送到远程仓库时，revert 后也能简单直接提交</p>
+<h4 id="reset"><a class="header" href="#reset">reset</a></h4>
+<p>重设回退版本</p>
+<pre><code class="language-shell"># HEAD 直接指向指定版本号
+git reset --hard xxxxxxx
+# 前移 HEAD，几个^表示前移几个版本
+git reset --hard HEAD^
+</code></pre>
+<p>重设回退到指定版本，该版本之后的提交都将被删除。效果如下</p>
+<pre><code class="language-shell">$ git log
+xxxxxx3 第3次提交
+xxxxxx2 第2次提交
+xxxxxx1 第1次提交
+$ git reset --hard HEAD^
+$ git log
+xxxxxx2 第2次提交
+xxxxxx1 第1次提交
+</code></pre>
+<p>参数</p>
+<ul>
+<li>--soft： 回退后a分支修改的代码被保留并标记为add的状态（git status 是绿色的状态）</li>
+<li>--mixed： 重置索引，但不重置工作树，更改后的文件标记为未提交（add）的状态。默认操作。</li>
+<li>--hard： 重置索引和工作树，并且a分支修改的所有文件和中间的提交，没提交的代码都被丢弃了。</li>
+<li>--merge： 和--hard类似，只不过如果在执行reset命令之前你有改动一些文件并且未提交，merge会保留你的这些修改，hard则不会。【注：如果你的这些修改add过或commit过，merge和hard都将删除你的提交】 </li>
+<li>--keep： 和--hard类似，执行reset之前改动文件如果是a分支修改了的，会提示你修改了相同的文件，不能合并。如果不是a分支修改的文件，会移除缓存区。git status还是可以看到保持了这些修改。</li>
+</ul>
+<p>视情况使用，尤其不建议在将回退版本的后面的提交已推送到远程仓库时使用，否则本地版本落后于远程版本，只有强推才能覆盖推送，风险较大</p>
+<h3 id="分支"><a class="header" href="#分支">分支</a></h3>
+<h4 id="branch"><a class="header" href="#branch">branch</a></h4>
+<h4 id="merge"><a class="header" href="#merge">merge</a></h4>
+<p>我的需求在<code>feature/tianchi/xxx</code>分支上写完，要合并到<code>develop</code>里面，需要先选择到开发分支再去merge我的分支，会是<code>Merge branch 'feature/tianchi/xxx' into 'develop'</code>，千万<strong>不要</strong>在我的分支上去merge开发分支，会变成<code>Merge branch 'develop' into 'feature/tianchi/xxx'</code></p>
+<pre><code class="language-shell">#正确操作如下
+git pull origin develop:develop
+git checkout develop
+git merge feature/tianchi/xxx
+</code></pre>
+<h4 id="rebase"><a class="header" href="#rebase">rebase</a></h4>
+<p>重定，变基(?)，指将分支移到一个新的基提交的过程</p>
+<ul>
+<li>rebase
+<ul>
+<li>-r：--rebase-merges简写。</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-shell">git rebase -r
+</code></pre>
+<h3 id="本地仓"><a class="header" href="#本地仓">本地仓</a></h3>
+<h3 id="远程仓"><a class="header" href="#远程仓">远程仓</a></h3>
+<h4 id="remote"><a class="header" href="#remote">remote</a></h4>
+<ul>
+<li>远程库操作</li>
+</ul>
+<pre><code class="language-shell"># 查看远程库名字
+git remote
+# 查看远程仓库详细地址
+git remote -v
+# 修改远程仓库地址
+git remote set-url origin &lt;ssh地址 or https地址&gt;
+</code></pre>
+<ul>
+<li>git remote add [<options>] <repositoryName> <repositoryUrl>：创建repository
+<ul>
+<li>repositoryName：一般命名为origin</li>
+</ul>
+</li>
+<li>git remote remove <repositoryName>：删除远程的仓库的所有跟踪分支和配置设置</li>
+<li>git remote rename <oldName> <newName>：重命名远程仓库在本地的简称</li>
+<li>git remote show <repositoryName>：查看某个远程仓库的详细信息</li>
+<li></li>
+<li>git pull &lt;--rebase&gt; <repositoryName> <branchName> &lt;--allow-unrelated-histories&gt;：获取远程仓库项目文件
+<ul>
+<li>--allow-unrelated-histories：可选参数，可以合并两个独立启动仓库的历史</li>
+</ul>
+</li>
+<li>提交到本地仓库后再推送到远程仓库</li>
+<li>git push &lt;--set-upstream&gt; <repositoryName> <branchName>：推送到远程仓库</li>
+<li>git remote rm：删除源(origin)</li>
+</ul>
+<h2 id="规范"><a class="header" href="#规范">规范</a></h2>
+<p>https://www.jianshu.com/p/201bd81e7dc9?utm_source=oschina-app</p>
+<h3 id="commit-message-的作用"><a class="header" href="#commit-message-的作用">Commit message 的作用</a></h3>
+<p>提供更多的历史信息，方便快速浏览。</p>
+<p>比如，下面的命令显示上次发布后的变动，每个commit占据一行。你只看行首，就知道某次 commit 的目的。</p>
+<pre><code class="language-bash">$ git log &lt;last tag&gt; HEAD --pretty=format:%s
+</code></pre>
+<p>可以过滤某些commit（比如文档改动），便于快速查找信息</p>
+<pre><code class="language-bash">$ git log &lt;last release&gt; HEAD --grep feature
+</code></pre>
+<p>可以直接从commit生成Change log。Change Log 是发布新版本时，用来说明与上一个版本差异的文档，详见后文。</p>
+<p>其他优点</p>
+<ul>
+<li>可读性好，清晰，不必深入看代码即可了解当前commit的作用。</li>
+<li>为 Code Reviewing做准备</li>
+<li>方便跟踪工程历史</li>
+<li>让其他的开发者在运行 git blame 的时候想跪谢</li>
+<li>提高项目的整体质量，提高个人工程素质</li>
+</ul>
+<h3 id="commit-message-的格式"><a class="header" href="#commit-message-的格式">Commit message 的格式</a></h3>
+<p>每次提交，Commit message 都包括三个部分：header，body 和 footer。</p>
+<pre><code class="language-xml">&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;
+&lt;BLANK LINE&gt;
+&lt;body&gt;
+&lt;BLANK LINE&gt;
+&lt;footer&gt;
+</code></pre>
+<p>其中，header 是必需的，body 和 footer 可以省略。
+不管是哪一个部分，任何一行都不得超过72个字符（或100个字符）。这是为了避免自动换行影响美观。</p>
+<h4 id="header"><a class="header" href="#header">Header</a></h4>
+<p>Header部分只有一行，包括三个字段：<code>type</code>（必需）、<code>scope</code>（可选）和<code>subject</code>（必需）。</p>
+<h5 id="type"><a class="header" href="#type">type</a></h5>
+<p>用于说明 commit 的类别，只允许使用下面7个标识。</p>
+<ul>
+<li>feat：新功能（feature）</li>
+<li>fix：修补bug</li>
+<li>docs：文档（documentation）</li>
+<li>style： 格式（不影响代码运行的变动）</li>
+<li>refactor：重构（即不是新增功能，也不是修改bug的代码变动）</li>
+<li>test：增加测试</li>
+<li>chore：构建过程或辅助工具的变动</li>
+</ul>
+<p>如果type为<code>feat</code>和<code>fix</code>，则该 commit 将肯定出现在 Change log 之中。其他情况（<code>docs</code>、<code>chore</code>、<code>style</code>、<code>refactor</code>、<code>test</code>）由你决定，要不要放入 Change log，建议是不要。</p>
+<h5 id="scope"><a class="header" href="#scope">scope</a></h5>
+<p>scope用于说明 commit 影响的范围，比如数据层、控制层、视图层等等，视项目不同而不同。</p>
+<p>例如在<code>Angular</code>，可以是<code>$location</code>, <code>$browser</code>, <code>$compile</code>, <code>$rootScope</code>, <code>ngHref</code>, <code>ngClick</code>, <code>ngView</code>等。</p>
+<p>如果你的修改影响了不止一个<code>scope</code>，你可以使用<code>*</code>代替。</p>
+<h5 id="subject"><a class="header" href="#subject">subject</a></h5>
+<p><code>subject</code>是 commit 目的的简短描述，不超过50个字符。</p>
+<p>其他注意事项：</p>
+<ul>
+<li>以动词开头，使用第一人称现在时，比如change，而不是changed或changes</li>
+<li>第一个字母小写</li>
+<li>结尾不加句号（.）</li>
+</ul>
+<h4 id="body"><a class="header" href="#body">Body</a></h4>
+<p>Body 部分是对本次 commit 的详细描述，可以分成多行。下面是一个范例。</p>
+<pre><code class="language-php">More detailed explanatory text, if necessary.  Wrap it to 
+about 72 characters or so. 
+
+Further paragraphs come after blank lines.
+
+- Bullet points are okay, too
+- Use a hanging indent
+</code></pre>
+<p>有两个注意点:</p>
+<ul>
+<li>使用第一人称现在时，比如使用change而不是changed或changes。</li>
+<li>永远别忘了第2行是空行</li>
+<li>应该说明代码变动的动机，以及与以前行为的对比。</li>
+</ul>
+<h4 id="footer"><a class="header" href="#footer">Footer</a></h4>
+<p>Footer 部分只用于以下两种情况：</p>
+<h5 id="不兼容变动"><a class="header" href="#不兼容变动">不兼容变动</a></h5>
+<p>如果当前代码与上一个版本不兼容，则 Footer 部分以BREAKING CHANGE开头，后面是对变动的描述、以及变动理由和迁移方法。</p>
+<pre><code class="language-go">BREAKING CHANGE: isolate scope bindings definition has changed.
+
+    To migrate the code follow the example below:
+
+    Before:
+
+    scope: {
+      myAttr: 'attribute',
+    }
+
+    After:
+
+    scope: {
+      myAttr: '@',
+    }
+
+    The removed `inject` wasn't generaly useful for directives so there should be no code using it.
+</code></pre>
+<h5 id="关闭-issue"><a class="header" href="#关闭-issue">关闭 Issue</a></h5>
+<p>如果当前 commit 针对某个issue，那么可以在 Footer 部分关闭这个 issue 。</p>
+<pre><code class="language-bash">Closes #234
+</code></pre>
+<h4 id="revert-1"><a class="header" href="#revert-1">Revert</a></h4>
+<p>还有一种特殊情况，如果当前 commit 用于撤销以前的 commit，则必须以revert:开头，后面跟着被撤销 Commit 的 Header。</p>
+<pre><code class="language-csharp">revert: feat(pencil): add 'graphiteWidth' option
+
+This reverts commit 667ecc1654a317a13331b17617d973392f415f02.
+</code></pre>
+<p>Body部分的格式是固定的，必须写成<code>This reverts commit &lt;hash&gt;</code>.，其中的hash是被撤销 commit 的 SHA 标识符。</p>
+<p>如果当前 commit 与被撤销的 commit，在同一个发布（release）里面，那么它们都不会出现在 Change log 里面。如果两者在不同的发布，那么当前 commit，会出现在 Change log 的Reverts小标题下面。</p>
+<h3 id="commitizen"><a class="header" href="#commitizen">Commitizen</a></h3>
+<p>可以使用典型的git工作流程或通过使用CLI向导<a href="https://link.jianshu.com?t=https%3A%2F%2Fgithub.com%2Fcommitizen%2Fcz-cli">Commitizen</a>来添加提交消息格式。</p>
+<h3 id="安装-1"><a class="header" href="#安装-1">安装</a></h3>
+<pre><code class="language-undefined">npm install -g commitizen
+</code></pre>
+<p>然后，在项目目录里，运行下面的命令，使其支持 Angular 的 Commit message 格式。</p>
+<pre><code class="language-kotlin">commitizen init cz-conventional-changelog --save --save-exact
+</code></pre>
+<p>以后，凡是用到<code>git commit</code>命令，一律改为使用<code>git cz</code>。这时，就会出现选项，用来生成符合格式的 Commit message。</p>
+<p><img src="https:////upload-images.jianshu.io/upload_images/3827973-39053e8f0259dfda.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/557/format/webp" alt="img" /></p>
+<p>5.png</p>
+<h3 id="validate-commit-msg"><a class="header" href="#validate-commit-msg">validate-commit-msg</a></h3>
+<p><a href="https://link.jianshu.com?t=https%3A%2F%2Fgithub.com%2Fkentcdodds%2Fvalidate-commit-msg">validate-commit-msg</a> 用于检查项目的 Commit message 是否符合Angular规范。</p>
+<p>该包提供了使用githooks来校验<code>commit message</code>的一些二进制文件。在这里，我推荐使用<a href="https://link.jianshu.com?t=http%3A%2F%2Fnpm.im%2Fhusky">husky</a>，只需要添加<code>&quot;commitmsg&quot;: &quot;validate-commit-msg&quot;</code>到你的<code>package.json</code>中的<code>nam scripts</code>即可.</p>
+<p>当然，你还可以通过定义配置文件<code>.vcmrc</code>来自定义校验格式。详细使用请见文档 <a href="https://link.jianshu.com?t=https%3A%2F%2Fgithub.com%2Fkentcdodds%2Fvalidate-commit-msg">validate-commit-msg</a></p>
+<h3 id="生成-change-log"><a class="header" href="#生成-change-log">生成 Change log</a></h3>
+<p>如果你的所有 Commit 都符合 Angular 格式，那么发布新版本时， Change log 就可以用脚本自动生成。生成的文档包括以下三个部分：</p>
+<ul>
+<li>New features</li>
+<li>Bug fixes</li>
+<li>Breaking changes.</li>
+</ul>
+<p>每个部分都会罗列相关的 commit ，并且有指向这些 commit 的链接。当然，生成的文档允许手动修改，所以发布前，你还可以添加其他内容。</p>
+<p><a href="https://link.jianshu.com?t=https%3A%2F%2Fgithub.com%2Fajoslin%2Fconventional-changelog">conventional-changelog</a> 就是生成 Change log 的工具，运行下面的命令即可。</p>
+<pre><code class="language-ruby">$ npm install -g conventional-changelog
+$ cd my-project
+$ conventional-changelog -p angular -i CHANGELOG.md -w
+</code></pre>
+<h2 id="本地库操作"><a class="header" href="#本地库操作">本地库操作</a></h2>
+<h3 id="本地库初始化"><a class="header" href="#本地库初始化">本地库初始化</a></h3>
+<ol>
+<li>在cmd中进到项目目录下</li>
+<li>git init：本地库初始化。生成一个.git目录，该目录中存放的是本地库相关的子目录和文件</li>
+<li>设置签名：username和email用于区分不同开发人员的身份。这里设置的签名和登录远程库(代码托管中心)的账号密码没有任何关系。默认项目级别(仓库级别)仅在当前本地库范围内生效，项目级别信息保存在.git/config下。系统用户级别：指定--global，系统用户级别信息保存在系统用户家目录下的.config文件中。项目级别优先于系统用户级别。至少设置一个
+<ol>
+<li>git config [--global] user.name <username>：设置用户名</li>
+<li>git config [--global] user.email <email>：设置Email地址</li>
+<li>cat .git/cogfig：查看本地库配置文件</li>
+</ol>
+</li>
+</ol>
+<h3 id="基本操作"><a class="header" href="#基本操作">基本操作</a></h3>
+<ul>
+<li>git help &lt;命令&gt;：查看该命令文档</li>
+</ul>
+<h3 id="文件操作"><a class="header" href="#文件操作">文件操作</a></h3>
+<ul>
+<li>git status：查看状态。
+<ul>
+<li>on branch master表示在主分支上，no commits yet表示无提交内容</li>
+<li>红色文件表示未添加到暂存区中，绿色表示已添加到暂存区中</li>
+</ul>
+</li>
+<li>git add <filename>：将文件从工作区添加到暂存区。unstage表示从暂存区中移除</li>
+<li>git rm <filename>：从暂存区删除</li>
+<li>git commit [-m <description>] [-a] <filename>：将文件从暂存区中提交到本地库，添加后会进入vim，写本次提交描述内容
+<ul>
+<li>-m：无需编辑vim，直接在后面写入描述内容，；</li>
+<li>-a：无需git add操作，直接添加&amp;提交，不过就不存在暂存区的撤销操作时间了</li>
+<li>结果内容：
+<ul>
+<li>root-commit：表示根提交(第一次提交)</li>
+<li>数字编号：暂时粗略认为是本次提交的版本号</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="版本移动"><a class="header" href="#版本移动">版本移动</a></h3>
+<ul>
+<li>git log [--pretty={oneline}] [--oneline]：查看日志版本，只显示当前及以前版本。这里有2个版本的记录，这里hash值表示该次提交的索引，HEAD是指向当前版本的指针
+<ul>
+<li>--pretty=oneline将每个版本只以一行显示</li>
+<li>--oneline不仅一行显示还只显示部分hash值</li>
+</ul>
+</li>
+<li>git reflog：查看日志，显示前后所有版本以及版本移动
+<ul>
+<li>HEAD@{n}表示移动到对应版本指针需要移动n步</li>
+</ul>
+</li>
+<li>git reset --{hard/mixed/soft} HEAD <headHash>：索引移动(推荐)
+<ul>
+<li>--mixed在本地枯移动HEAD指针，重置暂存区，默认策略</li>
+<li>--hard在本地库移动HEAD指针，重置暂存区，重置工作区（会删除文件），</li>
+<li>--soft仅在本地库移动HEAD指针</li>
+</ul>
+</li>
+<li>git reset  --hard HEAD^^^：^移动，只能后退，3个^即表示后退3个版本</li>
+<li>git reset  --hard HEAD~<n>：~移动，只能后退，n即表示后退n个版本</li>
+<li>git checkout <versionNumber> <filename>：选择某个版本的文件到工作区</li>
+<li>git diff [HEAD] [<filename>]：在修改工作区文件之后
+<ul>
+<li>无HEAD：表示工作区与暂存区的该文件比较，显示文件变化</li>
+<li>有HEAD：表示工作区与本地库的该文件比较，显示文件变化</li>
+<li>无<filename>：将比较当前工作区中的所有文件</li>
+</ul>
+</li>
+</ul>
+<h3 id="分支管理"><a class="header" href="#分支管理">分支管理</a></h3>
+<p>分支：在版本控制过程中，使用多条线同时推进多个任务。同时并行推进多个功能开发，提高开发效率。各个分支在开发过程中，如果一个分支开发失败，不会对其他分支有任何影响，删除重新开始即可</p>
+<ul>
+<li>git branch [-v] [-a]：
+<ul>
+<li>-v：显示版本号</li>
+<li>-a：包括远程分支</li>
+</ul>
+</li>
+<li>git branch <branchName>：创建分支</li>
+<li>git branch -D <branchName>：删除分支</li>
+<li>git checkout <branchName>：切换分支</li>
+<li>git merge <branchName>：合并某分支，将当前所在分支与某分支合并。
+<ul>
+<li>分支合并冲突：当两个分支都修改了同一个文件中同一行的内容，合并时取舍哪个分支的该处内容git是无法判断的，只需要vim手动编辑后再添加提交(提交不能带文件名)即可</li>
+</ul>
+</li>
+</ul>
+<h3 id="clean"><a class="header" href="#clean">clean</a></h3>
+<pre><code class="language-sh">git clean -f
+git clean -d -fx #强制删除Untracked files
+</code></pre>
+<h2 id="合并工程"><a class="header" href="#合并工程">合并工程</a></h2>
+<ul>
+<li>假如有master、test、develop分支，现在有一个需求从master切出来一个demand，需求子任务从demand切出来一个demand/child：<code>git pull origin demand:demand</code>，<code>git ch demand</code>，<code>git ch -b demand/child</code>
+<ul>
+<li>任务开发完后，需要merge demand/child into develop。切到任务分支<code>git ch demand/child</code>，拉取develop分支<code>git pull origin develop:develop</code>，会有很多改变，会因版本而merge develop into demand/child的相关提示，中止merge<code>git merge --abort</code>，不能让merge develop into demand/child发生，这反了，切到dev<code>git ch develop</code>，merge demand/child into develop<code>git merge demand/child</code>，编译检查<code>go build xxx</code>，提交之前再检查版本<code>git lg -5</code>是否是merge demand/child into develop，推送<code>git push origin develop:develop</code></li>
+<li>develop环境调试完，需要merge demand/child into demand。切到任务分支<code>git ch demand/child</code>，直接拉取远程demand并合并到demand/child<code>git pull origin demand:demand/child</code>，因为demand本来就是demand/child的源，所以直接合并之后要再合并回去<code>git push origin demand/child:demand</code>，不会有什么影响，也能将其他人的更改合并进来，如果develop也这么做的话，会将demand/child不需要的develop的内容合并进来，那就只有回退版本再重新操作了</li>
+</ul>
+</li>
+</ul>
+<h2 id="git-flow"><a class="header" href="#git-flow">git flow</a></h2>
+<p>开发</p>
+<pre><code class="language-shell"># 创建 feature/&lt;brance_name&gt; 分支
+git flow feature start brance_name
+# 合并 feature/&lt;brance_name&gt; 到 develop，删除 feature/&lt;brance_name&gt;，并切换到 develop
+git flow feature finish brance_name
+</code></pre>
+<p>发布</p>
+<pre><code class="language-shell"># 创建 release-1.1.1 分支
+git flow release start 1.1.1
+# 合并 release-1.1.1 到 master，使用 release-1.1.1 分支名称打 tag，回合 release-1.1.1 到 develop，删除 release-1.1.1，并切换到 develop
+git flow release finish 1.1.1
+</code></pre>
+<p>紧急修复</p>
+<pre><code class="language-shell"># 创建 hotfix-1.1.1 分支
+git flow hotfix start 1.1.1
+# 合并 hotfix-1.1.1 到 master；
+# 如果存在 release-1.1.1，则合并 hotfix-1.1.1 到 release-1.1.1，否则合并 hotfix-1.1.1 到 develop；
+# 删除 hotfix-1.1.1，并切换到 develop
+git flow release finish 1.1.1
+</code></pre>
+<h1 id="github"><a class="header" href="#github">GitHub</a></h1>
+<h3 id="ssh"><a class="header" href="#ssh">ssh</a></h3>
+<pre><code class="language-shell"># ed25519算法
+ssh-keygen -t ed25519 -C &quot;yuanyatianchi@example.com&quot;
+# rsa算法
+ssh-keygen -t rsa -b 4096 -C &quot;yuanyatianchi@gmail.com&quot;
+</code></pre>
+<h3 id="搜索"><a class="header" href="#搜索">搜索</a></h3>
+<p>匹配语法。</p>
+<ul>
+<li>模糊匹配：<code>in:&lt;field&gt; &lt;xxx&gt;</code>，表示匹配某字段中包含 xxx 字符串
+<ul>
+<li>name：<code>in:name xxx</code></li>
+<li>readme：<code>in:readme xxx</code></li>
+<li>descriptio：<code>in:description xxx</code></li>
+</ul>
+</li>
+<li>数字
+<ul>
+<li>stars:&gt;1000 或 star&gt;1000</li>
+<li>forks:&gt;1000 或 fork&gt;1000</li>
+</ul>
+</li>
+<li>日期
+<ul>
+<li>pushed:&gt;2019-04-15，表示2019年4月15日后有更新的</li>
+</ul>
+</li>
+<li>语言
+<ul>
+<li>language:go，表示 go 语言项目</li>
+</ul>
+</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../计/语言/Go.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../计/语言/Go.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
+
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Go - YuanyaDocs</title>
+        <title>Prometheus - YuanyaDocs</title>
 
 
         <!-- Custom HTML head -->
@@ -83,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../index.html">Root</a></li><li class="chapter-item expanded "><a href="../../模板.html"><strong aria-hidden="true">1.</strong> 模板</a></li><li class="chapter-item expanded "><a href="../../番.html"><strong aria-hidden="true">2.</strong> 番</a></li><li class="chapter-item expanded affix "><li class="part-title">计</li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 操作系统</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../计/操作系统/Linux.html"><strong aria-hidden="true">3.1.</strong> Linux</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../计/操作系统/Linux.eBPF.html"><strong aria-hidden="true">3.1.1.</strong> Linux.eBPF</a></li></ol></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> 虚拟化</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../OVN/OVS.html"><strong aria-hidden="true">4.1.</strong> OVN/OVS</a></li><li class="chapter-item expanded "><a href="../../计/虚拟化/虚拟网络.html"><strong aria-hidden="true">4.2.</strong> 虚拟网络技术</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 云原生</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../计/云原生/容器.Docker.html"><strong aria-hidden="true">5.1.</strong> Docker</a></li><li class="chapter-item expanded "><a href="../../计/云原生/Kubernetes.html"><strong aria-hidden="true">5.2.</strong> Kuberntes</a></li><li class="chapter-item expanded "><a href="../../计/云原生/Prometheus.html"><strong aria-hidden="true">5.3.</strong> Prometheus</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.4.</strong> OVN-on-Kube</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> 语言</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../计/语言/Go.html" class="active"><strong aria-hidden="true">6.1.</strong> Go</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.</strong> 工具</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../计/工具/Git.html"><strong aria-hidden="true">7.1.</strong> Git</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../index.html">Root</a></li><li class="chapter-item expanded "><a href="../../模板.html"><strong aria-hidden="true">1.</strong> 模板</a></li><li class="chapter-item expanded "><a href="../../番.html"><strong aria-hidden="true">2.</strong> 番</a></li><li class="chapter-item expanded affix "><li class="part-title">计</li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 操作系统</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../计/操作系统/Linux.html"><strong aria-hidden="true">3.1.</strong> Linux</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../计/操作系统/Linux.eBPF.html"><strong aria-hidden="true">3.1.1.</strong> Linux.eBPF</a></li></ol></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> 虚拟化</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../OVN/OVS.html"><strong aria-hidden="true">4.1.</strong> OVN/OVS</a></li><li class="chapter-item expanded "><a href="../../计/虚拟化/虚拟网络.html"><strong aria-hidden="true">4.2.</strong> 虚拟网络技术</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 云原生</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../计/云原生/容器.Docker.html"><strong aria-hidden="true">5.1.</strong> Docker</a></li><li class="chapter-item expanded "><a href="../../计/云原生/Kubernetes.html"><strong aria-hidden="true">5.2.</strong> Kuberntes</a></li><li class="chapter-item expanded "><a href="../../计/云原生/Prometheus.html" class="active"><strong aria-hidden="true">5.3.</strong> Prometheus</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.4.</strong> OVN-on-Kube</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> 语言</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../计/语言/Go.html"><strong aria-hidden="true">6.1.</strong> Go</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.</strong> 工具</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../计/工具/Git.html"><strong aria-hidden="true">7.1.</strong> Git</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -145,71 +145,159 @@
                 <div id="content" class="content">
                     <main>
                         <p>+++</p>
-<p>title = &quot;Go&quot;
-description = &quot;Go quick start&quot;
-tags = [&quot;techn&quot;, &quot;computer&quot;, &quot;lang&quot;, &quot;Go&quot;, &quot;__quick_start&quot;]</p>
+<p>title = &quot;prometheus&quot;
+description = &quot;prometheus&quot;
+tags = [&quot;it&quot;, &quot;cloud&quot;, &quot;prometheus&quot;]</p>
 <p>+++</p>
-<h1 id="go"><a class="header" href="#go">Go</a></h1>
-<blockquote>
-<p><a href="https://go.dev/">官网</a>；</p>
-</blockquote>
-<h2 id="go-1"><a class="header" href="#go-1">go</a></h2>
-<blockquote>
-<p><a href="https://go.dev/dl/">下载</a>：选择 <code>.linux-amd64.tar.gz</code>，Win 选择 .windows-amd64.zip；</p>
-</blockquote>
-<p>安装：解压即可</p>
-<pre><code class="language-shell">tar -zxf gox.x.x.linux-amd64.tar.gz
+<h1 id="prometheus"><a class="header" href="#prometheus">prometheus</a></h1>
+<h2 id="cadvisor"><a class="header" href="#cadvisor">cAdvisor</a></h2>
+<p>Kubelet 内置 cAdvisor，无需单独安装，可通过 https://127.0.0.1:10250/metrics/cadvisor 访问</p>
+<pre><code class="language-shell"># 创建 ServiceAccount
+kubectl create serviceaccount cadvisor-sa -n monitoring
+# 创建 ClusterRoleBinding 并绑定 ClusterRole 到 ServiceAccount，这里直接使用 cluster-admin
+kubectl create clusterrolebinding cadvisor-crb --clusterrole=cluster-admin --serviceaccount=monitoring:cadvisor-sa
+# 查看 secret
+kubectl get secret -n monitoring
+kubectl describe secret cadvisor-sa-token-&lt;xxxxx&gt; -n monitoring
+# 通过 http 访问
+curl https://127.0.0.1:10250/metrics/cadvisor -k -H &quot;Authorization: Bearer &lt;token&gt;&quot;
 </code></pre>
-<p>环境变量：导入到系统环境变量，或者通过命令如 <code>go env -w GOROOT=</code> 写入</p>
-<pre><code class="language-shell">export GOROOT=~/compute/lang/go/go
-export GOPATH=~/compute/lang/go/path
-# go install 安装的程序将保存到 $GOPATH/bin 下
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
-# 代理：七牛云代理 goproxy.cn,direct；阿里代理 mirrors.aliyun.com/goproxy/
-export GOPROXY=https://goproxy.cn,direct
-
-# gomod：go 1.14 后默认开启
-export GO111MODULE=on
-# 私有库：设置私有库以跳过代理，比如公司使用 Gitlab、Gitee 等，多私有库逗号分隔
-export GOPRIVATE=*.gitlab.com,*.gitee.com
-# 用于验证包的有效性的服务地址，默认 sum.golang.org。有时候如 go mod vendor 会用到，无法连接则设置可连接的地址如 sum.golang.google.cn，这是专为国内提供的 sum 验证服务地址，或者直接关闭即可。私有仓库自动忽略验证
-export GOSUMDB=off
-
-# 如写入 ~/.bashrc 则刷新
-source ~/.bashrc
-</code></pre>
-<h2 id="vs-code"><a class="header" href="#vs-code">vs code</a></h2>
+<h2 id="grafana"><a class="header" href="#grafana">Grafana</a></h2>
 <blockquote>
-<p><a href="https://learn.microsoft.com/zh-cn/azure/developer/go/configure-visual-studio-code">为 Go 开发配置 Visual Studio Code</a>；</p>
+<p><a href="https://grafana.com/docs/grafana/latest/setup-grafana/installation/kubernetes/">在 Kubernetes 上部署 Grafana</a>。</p>
+<p><a href="http://www.mydlq.club/article/111/">Kubernetes 部署图表工具 Grafana</a>。</p>
 </blockquote>
-<ol>
-<li><code>Ctrl+Shift+X</code> 打开扩展视图，搜索 <code>Go</code> 插件并安装</li>
-<li><code>Ctrl+Shift+P</code> 打开 vs code 命令框，搜索 <code>Go: Install/Update tools</code> 并执行</li>
-</ol>
-<h2 id="hello-world"><a class="header" href="#hello-world">hello world</a></h2>
-<p>helloworld.go</p>
-<pre><code class="language-go">package main
-
-import &quot;fmt&quot;
-
-func main() {
-	fmt.Println(&quot;Hello world!&quot;)
-}
-</code></pre>
-<pre><code class="language-shell">$ go build -o ./helloworld-exec ./helloworld.go
-$ ./helloworld-exec
-Hello world!
+<pre><code class="language-yaml">apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: grafana-pv
+  labels:
+    app: grafana
+spec:
+  storageClassName: grafana-storage
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: &quot;/mnt/data/grafana&quot;
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: grafana-pvc
+spec:
+  selector:
+    matchLabels:
+      app: grafana
+  storageClassName: grafana-storage
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana-svc
+  labels:
+    app: grafana
+spec:
+  type: NodePort
+  ports:
+  - name: http-grafana
+    port: 3000
+    nodePort: 30300
+    targetPort: http-grafana
+  selector:
+    app: grafana
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana
+  labels:
+    app: grafana
+spec:
+  selector:
+    matchLabels:
+      app: grafana
+  template:
+    metadata:
+      labels:
+        app: grafana
+    spec:
+      securityContext:
+        fsGroup: 472
+        supplementalGroups:
+          - 0
+      initContainers: # 初始化容器，用于修改挂载的存储的文件夹归属组与归属用户
+        - name: init-file
+          image: busybox:latest
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            runAsUser: 0
+          command: ['chown', '-R', &quot;472:0&quot;, &quot;/var/lib/grafana&quot;]
+          volumeMounts:
+            - name: grafana-volume
+              mountPath: &quot;/var/lib/grafana&quot;
+              subPath: grafana-subpath
+      containers:
+        - name: grafana
+          image: grafana/grafana:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http-grafana
+              containerPort: 3000
+          readinessProbe: # 就绪探针
+            failureThreshold: 3
+            httpGet:
+              path: /robots.txt
+              port: 3000
+              scheme: HTTP
+            initialDelaySeconds: 10
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 2
+          livenessProbe: # 存活探针
+            failureThreshold: 3
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            successThreshold: 1
+            tcpSocket:
+              port: 3000
+            timeoutSeconds: 1
+          env: # 配置环境变量，设置 Grafana 的默认管理员用户名/密码
+            - name: GF_SECURITY_ADMIN_USER
+              value: &quot;admin&quot;
+            - name: GF_SECURITY_ADMIN_PASSWORD
+              value: &quot;admin&quot;
+          resources:
+            requests:
+              cpu: 250m
+              memory: 750Mi
+          securityContext: # 容器安全策略，设置运行容器使用的归属组与用户
+            runAsUser: 472
+          volumeMounts:
+            - name: grafana-volume
+              mountPath: &quot;/var/lib/grafana&quot;
+              subPath: grafana-subpath
+      volumes:
+        - name: grafana-volume
+          persistentVolumeClaim:
+            claimName: grafana-pvc
 </code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../../计/云原生/Prometheus.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../计/云原生/Kubernetes.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="../../计/工具/Git.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../../计/语言/Go.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -219,11 +307,11 @@ Hello world!
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../../计/云原生/Prometheus.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../计/云原生/Kubernetes.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="../../计/工具/Git.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../../计/语言/Go.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
