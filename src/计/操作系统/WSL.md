@@ -1,8 +1,31 @@
 # WSL2
 
-当前版本[linux-msft-wsl-5.15.90.1](https://github.com/microsoft/WSL2-Linux-Kernel/archive/refs/tags/linux-msft-wsl-5.15.90.1.tar.gz)。
+当前版本 [linux-msft-wsl-5.15.90.1](https://github.com/microsoft/WSL2-Linux-Kernel/archive/refs/tags/linux-msft-wsl-5.15.90.1.tar.gz)。
 
-## 准备
+
+
+## 家庭版安装 hyper-v
+
+> [Win11 家庭版/专业版开启 Hyper-V](https://zhuanlan.zhihu.com/p/577980646)；
+
+桌面空白处右键-新建-文本文档，命名为 `hyper-v.cmd`，编辑添加如下内容
+
+```shell
+pushd "%~dp0"
+dir /b %SystemRoot%\servicing\Packages\*Hyper-V*.mum >hyper-v.txt
+for /f %%i in ('findstr /i . hyper-v.txt 2^>nul') do dism /online /norestart /add-package:"%SystemRoot%\servicing\Packages\%%i"
+del hyper-v.txt
+Dism /online /enable-feature /featurename:Microsoft-Hyper-V-All /LimitAccess /ALL
+```
+
+右击文件-以管理员身份运行，下载完成后输入 y 重启。
+
+## 启用 windows 功能
+
+在 `Windows 功能` 中启用：
+
+- `适用于Linux的Windows子系统` ；
+- `Windows功能-虚拟机平台`，或者包含该功能的 `Hyper-V` ，相比之下将获得额外的管理功能；
 
 以管理员身份运行 Windows PowerShell
 
@@ -17,9 +40,9 @@ dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /nores
 # 重启 Windows
 ```
 
-## 安装
+## 安装系统
 
-Win11 [wsl 安装](https://learn.microsoft.com/zh-cn/windows/wsl/install)默认版本即为 wsl2
+Win11 [wsl 安装](https://learn.microsoft.com/zh-cn/windows/wsl/install) 默认版本即为 wsl2
 
 ```powershell
 # 查看可用发行版
@@ -37,33 +60,11 @@ wsl --update
 
 然后可以打开 ubuntu，在 windows terminal 中也可以选择
 
-## 桥接网络
-
-> [WSL2设置桥接网络](https://www.midlane.top/wiki/pages/viewpage.action?pageId=49676341)；
-
-配置桥接设备，需要在 windows 功能中开启 Hyper-V，才能使用虚拟化管理工具。
-
-创建用于桥接的设备：打开 `Hyper-V 管理器`，在右侧 `操作` 栏，连接到本地计算机虚拟服务，选择 `虚拟交换机管理器`，创建名为 wslbr0 的 `外部网络` 类型链接到 `有网网卡设备`（我这里是 WIFI 设备）的虚拟交换机
-
-家目录下配置 `.wslconfig` 文件
-
-```toml
-[wsl2]
-networkingMode=bridged
-vmSwitch=wslbr0 # 前面创建的虚拟交换机名称
-ipv6=true
-```
-
-```shell
-# 重启
-wsl --shutdown
-```
 
 
+### WslRegisterDistribution failed with error: 0x800701bc
 
-## vscode插件
-
-搜索 WSL，由微软官方提供的远程连接插件
+下载 适用于 x64 计算机的 WSL2 Linux 内核[更新包](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi)；
 
 
 
@@ -100,7 +101,7 @@ cp Microsoft/config-wsl .config
 # 进入内核配置界面
 make menuconfig
 # 配置内核：
-# Virtualization 中关闭 Intel 支持（我是 AMD cpu）。可以将AMD支持从 * 改为M ，使 kvm 不直接编译到内核中，而是采用内核模块的方式，使用内核模块每次重启需要手动加载模块，但可以定制参数，具体方式请自行选择
+# Virtualization 中关闭 Intel 支持（我是 AMD cpu）。（不推荐）可以将AMD支持从 * 改为M ，使 kvm 不直接编译到内核中，而是采用内核模块的方式，使用内核模块每次重启需要手动加载模块，但可以定制参数，具体方式请自行选择
 # Processor type and features 中的 Linux guest support 中开启 KVM Guest support (including kvmclock)
 
 
@@ -124,11 +125,9 @@ nestedVirtualization=true
 kernel=C:\\Users\\<user_name>\\bzImage
 ```
 
-在win上重启wsl
+在 win 上 `wsl --shutdown` 重启 wsl
 
 ```shell
-wsl --shutdown
-
 # 检查 KVM
 kvm-ok
 
@@ -194,6 +193,36 @@ ps --no-headers -o comm 1
 sudo apt install -y qemu qemu-kvm libvirt-daemon libvirt-clients bridge-utils virt-manager
 # 已有 systemd，此时 libvirt-daemon 可以正常运行，未启动重启 wsl 以启动
 ```
+
+
+
+## 桥接网络
+
+> [WSL2设置桥接网络](https://www.midlane.top/wiki/pages/viewpage.action?pageId=49676341)；
+
+配置桥接设备，需要在 `windows 功能` 中开启 `Hyper-V`，才能使用虚拟化管理工具。
+
+创建用于桥接的设备：打开 `Hyper-V 管理器`，在右侧 `操作` 栏，连接到本地计算机虚拟服务，选择 `虚拟交换机管理器`，创建名为 `wslbr0` 的 `外部网络` 类型链接到 `有网网卡设备`（我这里是 WIFI 设备）的虚拟交换机
+
+家目录下配置 `.wslconfig` 文件
+
+```toml
+[wsl2]
+networkingMode=bridged
+vmSwitch=wslbr0 # 前面创建的虚拟交换机名称
+ipv6=true
+```
+
+```shell
+# 重启
+wsl --shutdown
+```
+
+
+
+## vscode插件
+
+搜索 WSL，由微软官方提供的远程连接插件
 
 
 

@@ -44,10 +44,7 @@ cat > ~/.gitconfig <<EOF
   br = branch
   lg = log --graph --abbrev-commit --pretty=oneline
   rebh = git rebase -i HEAD~
-  
-[core]
-  # 关闭 quotepath，使中文不以八进制的字符编码显示，而是显示汉字
-  quotepath=false
+
 [http]
   # http 代理
   proxy = http://<proxy_server_ip>:<port>

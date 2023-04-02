@@ -11,6 +11,8 @@
 - [操作系统]()
   - [Linux](计/操作系统/Linux.md)
     - [Linux.eBPF](计/操作系统/Linux.eBPF.md)
+  - [WSL](计\操作系统\WSL.md)
+  - [Windows](计\操作系统\Windows.md)
 - [虚拟化]()
   - [OVN/OVS](OVN/OVS)
   - [虚拟网络技术](计/虚拟化/虚拟网络.md)
