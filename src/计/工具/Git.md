@@ -64,6 +64,41 @@ git config --list
 
 > [.gitignore常用配置](https://gist.github.com/octocat/9257657)
 
+```shell
+.idea
+```
+
+
+
+## 基操
+
+### 本地仓
+
+### 远程仓
+
+```shell
+# 添加
+git remote add <origin_name> <git@x.x:x/x.git or https://x.x/x/x.git>
+# 删除
+
+# 修改 url
+git remote set-url <origin_name> <git@x.x:x/x.git or https://x.x/x/x.git>
+# 查看
+git remote
+# 查看详细地址
+git remote -v
+```
+
+- git remote remove <repositoryName>：删除远程的仓库的所有跟踪分支和配置设置
+- git remote rename <oldName> <newName>：重命名远程仓库在本地的简称
+- git remote show <repositoryName>：查看某个远程仓库的详细信息
+- 
+- git pull <--rebase> <repositoryName> <branchName> <--allow-unrelated-histories>：获取远程仓库项目文件
+  - --allow-unrelated-histories：可选参数，可以合并两个独立启动仓库的历史
+- 提交到本地仓库后再推送到远程仓库
+- git push <--set-upstream> <repositoryName> <branchName>：推送到远程仓库
+- git remote rm：删除源(origin)
+
 
 
 ## 概念
@@ -223,36 +258,7 @@ git rebase -r
 
 
 
-### 本地仓
 
-### 远程仓
-
-
-
-#### remote
-
-- 远程库操作
-
-```shell
-# 查看远程库名字
-git remote
-# 查看远程仓库详细地址
-git remote -v
-# 修改远程仓库地址
-git remote set-url origin <ssh地址 or https地址>
-```
-
-- git remote add [<options>] <repositoryName> <repositoryUrl>：创建repository
-  - repositoryName：一般命名为origin
-- git remote remove <repositoryName>：删除远程的仓库的所有跟踪分支和配置设置
-- git remote rename <oldName> <newName>：重命名远程仓库在本地的简称
-- git remote show <repositoryName>：查看某个远程仓库的详细信息
-- 
-- git pull <--rebase> <repositoryName> <branchName> <--allow-unrelated-histories>：获取远程仓库项目文件
-  - --allow-unrelated-histories：可选参数，可以合并两个独立启动仓库的历史
-- 提交到本地仓库后再推送到远程仓库
-- git push <--set-upstream> <repositoryName> <branchName>：推送到远程仓库
-- git remote rm：删除源(origin)
 
 
 
