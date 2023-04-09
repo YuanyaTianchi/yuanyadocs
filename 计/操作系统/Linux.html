@@ -263,6 +263,30 @@ nautilus -q
 <blockquote>
 <p><a href="https://mirrors.aliyun.com/ubuntu-releases/">centos阿里云镜像</a>；</p>
 </blockquote>
+<h2 id="netplan"><a class="header" href="#netplan">netplan</a></h2>
+<blockquote>
+<p><a href="https://netplan.io/examples">examples</a>；</p>
+</blockquote>
+<h3 id="配置网桥"><a class="header" href="#配置网桥">配置网桥</a></h3>
+<blockquote>
+<p><a href="https://netplan.io/examples#configuring-network-bridges">configuring-network-bridges</a>；</p>
+</blockquote>
+<pre><code class="language-shell">$ cat &gt; /etc/netplan/br.yaml &lt;&lt; EOF
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    eth0:
+      dhcp4: no
+  bridges:
+    br0:
+      dhcp4: yes
+      interfaces:
+        - eth0
+EOF
+
+$ netplan apply
+</code></pre>
 
                     </main>
 
