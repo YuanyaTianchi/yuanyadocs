@@ -165,3 +165,28 @@ nautilus -q
 
 
 
+## netplan
+
+> [examples](https://netplan.io/examples)；
+
+### 配置网桥
+
+> [configuring-network-bridges](https://netplan.io/examples#configuring-network-bridges)；
+
+```shell
+$ cat > /etc/netplan/br.yaml << EOF
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    eth0:
+      dhcp4: no
+  bridges:
+    br0:
+      dhcp4: yes
+      interfaces:
+        - eth0
+EOF
+
+$ netplan apply
+```

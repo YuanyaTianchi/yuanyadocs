@@ -68,7 +68,7 @@ wsl --update
 
 
 
-## KVM
+## KVM on WSL
 
 用于云原生学习
 
@@ -196,7 +196,7 @@ sudo apt install -y qemu qemu-kvm libvirt-daemon libvirt-clients bridge-utils vi
 
 
 
-## 桥接网络
+## WSL 桥接网络
 
 > [WSL2设置桥接网络](https://www.midlane.top/wiki/pages/viewpage.action?pageId=49676341)；
 
@@ -218,11 +218,64 @@ ipv6=true
 wsl --shutdown
 ```
 
+当前核心网络设备，`virbr0` 是由 `libvirt` 服务维护的虚拟网卡，用于给 KVM Guest OS 提供 NAT 服务
+
+```shell
+ip addr
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+6: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+    link/ether 5c:bb:f6:9e:ee:fa brd ff:ff:ff:ff:ff:ff
+    inet 192.168.31.164/24 brd 192.168.31.255 scope global eth0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::5ebb:f6ff:fe9e:eefa/64 scope link 
+       valid_lft forever preferred_lft forever
+7: virbr0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether 52:54:00:96:0f:82 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.122.1/24 brd 192.168.122.255 scope global virbr0
+       valid_lft forever preferred_lft forever
+```
+
+## KVM Guest 桥接网络
+
+> [integration-with-a-windows-dhcp-server](https://netplan.io/examples#integration-with-a-windows-dhcp-server)；
+
+ps：当创建一个桥接设备 `virbr01` 并绑定到 WSL2 系统中的 `eth0` 接口时，它会接管 WSL2 系统与外部网络之间的网络配置 `eth0` 并负责转发数据包。这意味着`eth0`将无法再直接与外部网络通信。**放弃了不折腾了**。
+
+~~在 WSL 上创建桥接设备，之后创建 Guest OS 时选择 bridge 模式，指定该设备即可~~。
+
+```shell
+# 添加/删除：add/del
+ip link add name virbr01 type bridge
+# interface 绑定/解绑：master/nomaster
+ip link set dev eth0 master virbr01 / ip link set dev eth0 nomaster
+# IPv4 地址 添加/删除 ：add/del
+ip addr add 192.168.31.100/24 brd 192.168.31.255 dev virbr01
+# 启用/停止：up/down
+ip link set dev virbr01 up
+```
+
 
 
 ## vscode插件
 
 搜索 WSL，由微软官方提供的远程连接插件
+
+### 适用于 linux 的 edge 浏览器
+
+```shell
+wget https://packages.microsoft.com/repos/edge/pool/main/m/microsoft-edge-dev/microsoft-edge-dev_113.0.1774.3-1_amd64.deb
+sudo dpdk -i microsoft-edge-dev_113.0.1774.3-1_amd64.deb
+
+cat >> /opt/microsoft/msedge-dev/microsoft-edge-dev << EOF
+
+export LANGUAGE=ZH-CN.UTF-8
+EOF
+```
 
 
 
