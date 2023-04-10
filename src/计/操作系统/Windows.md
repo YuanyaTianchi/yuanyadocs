@@ -30,6 +30,10 @@ tags = ["it", "base"]
 
 
 
+
+
+
+
 ## database
 
 ### mysql
@@ -100,9 +104,7 @@ https://dev.mysql.com/downloads/
 
 
 
-## version-control
-
-### Git
+## Git
 
 1. 下载并安装：https://git-scm.com/download/win，叉掉GUI，叉掉创建开始菜单，然后全部Next
 

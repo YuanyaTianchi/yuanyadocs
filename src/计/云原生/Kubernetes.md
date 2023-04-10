@@ -10,11 +10,17 @@ tags = ["it", "cloud", "kubernetes"]
 
 
 
-# kubernetes.开始
+# kubernetes
+
+
+
+# 快开
 
 ## 安装
 
-遵照[kubeadm安装准备](https://kubernetes.io/zh/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#%E5%87%86%E5%A4%87%E5%BC%80%E5%A7%8B)，禁用交换分区，启用[必需端口](https://kubernetes.io/zh/docs/reference/ports-and-protocols/)并进行[检查](https://kubernetes.io/zh/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#check-required-ports)，[允许iptables检查桥接流量](https://kubernetes.io/zh/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#%E5%85%81%E8%AE%B8-iptables-%E6%A3%80%E6%9F%A5%E6%A1%A5%E6%8E%A5%E6%B5%81%E9%87%8F)。
+> [安装 kubeadm、kubelet 和 kubectl](https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#installing-kubeadm-kubelet-and-kubectl)；
+
+遵照 [kubeadm 安装准备](https://kubernetes.io/zh/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#%E5%87%86%E5%A4%87%E5%BC%80%E5%A7%8B)，禁用交换分区，启用[必需端口](https://kubernetes.io/zh/docs/reference/ports-and-protocols/)并进行[检查](https://kubernetes.io/zh/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#check-required-ports)，[允许iptables检查桥接流量](https://kubernetes.io/zh/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#%E5%85%81%E8%AE%B8-iptables-%E6%A3%80%E6%9F%A5%E6%A1%A5%E6%8E%A5%E6%B5%81%E9%87%8F)。
 
 ```shell
 # 关闭swap分区(永久)：把加载swap分区的那行记录注释掉，重启生效
@@ -49,38 +55,7 @@ ufw status
 apt install -y apt-transport-https ca-certificates curl gnupg lsb-release
 ```
 
-#### docker
-
-> [ubuntu安装docker](https://yeasy.gitbook.io/docker_practice/install/ubuntu)；
-
-```shell
-# 勿在没有配置Docker APT源的情况下直接使用apt命令安装Docker
-# 先卸载
-apt remove -y docker.io
-apt remove -y docker
-apt remove -y docker-engine
-```
-
-ubuntu20.04后台运行的openvpn会[影响docker-ce安装](https://askubuntu.com/questions/1302371/docker-ce-post-installation-configuration-failure-on-ubuntu-20-04)，产生`Errors were encountered while processing`
-
-```shell
-# 停止openvpn
-service openvpn stop
-```
-
-```shell
-# GPG密钥
-curl -fsSL https://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-# apt源
-echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://mirrors.aliyun.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
-
-# 安装
-apt update && apt install -y docker-ce docker-ce-cli containerd.io
-# 开机启动并立即启动
-systemctl enable --now docker && systemctl status docker
-```
-
-#### kubernetes
+安装
 
 ```shell
 # GPG密钥
@@ -88,14 +63,13 @@ curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://mirrors.a
 # apt源
 echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://mirrors.aliyun.com/kubernetes/apt/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 
-# 查看版本。尝试了kubeadm1.25+docker-ce20版本出错，因此降低kubeadm版本
-apt-cache madison kubeadm | grep 1.23
+# 查看版本。如果出现版本错误可能需要降低尝 kubenetes 版本
+apt update && apt-cache madison kubeadm | grep 1.26
 # 安装
-apt update && apt install -y kubeadm=1.23.14-00 kubelet=1.23.14-00 kubectl=1.23.14-00
+apt install -y kubeadm=1.26.3-00 kubelet=1.26.3-00 kubectl=1.26.3-00
 
 # 开机启动并立即启动
-# 但kubelet现在每隔几秒就会重启，因为它陷入了一个等待kubeadm指令的死循环
-systemctl enable --now kubelet && systemctl status kubelet
+systemctl enable --now kubelet
 ```
 
 ### centos
@@ -108,32 +82,7 @@ setenforce 0
 systemctl disable --now firewalld && firewall-cmd --state
 ```
 
-#### docker
-
-安装容器运行时，这里选择docker，设置 [docker 阿里源](https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo)存储库，然后[安装 Docker Engine 和 containerd](https://docs.docker.com/engine/install/rhel/#install-docker-engine) 。
-
-```shell
-# yum源
-cat <<EOF | tee /etc/yum.repos.d/docker.repo
-[docker-ce-stable]
-name=Docker CE Stable - $basearch
-baseurl=https://mirrors.aliyun.com/docker-ce/linux/centos/\$releasever/\$basearch/stable
-enabled=1
-gpgcheck=1
-gpgkey=https://mirrors.aliyun.com/docker-ce/linux/centos/gpg
-EOF
-
-# 安装Docker Engine和 containerd
-# centos8默认使用podman代替 docker，会提示冲突，根据提示使用--allowerasing参数，表示替换冲突的软件包
-yum install -y --allowerasing docker-ce docker-ce-cli containerd.io
-
-# 设置开机启动并立即启动
-systemctl enable --now docker && systemctl status docker
-```
-
-#### kubernetes
-
-使用 centos8 原生包管理工具[安装 kubeadm、kubelet 和 kubectl](https://kubernetes.io/zh/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#%E5%AE%89%E8%A3%85-kubeadm-kubelet-%E5%92%8C-kubectl)，使用 [kubernetes 阿里源](https://mirrors.aliyun.com/kubernetes/yum/repos/)。
+使用 [kubernetes 阿里源](https://mirrors.aliyun.com/kubernetes/yum/repos/)。
 
 ```shell
 cat > /etc/yum.repos.d/kubernetes.repo << EOF
@@ -178,37 +127,66 @@ mv kubectl /usr/local/bin
 
 
 
-## 准备
-
-### 配置容器 cgroup 驱动
-
-> [dokcer配置systemd作cgroup驱动](https://kubernetes.io/zh/docs/setup/production-environment/container-runtimes/#docker)；
->
-> [kubelet配置systemd作cgroup驱动](https://kubernetes.io/zh/docs/tasks/administer-cluster/kubeadm/configure-cgroup-driver/#%E9%85%8D%E7%BD%AE-kubelet-%E7%9A%84-cgroup-%E9%A9%B1%E5%8A%A8)；
-
-1.22及之后`kubeadm init`默认使用 `systemd` 作为 kubelet 的 cgroup 驱动，而不是 `cgroupfs`。这里顺手加上。
+## 开机启动
 
 ```shell
-# docker配置systemd作cgroup驱动。
-# 否则kubeadm init报错dial tcp 127.0.0.1:10248: connect: connection refused
-# 另外配置了日志、镜像源、免证书验证仓库
-cat <<EOF | tee /etc/docker/daemon.json
-{
-  "exec-opts": ["native.cgroupdriver=systemd"],
-  "log-driver": "json-file",
-  "log-opts": {
-    "max-size": "100m"
-  },
-  "storage-driver": "overlay2",
-  "registry-mirrors": ["https://ohm5orzk.mirror.aliyuncs.com"],
-  "insecure-registries": ["registry.aliyuncs.com"] # ["192.168.xxx.xxx:5000","registry.aliyuncs.com"]
-}
-EOF
-# 启用配置并重启docker
-systemctl daemon-reload && systemctl restart docker
-
-# kubelet配置systemd作cgroup驱动。1.23版本默认为systemd，无需配置
+# 开机启动并立即启动
+# kubelet 现在每隔几秒就会重启，因为当前主机还没有成为 kubernetes 节点，无法正常运作
+systemctl enable --now kubelet
 ```
+
+
+
+## 命令补全 & 别名
+
+> [Linux 系统中的 bash 自动补全功能](https://kubernetes.io/zh-cn/docs/tasks/tools/included/optional-kubectl-configs-bash-linux/)。
+
+向 `~/.bashrc` 中添加内容。如果没有 bash-completion 需要先 `apt install -y bash-completion`。
+
+```shell
+cat >> ~/.bashrc << EOF
+
+
+
+# bash-completion
+source /usr/share/bash-completion/bash_completion
+# kubectl
+source <(kubectl completion bash)
+alias kc=kubectl
+complete -o default -F __start_kubectl kc
+EOF
+
+# 更新
+source .bashrc
+```
+
+
+
+## 时间同步
+
+```shell
+# 在各节点上执行如下命令
+apt install -y ntpdate
+ntpdate time.windows.com
+```
+
+ 
+
+# **备份点**
+
+
+
+## 准备工作
+
+### cgroup 驱动
+
+> [dokcer 配置 systemd 作 cgroup 驱动](https://kubernetes.io/zh/docs/setup/production-environment/container-runtimes/#docker)；
+>
+> [kubelet 配置 systemd 作 cgroup 驱动](https://kubernetes.io/zh/docs/tasks/administer-cluster/kubeadm/configure-cgroup-driver/#%E9%85%8D%E7%BD%AE-kubelet-%E7%9A%84-cgroup-%E9%A9%B1%E5%8A%A8)；
+
+注意 docker 容器需要配置systemd作cgroup驱动；
+
+1.22及之后`kubeadm init`默认使用 `systemd` 作为 kubelet 的 cgroup 驱动，而不是 `cgroupfs`。
 
 ### 控制平面准备
 
@@ -226,8 +204,6 @@ sed -i '$a192.168.31.11 kubecpe' /etc/hosts
 # 设置 hostname
 hostnamectl set-hostname 192.168.31.15
 ```
-
-
 
 
 
@@ -952,44 +928,6 @@ ETCD_ADVERTISE_CLIENT_URLS="https://172.20.0.113:2379"
 
 
 
-
-
-
-## 时间同步
-
-```shell
-# 在各节点上执行如下命令
-yum install ntpdate -y
-ntpdate time.windows.com
-```
-
- 
-
-## 命令补全 & 别名
-
-> 详见 [Linux 系统中的 bash 自动补全功能](https://kubernetes.io/zh-cn/docs/tasks/tools/included/optional-kubectl-configs-bash-linux/)。
-
-向 `~/.bashrc` 中添加内容，如果没有bash-completion需要先
-
-```shell
-# 安装bash-completion
-apt install -y bash-completion
-
-# 加载
-cat >> ~/.bashrc << EOF
-
-
-# bash-completion
-source /usr/share/bash-completion/bash_completion
-# kubectl
-source <(kubectl completion bash)
-alias kc=kubectl
-complete -o default -F __start_kubectl kc
-EOF
-
-# 更新
-source .bashrc
-```
 
 
 

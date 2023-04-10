@@ -35,13 +35,13 @@ cat > ~/.gitconfig <<EOF
   # 关闭 quotepath，使中文不以八进制的字符编码显示，而是显示汉字
   quotepath=false
 [user]
-  name = YuanyaTianchi
+  name = LyonTianchi
   email = yuanyatianchi@gmail.com
 [alias]
   st = status
   co = commit
-  ch = checkout
   br = branch
+  ch = checkout
   lg = log --graph --abbrev-commit --pretty=oneline
   rebh = git rebase -i HEAD~
 

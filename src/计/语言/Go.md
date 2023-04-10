@@ -18,7 +18,7 @@ tags = ["techn", "computer", "lang", "Go", "__quick_start"]
 
 ## go
 
-> [下载](https://go.dev/dl/)：选择 `.linux-amd64.tar.gz`，Win 选择 .windows-amd64.zip；
+> [下载](https://go.dev/dl/)：选择 `.linux-amd64.tar.gz`，Win 选择 `.windows-amd64.zip`；
 
 安装：解压即可
 
@@ -29,8 +29,8 @@ tar -zxf gox.x.x.linux-amd64.tar.gz
 环境变量：导入到系统环境变量，或者通过命令如 `go env -w GOROOT=` 写入
 
 ```shell
-export GOROOT=~/compute/lang/go/go
-export GOPATH=~/compute/lang/go/path
+export GOROOT=~/techn/computer/lang/go/go
+export GOPATH=~/techn/computer/lang/go/path
 # go install 安装的程序将保存到 $GOPATH/bin 下
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 # 代理：七牛云代理 goproxy.cn,direct；阿里代理 mirrors.aliyun.com/goproxy/

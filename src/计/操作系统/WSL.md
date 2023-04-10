@@ -68,9 +68,9 @@ wsl --update
 
 
 
-## KVM on WSL
+## ~~KVM on WSL~~
 
-用于云原生学习
+**放弃了，guest os 连不上外部网络**；
 
 https://www.bilibili.com/video/av201187993
 
@@ -196,7 +196,7 @@ sudo apt install -y qemu qemu-kvm libvirt-daemon libvirt-clients bridge-utils vi
 
 
 
-## WSL 桥接网络
+### WSL 桥接网络
 
 > [WSL2设置桥接网络](https://www.midlane.top/wiki/pages/viewpage.action?pageId=49676341)；
 
@@ -240,7 +240,7 @@ ip addr
        valid_lft forever preferred_lft forever
 ```
 
-## KVM Guest 桥接网络
+### KVM Guest 桥接网络
 
 > [integration-with-a-windows-dhcp-server](https://netplan.io/examples#integration-with-a-windows-dhcp-server)；
 
