@@ -14,7 +14,7 @@ tags = ["it", "versioncontrol"]
 
 > [官网](https://git-scm.com/)；
 
-## 快开
+# 快开
 
 ### 安装
 
@@ -24,7 +24,7 @@ tags = ["it", "versioncontrol"]
 apt install -y git
 ```
 
-### 配置
+### 配置 gitconfig
 
 - 仓库配置：`<git-repository>/.git/config`；
 - 全局配置：`~/.gitconfig`；
@@ -60,7 +60,7 @@ git config --list
 
 
 
-### .gitignore
+### 配置 gitignore
 
 > [.gitignore常用配置](https://gist.github.com/octocat/9257657)
 
@@ -68,13 +68,28 @@ git config --list
 .idea
 ```
 
+### 配置 GitHub 加速
+
+> [让你访问github提速到2MB每秒](https://zhuanlan.zhihu.com/p/248356236) - 知乎..
+
+修改系统Hosts文件
+
+```host
+cat >> /etc/hosts << EOF
 
 
-## 基操
+140.82.114.3   github.com
+151.101.1.194  github.global.ssl.fastly.net
+EOF
+```
+
+
+
+# 基操
 
 ### 本地仓
 
-### 远程仓
+### 远程仓 
 
 ```shell
 # 添加
@@ -98,6 +113,12 @@ git remote -v
 - 提交到本地仓库后再推送到远程仓库
 - git push <--set-upstream> <repositoryName> <branchName>：推送到远程仓库
 - git remote rm：删除源(origin)
+
+### 非默认远程仓 pull
+
+```shell
+git pull --rebase <remote_name> <branch_name>
+```
 
 
 
