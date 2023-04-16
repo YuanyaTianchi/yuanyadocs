@@ -172,14 +172,18 @@ tags = [&quot;techn&quot;, &quot;computer&quot;, &quot;tagx&quot;, &quot;Title&q
 </blockquote>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="番"><a class="header" href="#番">番</a></h1>
 <h2 id="2023"><a class="header" href="#2023">2023</a></h2>
+<p>【202301】【日】<a href="https://www.agemys.net/detail/20220199">地狱乐</a>-周六3</p>
 <p>【202301】【日】<a href="https://www.agemys.net/detail/20220203">鬼灭之刃3锻刀村篇</a>-周日1</p>
-<p>【202301】【日】进击的巨人 最终季 Part.3-周五0</p>
-<p>【202301】【日】<a href="https://www.agemys.net/detail/20230072">天国大魔境</a>-周六2</p>
+<p>【202301】【日】<a href="https://www.agemys.net/detail/20220244">进击的巨人 最终季 Part.3</a>-周五1</p>
+<p>【202301】【日】<a href="https://www.agemys.net/detail/20220441">魔法使的新娘2</a>-周四2</p>
+<p>【202301】【日】<a href="https://www.agemys.net/detail/20230072">天国大魔境</a>-周六3</p>
+<p>【202301】【日】<a href="https://www.agemys.net/detail/20230003">为美好的世界献上爆炎！</a>-周五2</p>
+<p>【202301】【日】<a href="https://www.agemys.net/detail/20230077">我推的孩子</a>-周三1</p>
 <p>【202301】【日】fate/strangeFake-0</p>
 <p>【202211】【日】阿尔斯的巨兽-0</p>
 <p>【202211】【日】<a href="https://www.yhdmp.cc/showp/22350.html"><strong>别当欧尼酱了</strong></a></p>
 <p>【202301】【日】<a href="https://www.agemys.net/detail/20210270">冰海战记2</a>-0</p>
-<p>【202301】【日】辉夜大小姐想让我告白 初吻不会结束-0</p>
+<p>【202301】【日】<a href="https://www.agemys.net/detail/20230092">辉夜大小姐想让我告白 初吻不会结束</a></p>
 <p>【202301】【日】尼尔：机械纪元-0</p>
 <p>【202301】【日】七大罪 怨嗟的爱丁堡 前篇-0</p>
 <p>【202301】【日】<a href="https://www.yhdmp.cc/showp/23092.html">文豪野犬4</a>-周三0</p>
@@ -230,7 +234,7 @@ tags = [&quot;techn&quot;, &quot;computer&quot;, &quot;tagx&quot;, &quot;Title&q
 <p>【202110】【日】范马刃牙</p>
 <p>【202110】【日】国王排名</p>
 <p>【202101】【日】<a href="https://www.agemys.cc/detail/20210314">境界触发者3</a>-0</p>
-<p>【202110】【日】魔法使的新娘2-1</p>
+<p>【202110】【日】<a href="https://www.yhpdm.net/showp/21224.html">魔法使的新娘 西之少年与青岚的骑士</a></p>
 <p>【202110】【日】七原罪剧场版 被光诅咒的众人</p>
 <p>【202110】【日】<strong>无职转生1part2</strong></p>
 <p>【202110】【日】<strong>英雄联盟：双城之战</strong></p>
@@ -714,13 +718,17 @@ nautilus -q
 <blockquote>
 <p><a href="https://mirrors.aliyun.com/ubuntu-releases/">centos阿里云镜像</a>；</p>
 </blockquote>
-<h1 id="常用"><a class="header" href="#常用">常用</a></h1>
+<h1 id="基操"><a class="header" href="#基操">基操</a></h1>
 <h2 id="别名"><a class="header" href="#别名">别名</a></h2>
 <p>后台启动且不做输出（输出到 <code>/dev/null</code>）</p>
 <pre><code class="language-shell">alias goland=&quot;nohup ~/techn/computer/lang/go/goland/bin/goland.sh &gt;/dev/null &amp; 2&gt;&amp;1&quot;'
 </code></pre>
 <h2 id="ssh-免密"><a class="header" href="#ssh-免密">ssh 免密</a></h2>
 <pre><code class="language-shell">sshpass -p &lt;password&gt; ssh -o StrictHostKeychecking=no -o ServerAliveInterval=60 root@192.168.1.11
+</code></pre>
+<h2 id="批量操作"><a class="header" href="#批量操作">批量操作</a></h2>
+<p>通过 <code>grep</code>、<code>awk</code>、<code>xargs</code> 实现</p>
+<pre><code class="language-shell">kubectl get pod | grep Terminating | awk '{print $1}' | xargs kubectl delete pod --grace-period=0 --force
 </code></pre>
 <h2 id="netplan-网桥配置"><a class="header" href="#netplan-网桥配置">netplan 网桥配置</a></h2>
 <blockquote>
@@ -1406,7 +1414,7 @@ tags = [&quot;it&quot;, &quot;container&quot;, &quot;docker&quot;]</p>
 <p><a href="https://www.docker.com/">官网</a>；<a href="https://docs.docker.com/reference/">文档</a>；<a href="https://docs.docker.com/engine/reference/commandline/docker/">命令</a>；</p>
 <p><a href="https://hub.docker.com/">镜像仓库 DockerHub</a>；</p>
 </blockquote>
-<h1 id="快开-1"><a class="header" href="#快开-1">快开</a></h1>
+<h2 id="--快开--"><a class="header" href="#--快开--">- 快开 -</a></h2>
 <h2 id="安装"><a class="header" href="#安装">安装</a></h2>
 <blockquote>
 <p><a href="https://docs.docker.com/engine/install/">Install Docker Engine</a>；</p>
@@ -1473,7 +1481,14 @@ cat &gt; /etc/docker/daemon.json &lt;&lt; EOF
   &quot;storage-driver&quot;: &quot;overlay2&quot;,
   
   &quot;registry-mirrors&quot;: [&quot;https://ohm5orzk.mirror.aliyuncs.com&quot;],
-  &quot;insecure-registries&quot;: [&quot;192.168.xxx.xxx:5000&quot;,&quot;registry.aliyuncs.com&quot;]
+  &quot;insecure-registries&quot;: [&quot;192.168.xxx.xxx:5000&quot;,&quot;registry.aliyuncs.com&quot;],
+  
+  &quot;runtimes&quot;: {
+    &quot;nvidia&quot;: {
+      &quot;args&quot;: [],
+      &quot;path&quot;: &quot;nvidia-container-runtime&quot;
+    }
+  }
 }
 EOF
 
@@ -1490,20 +1505,84 @@ systemctl daemon-reload &amp;&amp; systemctl restart docker
 # 检查
 docker info
 </code></pre>
-<h1 id="常用-1"><a class="header" href="#常用-1">常用</a></h1>
+<h2 id="--基操--"><a class="header" href="#--基操--">- 基操 -</a></h2>
+<h3 id="dockerfile"><a class="header" href="#dockerfile">Dockerfile</a></h3>
+<pre><code class="language-dockerfile">ARG BASE_IMAGE
+FROM ${BASE_IMAGE}
+MAINTAINER yuanya&lt;yuanyatianchi@google.com&gt;
+
+ENV WORK_DIR /tmp
+WORKDIR $WORK_DIR
+
+EXPOSE 80
+
+# ARG OUTPUT
+# RUN mkdir ${OUTPUT}
+# COPY ${OUTPUT}/main ${OUTPUT}/main
+
+RUN 
+
+ENTRYPOINT [&quot;bash&quot;]
+</code></pre>
+<h3 id="makefile-1"><a class="header" href="#makefile-1">Makefile</a></h3>
+<pre><code class="language-makefile">NAME = aquickstart
+
+# image
+IMAGE_REPOSITORY=
+IMAGE_VERSION = &quot;v0.0.1&quot;
+IMAGE_NAME = $(IMAGE_REPOSITORY)$(NAME):$(IMAGE_VERSION)
+ARG_BASE_IMAGE = &quot;ubuntu:2204&quot;
+
+.PHONY: image
+image: $(IMAGE_NAME)
+$(IMAGE_NAME): Dockerfile
+	docker build -t $(IMAGE_NAME) \
+		--network host \
+		--build-arg BASE_IMAGE=$(ARG_BASE_IMAGE) \
+		.
+
+.PHONY: image_tar
+image_tar: | $(IMAGE_NAME)
+	docker save -t $(IMAGE_NAME)-$(IMAGE_VERSION).tar
+
+.PHONY: image_clean
+image_clean:
+$(IMAGE_NAME)_clean: | $(IMAGE_NAME)
+	docker rmi $(IMAGE_NAME)
+
+.PHONY: image_clean_none
+image_clean_none:
+	docker images | grep none | awk '{print $3}' | xargs docker rmi
+
+# container
+CONTAINER_NAME = $(NAME)
+.PHONY: container_run
+container_run: $(CONTAINER_NAME)_run
+$(CONTAINER_NAME)_run: | $(IMAGE_NAME)
+	docker run -d \
+		--network=host \
+		--restart=always \
+		--name $(CONTAINER_NAME) \
+		$(IMAGE_NAME)
+
+CONTAINER_NAME = $(NAME)
+.PHONY: container_update
+container_update: $(CONTAINER_NAME)_update
+$(CONTAINER_NAME)_update: | $(IMAGE_NAME)
+	docker update \
+		--network=host \
+		--restart=always \
+		--name $(CONTAINER_NAME)
+
+# clean
+.PHONY: clean
+clean: | image_clean 
+	docker images | grep none | awk '{print $3}' | xargs docker rmi
+</code></pre>
+<h2 id="批删"><a class="header" href="#批删">批删</a></h2>
+<pre><code class="language-shell">docker images | grep none | awk '{print $3}' | xargs docker rmi
+</code></pre>
 <h2 id="镜像"><a class="header" href="#镜像">镜像</a></h2>
-<h3 id="镜像加速配置"><a class="header" href="#镜像加速配置">镜像加速配置</a></h3>
-<p>从https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors 获取个人专属的阿里docker镜像加速地址</p>
-<p>/etc/docker/daemon.json</p>
-<pre><code class="language-shell">cat &gt; /etc/docker/daemon.json &lt;&lt; EOF
-{
-  &quot;registry-mirrors&quot;: [&quot;https://ohm5orzk.mirror.aliyuncs.com&quot;]
-}
-EOF
-</code></pre>
-<p>然后重启docker即可</p>
-<pre><code class="language-shell">systemctl restart docker
-</code></pre>
 <h3 id="镜像仓库"><a class="header" href="#镜像仓库">镜像仓库</a></h3>
 <h4 id="http"><a class="header" href="#http">http</a></h4>
 <p>docker-registry 安装：使用官方 <code>registry</code> 镜像来安装执行。注意，此时启用的 registry 是一个 http server</p>
@@ -1930,7 +2009,7 @@ $ docker run yuanya/centos -it --name dc02 --volumes-from dc01 #将使dc02与dc0
 $ docker run yuanya/centos -it --name dc03 --volumes-from dc01 #将使dc03与dc01共享VOLUME配置的数据卷
 #即完成dc01、dc02、dc03之间相互共享VOLUME配置的数据卷
 </code></pre>
-<h2 id="dockerfile"><a class="header" href="#dockerfile">DockerFile</a></h2>
+<h2 id="dockerfile-1"><a class="header" href="#dockerfile-1">DockerFile</a></h2>
 <ul>
 <li>Dockerfile是用来构建Docker镜像的构建文件，是由一系列命令和参数构成的脚本</li>
 </ul>
@@ -2082,7 +2161,7 @@ description = &quot;it.cloud.kubernetes&quot;
 tags = [&quot;it&quot;, &quot;cloud&quot;, &quot;kubernetes&quot;]</p>
 <p>+++</p>
 <h1 id="kubernetes"><a class="header" href="#kubernetes">kubernetes</a></h1>
-<h1 id="快开-2"><a class="header" href="#快开-2">快开</a></h1>
+<h2 id="--快开---1"><a class="header" href="#--快开---1">- 快开 -</a></h2>
 <h2 id="安装-1"><a class="header" href="#安装-1">安装</a></h2>
 <blockquote>
 <p><a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#installing-kubeadm-kubelet-and-kubectl">安装 kubeadm、kubelet 和 kubectl</a>；</p>
@@ -2204,7 +2283,7 @@ source .bashrc
 apt install -y ntpdate
 ntpdate time.windows.com
 </code></pre>
-<h1 id="备份点"><a class="header" href="#备份点"><strong>备份点</strong></a></h1>
+<h2 id="--备份点--"><a class="header" href="#--备份点--">- 备份点 -</a></h2>
 <h2 id="准备工作"><a class="header" href="#准备工作">准备工作</a></h2>
 <h3 id="cgroup-驱动"><a class="header" href="#cgroup-驱动">cgroup 驱动</a></h3>
 <blockquote>
@@ -2806,6 +2885,10 @@ ETCD_INITIAL_ADVERTISE_PEER_URLS=&quot;https://172.20.0.113:2380&quot;
 ETCD_INITIAL_CLUSTER_TOKEN=&quot;etcd-cluster&quot;
 ETCD_ADVERTISE_CLIENT_URLS=&quot;https://172.20.0.113:2379&quot;
 </code></pre>
+<h2 id="--基操---1"><a class="header" href="#--基操---1">- 基操 -</a></h2>
+<h2 id="强制删除"><a class="header" href="#强制删除">强制删除</a></h2>
+<pre><code class="language-shell">kubectl get pod | grep Terminating | awk '{print $1}' | xargs kubectl delete pod --grace-period=0 --force
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><p>+++</p>
 <p>title = &quot;prometheus&quot;
 description = &quot;prometheus&quot;
@@ -2959,7 +3042,7 @@ tags = [&quot;techn&quot;, &quot;computer&quot;, &quot;tagx&quot;, &quot;Title&q
 <blockquote>
 <p><a href="https://docs.sealos.io/zh-Hans/">官网</a>；<a href="https://docs.sealos.io/zh-Hans/docs/Intro">文档</a>；</p>
 </blockquote>
-<h1 id="快开-3"><a class="header" href="#快开-3">快开</a></h1>
+<h1 id="快开-1"><a class="header" href="#快开-1">快开</a></h1>
 <h2 id="安装-3"><a class="header" href="#安装-3">安装</a></h2>
 <blockquote>
 <p><a href="https://github.com/labring/sealos/releases">releases</a>；</p>
@@ -2984,7 +3067,7 @@ $ sealos run \
     --masters 192.168.11.21,192.168.11.22,192.168.11.23 \
     --nodes 192.168.11.31,192.168.11.32 -p [your-ssh-passwd]
 </code></pre>
-<h1 id="常用-2"><a class="header" href="#常用-2">常用</a></h1>
+<h1 id="常用"><a class="header" href="#常用">常用</a></h1>
 <h3 id="使用-sealos-pull-从本地-dockerd-拉取镜像"><a class="header" href="#使用-sealos-pull-从本地-dockerd-拉取镜像">使用 sealos pull 从本地 dockerd 拉取镜像</a></h3>
 <pre><code class="language-shell">$ sealos pull -h
 ...
@@ -3061,7 +3144,7 @@ tags = [&quot;it&quot;, &quot;versioncontrol&quot;]</p>
 <blockquote>
 <p><a href="https://git-scm.com/">官网</a>；</p>
 </blockquote>
-<h1 id="快开-4"><a class="header" href="#快开-4">快开</a></h1>
+<h1 id="快开-2"><a class="header" href="#快开-2">快开</a></h1>
 <h3 id="安装-4"><a class="header" href="#安装-4">安装</a></h3>
 <blockquote>
 <p><a href="https://git-scm.com/downloads">下载</a>；</p>
@@ -3118,7 +3201,13 @@ git config --list
 151.101.1.194  github.global.ssl.fastly.net
 EOF
 </code></pre>
-<h1 id="基操"><a class="header" href="#基操">基操</a></h1>
+<h1 id="基操-1"><a class="header" href="#基操-1">基操</a></h1>
+<h3 id="rebase-pull"><a class="header" href="#rebase-pull">rebase pull</a></h3>
+<p>避免产生 merge commit 记录</p>
+<pre><code class="language-shell">git pull --rebase &lt;remote_name&gt; &lt;branch_name&gt;
+</code></pre>
+<h3 id="从-tag-切出分支"><a class="header" href="#从-tag-切出分支">从 tag 切出分支</a></h3>
+<pre><code class="language-shell"></code></pre>
 <h3 id="本地仓"><a class="header" href="#本地仓">本地仓</a></h3>
 <h3 id="远程仓"><a class="header" href="#远程仓">远程仓</a></h3>
 <pre><code class="language-shell"># 添加
@@ -3146,9 +3235,6 @@ git remote -v
 <li>git push &lt;--set-upstream&gt; <repositoryName> <branchName>：推送到远程仓库</li>
 <li>git remote rm：删除源(origin)</li>
 </ul>
-<h3 id="非默认远程仓-pull"><a class="header" href="#非默认远程仓-pull">非默认远程仓 pull</a></h3>
-<pre><code class="language-shell">git pull --rebase &lt;remote_name&gt; &lt;branch_name&gt;
-</code></pre>
 <h2 id="概念"><a class="header" href="#概念">概念</a></h2>
 <ul>
 <li>192.30.253.113 <a href="http://github.com">github.com</a>：修改host，提高GitHub的push和pull速度</li>

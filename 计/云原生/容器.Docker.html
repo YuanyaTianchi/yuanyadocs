@@ -154,7 +154,7 @@ tags = [&quot;it&quot;, &quot;container&quot;, &quot;docker&quot;]</p>
 <p><a href="https://www.docker.com/">官网</a>；<a href="https://docs.docker.com/reference/">文档</a>；<a href="https://docs.docker.com/engine/reference/commandline/docker/">命令</a>；</p>
 <p><a href="https://hub.docker.com/">镜像仓库 DockerHub</a>；</p>
 </blockquote>
-<h1 id="快开"><a class="header" href="#快开">快开</a></h1>
+<h2 id="--快开--"><a class="header" href="#--快开--">- 快开 -</a></h2>
 <h2 id="安装"><a class="header" href="#安装">安装</a></h2>
 <blockquote>
 <p><a href="https://docs.docker.com/engine/install/">Install Docker Engine</a>；</p>
@@ -221,7 +221,14 @@ cat &gt; /etc/docker/daemon.json &lt;&lt; EOF
   &quot;storage-driver&quot;: &quot;overlay2&quot;,
   
   &quot;registry-mirrors&quot;: [&quot;https://ohm5orzk.mirror.aliyuncs.com&quot;],
-  &quot;insecure-registries&quot;: [&quot;192.168.xxx.xxx:5000&quot;,&quot;registry.aliyuncs.com&quot;]
+  &quot;insecure-registries&quot;: [&quot;192.168.xxx.xxx:5000&quot;,&quot;registry.aliyuncs.com&quot;],
+  
+  &quot;runtimes&quot;: {
+    &quot;nvidia&quot;: {
+      &quot;args&quot;: [],
+      &quot;path&quot;: &quot;nvidia-container-runtime&quot;
+    }
+  }
 }
 EOF
 
@@ -238,20 +245,84 @@ systemctl daemon-reload &amp;&amp; systemctl restart docker
 # 检查
 docker info
 </code></pre>
-<h1 id="常用"><a class="header" href="#常用">常用</a></h1>
+<h2 id="--基操--"><a class="header" href="#--基操--">- 基操 -</a></h2>
+<h3 id="dockerfile"><a class="header" href="#dockerfile">Dockerfile</a></h3>
+<pre><code class="language-dockerfile">ARG BASE_IMAGE
+FROM ${BASE_IMAGE}
+MAINTAINER yuanya&lt;yuanyatianchi@google.com&gt;
+
+ENV WORK_DIR /tmp
+WORKDIR $WORK_DIR
+
+EXPOSE 80
+
+# ARG OUTPUT
+# RUN mkdir ${OUTPUT}
+# COPY ${OUTPUT}/main ${OUTPUT}/main
+
+RUN 
+
+ENTRYPOINT [&quot;bash&quot;]
+</code></pre>
+<h3 id="makefile"><a class="header" href="#makefile">Makefile</a></h3>
+<pre><code class="language-makefile">NAME = aquickstart
+
+# image
+IMAGE_REPOSITORY=
+IMAGE_VERSION = &quot;v0.0.1&quot;
+IMAGE_NAME = $(IMAGE_REPOSITORY)$(NAME):$(IMAGE_VERSION)
+ARG_BASE_IMAGE = &quot;ubuntu:2204&quot;
+
+.PHONY: image
+image: $(IMAGE_NAME)
+$(IMAGE_NAME): Dockerfile
+	docker build -t $(IMAGE_NAME) \
+		--network host \
+		--build-arg BASE_IMAGE=$(ARG_BASE_IMAGE) \
+		.
+
+.PHONY: image_tar
+image_tar: | $(IMAGE_NAME)
+	docker save -t $(IMAGE_NAME)-$(IMAGE_VERSION).tar
+
+.PHONY: image_clean
+image_clean:
+$(IMAGE_NAME)_clean: | $(IMAGE_NAME)
+	docker rmi $(IMAGE_NAME)
+
+.PHONY: image_clean_none
+image_clean_none:
+	docker images | grep none | awk '{print $3}' | xargs docker rmi
+
+# container
+CONTAINER_NAME = $(NAME)
+.PHONY: container_run
+container_run: $(CONTAINER_NAME)_run
+$(CONTAINER_NAME)_run: | $(IMAGE_NAME)
+	docker run -d \
+		--network=host \
+		--restart=always \
+		--name $(CONTAINER_NAME) \
+		$(IMAGE_NAME)
+
+CONTAINER_NAME = $(NAME)
+.PHONY: container_update
+container_update: $(CONTAINER_NAME)_update
+$(CONTAINER_NAME)_update: | $(IMAGE_NAME)
+	docker update \
+		--network=host \
+		--restart=always \
+		--name $(CONTAINER_NAME)
+
+# clean
+.PHONY: clean
+clean: | image_clean 
+	docker images | grep none | awk '{print $3}' | xargs docker rmi
+</code></pre>
+<h2 id="批删"><a class="header" href="#批删">批删</a></h2>
+<pre><code class="language-shell">docker images | grep none | awk '{print $3}' | xargs docker rmi
+</code></pre>
 <h2 id="镜像"><a class="header" href="#镜像">镜像</a></h2>
-<h3 id="镜像加速配置"><a class="header" href="#镜像加速配置">镜像加速配置</a></h3>
-<p>从https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors 获取个人专属的阿里docker镜像加速地址</p>
-<p>/etc/docker/daemon.json</p>
-<pre><code class="language-shell">cat &gt; /etc/docker/daemon.json &lt;&lt; EOF
-{
-  &quot;registry-mirrors&quot;: [&quot;https://ohm5orzk.mirror.aliyuncs.com&quot;]
-}
-EOF
-</code></pre>
-<p>然后重启docker即可</p>
-<pre><code class="language-shell">systemctl restart docker
-</code></pre>
 <h3 id="镜像仓库"><a class="header" href="#镜像仓库">镜像仓库</a></h3>
 <h4 id="http"><a class="header" href="#http">http</a></h4>
 <p>docker-registry 安装：使用官方 <code>registry</code> 镜像来安装执行。注意，此时启用的 registry 是一个 http server</p>
@@ -678,7 +749,7 @@ $ docker run yuanya/centos -it --name dc02 --volumes-from dc01 #将使dc02与dc0
 $ docker run yuanya/centos -it --name dc03 --volumes-from dc01 #将使dc03与dc01共享VOLUME配置的数据卷
 #即完成dc01、dc02、dc03之间相互共享VOLUME配置的数据卷
 </code></pre>
-<h2 id="dockerfile"><a class="header" href="#dockerfile">DockerFile</a></h2>
+<h2 id="dockerfile-1"><a class="header" href="#dockerfile-1">DockerFile</a></h2>
 <ul>
 <li>Dockerfile是用来构建Docker镜像的构建文件，是由一系列命令和参数构成的脚本</li>
 </ul>

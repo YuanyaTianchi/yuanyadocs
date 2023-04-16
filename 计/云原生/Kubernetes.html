@@ -150,7 +150,7 @@ description = &quot;it.cloud.kubernetes&quot;
 tags = [&quot;it&quot;, &quot;cloud&quot;, &quot;kubernetes&quot;]</p>
 <p>+++</p>
 <h1 id="kubernetes"><a class="header" href="#kubernetes">kubernetes</a></h1>
-<h1 id="快开"><a class="header" href="#快开">快开</a></h1>
+<h2 id="--快开--"><a class="header" href="#--快开--">- 快开 -</a></h2>
 <h2 id="安装"><a class="header" href="#安装">安装</a></h2>
 <blockquote>
 <p><a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#installing-kubeadm-kubelet-and-kubectl">安装 kubeadm、kubelet 和 kubectl</a>；</p>
@@ -272,7 +272,7 @@ source .bashrc
 apt install -y ntpdate
 ntpdate time.windows.com
 </code></pre>
-<h1 id="备份点"><a class="header" href="#备份点"><strong>备份点</strong></a></h1>
+<h2 id="--备份点--"><a class="header" href="#--备份点--">- 备份点 -</a></h2>
 <h2 id="准备工作"><a class="header" href="#准备工作">准备工作</a></h2>
 <h3 id="cgroup-驱动"><a class="header" href="#cgroup-驱动">cgroup 驱动</a></h3>
 <blockquote>
@@ -873,6 +873,10 @@ ETCD_LISTEN_CLIENT_URLS=&quot;https://172.20.0.113:2379&quot;
 ETCD_INITIAL_ADVERTISE_PEER_URLS=&quot;https://172.20.0.113:2380&quot;
 ETCD_INITIAL_CLUSTER_TOKEN=&quot;etcd-cluster&quot;
 ETCD_ADVERTISE_CLIENT_URLS=&quot;https://172.20.0.113:2379&quot;
+</code></pre>
+<h2 id="--基操--"><a class="header" href="#--基操--">- 基操 -</a></h2>
+<h2 id="强制删除"><a class="header" href="#强制删除">强制删除</a></h2>
+<pre><code class="language-shell">kubectl get pod | grep Terminating | awk '{print $1}' | xargs kubectl delete pod --grace-period=0 --force
 </code></pre>
 
                     </main>

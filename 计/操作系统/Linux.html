@@ -358,13 +358,17 @@ nautilus -q
 <blockquote>
 <p><a href="https://mirrors.aliyun.com/ubuntu-releases/">centos阿里云镜像</a>；</p>
 </blockquote>
-<h1 id="常用"><a class="header" href="#常用">常用</a></h1>
+<h1 id="基操"><a class="header" href="#基操">基操</a></h1>
 <h2 id="别名"><a class="header" href="#别名">别名</a></h2>
 <p>后台启动且不做输出（输出到 <code>/dev/null</code>）</p>
 <pre><code class="language-shell">alias goland=&quot;nohup ~/techn/computer/lang/go/goland/bin/goland.sh &gt;/dev/null &amp; 2&gt;&amp;1&quot;'
 </code></pre>
 <h2 id="ssh-免密"><a class="header" href="#ssh-免密">ssh 免密</a></h2>
 <pre><code class="language-shell">sshpass -p &lt;password&gt; ssh -o StrictHostKeychecking=no -o ServerAliveInterval=60 root@192.168.1.11
+</code></pre>
+<h2 id="批量操作"><a class="header" href="#批量操作">批量操作</a></h2>
+<p>通过 <code>grep</code>、<code>awk</code>、<code>xargs</code> 实现</p>
+<pre><code class="language-shell">kubectl get pod | grep Terminating | awk '{print $1}' | xargs kubectl delete pod --grace-period=0 --force
 </code></pre>
 <h2 id="netplan-网桥配置"><a class="header" href="#netplan-网桥配置">netplan 网桥配置</a></h2>
 <blockquote>

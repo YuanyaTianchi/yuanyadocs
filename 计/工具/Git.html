@@ -211,6 +211,12 @@ git config --list
 EOF
 </code></pre>
 <h1 id="基操"><a class="header" href="#基操">基操</a></h1>
+<h3 id="rebase-pull"><a class="header" href="#rebase-pull">rebase pull</a></h3>
+<p>避免产生 merge commit 记录</p>
+<pre><code class="language-shell">git pull --rebase &lt;remote_name&gt; &lt;branch_name&gt;
+</code></pre>
+<h3 id="从-tag-切出分支"><a class="header" href="#从-tag-切出分支">从 tag 切出分支</a></h3>
+<pre><code class="language-shell"></code></pre>
 <h3 id="本地仓"><a class="header" href="#本地仓">本地仓</a></h3>
 <h3 id="远程仓"><a class="header" href="#远程仓">远程仓</a></h3>
 <pre><code class="language-shell"># 添加
@@ -238,9 +244,6 @@ git remote -v
 <li>git push &lt;--set-upstream&gt; <repositoryName> <branchName>：推送到远程仓库</li>
 <li>git remote rm：删除源(origin)</li>
 </ul>
-<h3 id="非默认远程仓-pull"><a class="header" href="#非默认远程仓-pull">非默认远程仓 pull</a></h3>
-<pre><code class="language-shell">git pull --rebase &lt;remote_name&gt; &lt;branch_name&gt;
-</code></pre>
 <h2 id="概念"><a class="header" href="#概念">概念</a></h2>
 <ul>
 <li>192.30.253.113 <a href="http://github.com">github.com</a>：修改host，提高GitHub的push和pull速度</li>
