@@ -259,7 +259,7 @@ apt install -y vim git sshpass
 
 
 
-# 常用
+# 基操
 
 
 
@@ -275,6 +275,14 @@ alias goland="nohup ~/techn/computer/lang/go/goland/bin/goland.sh >/dev/null & 2
 
 ```shell
 sshpass -p <password> ssh -o StrictHostKeychecking=no -o ServerAliveInterval=60 root@192.168.1.11
+```
+
+## 批量操作
+
+通过 `grep`、`awk`、`xargs` 实现
+
+```shell
+kubectl get pod | grep Terminating | awk '{print $1}' | xargs kubectl delete pod --grace-period=0 --force
 ```
 
 

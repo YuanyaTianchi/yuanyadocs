@@ -14,7 +14,7 @@ tags = ["it", "cloud", "kubernetes"]
 
 
 
-# 快开
+## - 快开 -
 
 ## 安装
 
@@ -172,7 +172,7 @@ ntpdate time.windows.com
 
  
 
-# **备份点**
+## - 备份点 -
 
 
 
@@ -927,9 +927,12 @@ ETCD_ADVERTISE_CLIENT_URLS="https://172.20.0.113:2379"
 
 
 
+## - 基操 -
 
+## 强制删除
 
-
-
+```shell
+kubectl get pod | grep Terminating | awk '{print $1}' | xargs kubectl delete pod --grace-period=0 --force
+```
 
 

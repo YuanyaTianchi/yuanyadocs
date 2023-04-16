@@ -87,6 +87,21 @@ EOF
 
 # 基操
 
+### rebase pull
+
+避免产生 merge commit 记录
+
+```shell
+git pull --rebase <remote_name> <branch_name>
+```
+
+### 从 tag 切出分支
+
+```shell
+```
+
+
+
 ### 本地仓
 
 ### 远程仓 
@@ -113,12 +128,6 @@ git remote -v
 - 提交到本地仓库后再推送到远程仓库
 - git push <--set-upstream> <repositoryName> <branchName>：推送到远程仓库
 - git remote rm：删除源(origin)
-
-### 非默认远程仓 pull
-
-```shell
-git pull --rebase <remote_name> <branch_name>
-```
 
 
 

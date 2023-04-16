@@ -97,12 +97,6 @@ kubectl get pod -n prom | grep xxx | awk '{print $1}' | xargs kubectl delete pod
 kubectl delete pod xxx --grace-period=0 --force
 ```
 
-例如，强制删除 Terminating 状态的 pod
-
-```shell
-kubectl get pod | grep Terminating | awk '{print $1}' | xargs kubectl delete pod --grace-period=0 --force
-```
-
 
 
 ## pod
