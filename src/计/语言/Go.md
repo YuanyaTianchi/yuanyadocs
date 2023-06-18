@@ -14,7 +14,15 @@ tags = ["techn", "computer", "lang", "Go", "__quick_start"]
 
 > [官网](https://go.dev/)；
 
+## ---基操---
 
+## 颜色输出
+
+> [golang 输出带颜色的信息](https://blog.csdn.net/raoxiaoya/article/details/108982708)；
+
+
+
+## ---快开---
 
 ## go
 

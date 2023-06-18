@@ -20,19 +20,30 @@
 - [云原生]()
   - [Docker](计/云原生/容器.Docker.md)
   - [Kuberntes](计/云原生/Kubernetes.md)
+    - [operator](计/云原生/Kubernetes.operator.md)
   - [Prometheus](计/云原生/Prometheus.md)
   - [Sealos](计/云原生/Sealos.md)
   - [Kube-OVN]()
 - [AI]()
-  - [机器学习]()
+  - [深度学习](计/AI/深度学习.md)
     - [概念](计\AI\机器学习.概念.md)
-
+    - 
 - [语言]()
   - [Go](计/语言/Go.md)
 - [工具]()
   - [Git](计/工具/Git.md)
 
 
+
+# 数
+
+- [高等代数]()
+
+
+
+# 戏
+
+- [崩坏星穹铁道](戏/崩坏星穹铁道.md)
 
 
 
