@@ -30,13 +30,22 @@
 - [语言]()
   - [Go](计/语言/Go.md)
 - [工具]()
+  - [VSCode](计/工具/VSCode.md)
   - [Git](计/工具/Git.md)
+  
+
+lTcYUANYA96.LtC
+
+# 数
+
+- [高等代数]()
 
 
 
 # 戏
 
 - [崩坏星穹铁道](戏/崩坏星穹铁道.md)
+- [noita](戏/noita.md)
 
 
 
