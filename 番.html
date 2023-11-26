@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js light">
+<html lang="en" class="light" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -10,7 +10,7 @@
         
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
         <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
@@ -31,7 +31,7 @@
         <!-- Custom theme stylesheets -->
 
     </head>
-    <body>
+    <body class="sidebar-visible no-js">
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
@@ -61,24 +61,29 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
-            html.classList.remove('no-js')
             html.classList.remove('light')
             html.classList.add(theme);
-            html.classList.add('js');
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
         </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var html = document.querySelector('html');
+            var body = document.querySelector('body');
             var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
             }
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
@@ -116,9 +121,9 @@
                                 <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </button>
+                        </label>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
@@ -168,21 +173,36 @@
                     <main>
                         <h1 id="番"><a class="header" href="#番">番</a></h1>
 <h2 id="2023"><a class="header" href="#2023">2023</a></h2>
+<p>【202310】【日】<a href="https://www.agemys.org/detail/20210076">哥布林杀手2</a>-周五5</p>
+<p>【202310】【日】<a href="https://www.agemys.org/detail/20230192">赛马娘3</a>-周三0</p>
+<p>【202310】【日】<a href="https://www.agemys.org/detail/20230193">16bit的感动</a>-周三0</p>
+<p>【202310】【日】<a href="https://www.agemys.org/detail/20230203">地下忍者</a>-周四2</p>
+<p>【202310】【日】<a href="https://www.agemys.org/detail/20230209">不死不幸</a>-周五2</p>
+<p>【202310】【日】星灵感应-</p>
+<p>【202310】【日】药屋少女的呢喃（凹酱）-</p>
+<p>【202310】【日】<a href="https://www.agemys.org/detail/20230194">KAMIERABI</a>-周四1</p>
+<p>【202310】【日】<a href="https://www.agemys.org/detail/20200002">PLUTO冥王</a>-0</p>
+<p>【202310】【日】<a href="https://www.agemys.org/detail/20230217"><strong>间谍过家家2</strong></a>-周六2</p>
+<p>【202304】【日】<a href="https://www.agedm.org/detail/20230244"><strong>进击的巨人 最终季 完结篇 后篇</strong></a></p>
+<p>【202304】【日】<a href="https://www.agemys.net/detail/20220441">魔法使的新娘2part2</a>-周四0</p>
+<p>【202310】【日】<a href="https://www.agemys.org/detail/20230229">香格里拉·弗陇提亚～屎作猎人向神作发起挑战～</a>-6</p>
+<p>【202310】【日】<a href="https://www.agemys.org/detail/20230207">葬送的芙莉莲</a>-0</p>
+<p>【202307】【日】<a href="https://www.bilibili.com/video/BV1Zu4y1B7DU">BanG Dream! It's MyGO!!!!!</a></p>
 <p>【202307】【日】僵尸100</p>
 <p>【202307】【日】勇者赫鲁库</p>
 <p>【202307】【日】<a href="https://www.agedm.tv/detail/20220292">Lv1魔王与独居废勇者</a>-</p>
 <p>【202307】【日】Fate/strange Fake</p>
-<p>【202307】【日】范马刃牙2</p>
+<p>【202307】【日】<a href="https://www.agemys.org/detail/20230132">范马刃牙2</a>-24</p>
 <p>【202307】【日】间谍教室2</p>
 <p>【202307】【日】死神 千年血战篇 诀别谭</p>
-<p>【202307】【日】无职转生2</p>
+<p>【202307】【日】<a href="https://www.agemys.org/detail/20220248"><strong>无职转生2</strong></a></p>
 <p>【202307】【日】文豪野犬5</p>
-<p>【202307】【日】咒术回战2</p>
+<p>【202307】【日】<a href="https://www.agemys.org/detail/20220207">咒术回战2</a>-9</p>
 <p>【202307】【日】政宗君的复仇2</p>
 <p>【202304】【日】<a href="https://www.agemys.net/detail/20220199">地狱乐</a></p>
 <p>【202304】【日】<a href="https://www.agemys.net/detail/20220203">鬼灭之刃3锻刀村篇</a></p>
-<p>【202304】【日】<a href="https://www.agemys.vip/detail/20220244"><strong>进击的巨人 最终季 Part.3</strong></a>-1</p>
-<p>【202304】【日】<a href="https://www.agemys.net/detail/20220441">魔法使的新娘2</a>-周四2</p>
+<p>【202304】【日】<a href="https://www.agemys.vip/detail/20220244"><strong>进击的巨人 最终季 Part.3.1</strong></a></p>
+<p>【202304】【日】<a href="https://www.agemys.net/detail/20220441">魔法使的新娘2-part2</a>-周四2</p>
 <p>【202304】【日】<a href="https://www.agemys.net/detail/20230072">天国大魔境</a></p>
 <p>【202304】【日】<a href="https://www.agemys.net/detail/20230003">为美好的世界献上爆炎！</a></p>
 <p>【202304】【日】<a href="https://www.agemys.vip/detail/20230077">我推的孩子</a></p>
@@ -238,6 +258,7 @@
 <p>【202201】【日】天才王子的赤字国家振兴术</p>
 <p>【202201】【日】<strong>与变成了异世界美少女的好友一起冒险</strong></p>
 <h2 id="2021"><a class="header" href="#2021">2021</a></h2>
+<p>【202110】【日】<a href="https://www.agemys.org/detail/20210245">咒术回战 0</a></p>
 <p>【202110】【日】jojo的奇妙冒险.石之海</p>
 <p>【202110】【日】铂金终局</p>
 <p>【202110】【日】范马刃牙</p>
@@ -522,7 +543,7 @@
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="计/操作系统/Linux.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="计/操作系统/Linux.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -536,7 +557,7 @@
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="计/操作系统/Linux.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="计/操作系统/Linux.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

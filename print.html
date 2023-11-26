@@ -1,17 +1,17 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js light">
+<html lang="en" class="light" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>YuanyaDocs</title>
-        <meta name="robots" content="noindex" />
+        <meta name="robots" content="noindex">
 
 
         <!-- Custom HTML head -->
         
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
         <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
@@ -32,7 +32,7 @@
         <!-- Custom theme stylesheets -->
 
     </head>
-    <body>
+    <body class="sidebar-visible no-js">
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
@@ -62,24 +62,29 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
-            html.classList.remove('no-js')
             html.classList.remove('light')
             html.classList.add(theme);
-            html.classList.add('js');
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
         </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var html = document.querySelector('html');
+            var body = document.querySelector('body');
             var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
             }
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
@@ -117,9 +122,9 @@
                                 <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </button>
+                        </label>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
@@ -194,23 +199,43 @@ tags = [&quot;techn&quot;, &quot;computer&quot;, &quot;tagx&quot;, &quot;Title&q
 </blockquote>
 <h2 id="----快开----"><a class="header" href="#----快开----">--- 快开 ---</a></h2>
 <h2 id="----基操----"><a class="header" href="#----基操----">--- 基操 ---</a></h2>
+<p>IO卡死：</p>
+<ul>
+<li>当磁盘慢到极致，几乎不可IO，但又有少量IO请求以极慢速度返回，util几乎达到100%（存在一定数据误差），所以当超过99%时判定故障</li>
+<li>当磁盘彻底卡死时，/proc/diskstats 中对应磁盘数据不在增长，util值归0，此时通过/proc/stat中的cpu数据iowait进行判定，当IO极少时，仅部分cpu核被IO等待影响，需要对每个核单独进行判定</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="番"><a class="header" href="#番">番</a></h1>
 <h2 id="2023"><a class="header" href="#2023">2023</a></h2>
+<p>【202310】【日】<a href="https://www.agemys.org/detail/20210076">哥布林杀手2</a>-周五5</p>
+<p>【202310】【日】<a href="https://www.agemys.org/detail/20230192">赛马娘3</a>-周三0</p>
+<p>【202310】【日】<a href="https://www.agemys.org/detail/20230193">16bit的感动</a>-周三0</p>
+<p>【202310】【日】<a href="https://www.agemys.org/detail/20230203">地下忍者</a>-周四2</p>
+<p>【202310】【日】<a href="https://www.agemys.org/detail/20230209">不死不幸</a>-周五2</p>
+<p>【202310】【日】星灵感应-</p>
+<p>【202310】【日】药屋少女的呢喃（凹酱）-</p>
+<p>【202310】【日】<a href="https://www.agemys.org/detail/20230194">KAMIERABI</a>-周四1</p>
+<p>【202310】【日】<a href="https://www.agemys.org/detail/20200002">PLUTO冥王</a>-0</p>
+<p>【202310】【日】<a href="https://www.agemys.org/detail/20230217"><strong>间谍过家家2</strong></a>-周六2</p>
+<p>【202304】【日】<a href="https://www.agedm.org/detail/20230244"><strong>进击的巨人 最终季 完结篇 后篇</strong></a></p>
+<p>【202304】【日】<a href="https://www.agemys.net/detail/20220441">魔法使的新娘2part2</a>-周四0</p>
+<p>【202310】【日】<a href="https://www.agemys.org/detail/20230229">香格里拉·弗陇提亚～屎作猎人向神作发起挑战～</a>-6</p>
+<p>【202310】【日】<a href="https://www.agemys.org/detail/20230207">葬送的芙莉莲</a>-0</p>
+<p>【202307】【日】<a href="https://www.bilibili.com/video/BV1Zu4y1B7DU">BanG Dream! It's MyGO!!!!!</a></p>
 <p>【202307】【日】僵尸100</p>
 <p>【202307】【日】勇者赫鲁库</p>
 <p>【202307】【日】<a href="https://www.agedm.tv/detail/20220292">Lv1魔王与独居废勇者</a>-</p>
 <p>【202307】【日】Fate/strange Fake</p>
-<p>【202307】【日】范马刃牙2</p>
+<p>【202307】【日】<a href="https://www.agemys.org/detail/20230132">范马刃牙2</a>-24</p>
 <p>【202307】【日】间谍教室2</p>
 <p>【202307】【日】死神 千年血战篇 诀别谭</p>
-<p>【202307】【日】无职转生2</p>
+<p>【202307】【日】<a href="https://www.agemys.org/detail/20220248"><strong>无职转生2</strong></a></p>
 <p>【202307】【日】文豪野犬5</p>
-<p>【202307】【日】咒术回战2</p>
+<p>【202307】【日】<a href="https://www.agemys.org/detail/20220207">咒术回战2</a>-9</p>
 <p>【202307】【日】政宗君的复仇2</p>
 <p>【202304】【日】<a href="https://www.agemys.net/detail/20220199">地狱乐</a></p>
 <p>【202304】【日】<a href="https://www.agemys.net/detail/20220203">鬼灭之刃3锻刀村篇</a></p>
-<p>【202304】【日】<a href="https://www.agemys.vip/detail/20220244"><strong>进击的巨人 最终季 Part.3</strong></a>-1</p>
-<p>【202304】【日】<a href="https://www.agemys.net/detail/20220441">魔法使的新娘2</a>-周四2</p>
+<p>【202304】【日】<a href="https://www.agemys.vip/detail/20220244"><strong>进击的巨人 最终季 Part.3.1</strong></a></p>
+<p>【202304】【日】<a href="https://www.agemys.net/detail/20220441">魔法使的新娘2-part2</a>-周四2</p>
 <p>【202304】【日】<a href="https://www.agemys.net/detail/20230072">天国大魔境</a></p>
 <p>【202304】【日】<a href="https://www.agemys.net/detail/20230003">为美好的世界献上爆炎！</a></p>
 <p>【202304】【日】<a href="https://www.agemys.vip/detail/20230077">我推的孩子</a></p>
@@ -266,6 +291,7 @@ tags = [&quot;techn&quot;, &quot;computer&quot;, &quot;tagx&quot;, &quot;Title&q
 <p>【202201】【日】天才王子的赤字国家振兴术</p>
 <p>【202201】【日】<strong>与变成了异世界美少女的好友一起冒险</strong></p>
 <h2 id="2021"><a class="header" href="#2021">2021</a></h2>
+<p>【202110】【日】<a href="https://www.agemys.org/detail/20210245">咒术回战 0</a></p>
 <p>【202110】【日】jojo的奇妙冒险.石之海</p>
 <p>【202110】【日】铂金终局</p>
 <p>【202110】【日】范马刃牙</p>
@@ -3841,12 +3867,32 @@ ssh-keygen -t rsa -b 4096 -C &quot;yuanyatianchi@gmail.com&quot;
 <p>鞋：<strong>速度</strong>、攻击、防御、生命</p>
 <p>球：<strong>属性</strong>、攻击、防御、生命</p>
 <p>绳：<strong>充能、击破</strong>、攻击、防御、生命</p>
-<p>副词条：没有<strong>充能、治疗</strong>，额外有<strong>效果抵抗、小防御</strong>，以上其它全有</p>
+<ul>
+<li>副词条：没有<strong>充能、治疗</strong>，额外有<strong>效果抵抗、小防御</strong>，以上其它全有
+<ul>
+<li>万能：速度，一般处于次位置</li>
+<li>辅伤：命中&gt;攻击。</li>
+<li>击破：击破&gt;攻击。</li>
+<li>直伤：暴击&gt;爆伤&gt;攻击。</li>
+<li>奶盾：生命&gt;抵抗=速度&gt;防御。符玄、玲可、娜塔莎</li>
+<li>防盾：防御&gt;抵抗=速度&gt;生命。</li>
+<li>嘲盾：防御、命中，生命、抵抗</li>
+</ul>
+</li>
+</ul>
+<p>攻击/击破/命中</p>
+<p>先看套装适用性：用于上面哪个流派，再看属性优先级，超过3保留</p>
+<h2 id="搭配"><a class="header" href="#搭配">搭配</a></h2>
+<p>防御：涉及嘲讽技能，涉及命中，</p>
 <h2 id="银狼"><a class="header" href="#银狼">银狼</a></h2>
 <h5 id="遗器"><a class="header" href="#遗器">遗器</a></h5>
 <p>套装：量子4/快枪手4，泛银河商业公司（命中）&gt; 生命的翁瓦克（充能）</p>
 <p>主词条：命中/双爆 衣、速度 鞋、量伤 球、充能 绳</p>
 <p>副词条：命中/双爆&gt;速度&gt;攻击</p>
+<h2 id="卡夫卡"><a class="header" href="#卡夫卡">卡夫卡</a></h2>
+<p><a href="https://www.bilibili.com/video/BV18u411n7uU">说书人胧</a>；</p>
+<p>通用队：卡夫卡、大鸭、银狼；卡夫卡速度大于大鸭即可</p>
+<p>击破dot队：素裳(击破)、银狼(物弱)。银狼添加物弱，素裳击破，卡夫卡开大</p>
 <h2 id="虎克"><a class="header" href="#虎克">虎克</a></h2>
 <p>输出：战技普攻循环</p>
 <h5 id="遗器-1"><a class="header" href="#遗器-1">遗器</a></h5>
@@ -3885,7 +3931,56 @@ ssh-keygen -t rsa -b 4096 -C &quot;yuanyatianchi@gmail.com&quot;
 <p>消充能：链锯</p>
 <p>消延迟：泡泡火花、光剑、链锯（机制性，单次射击队列中存在链锯时，可以将链锯前的所有法术延计算迟置0，bug？）</p>
 <h2 id="伤害"><a class="header" href="#伤害">伤害</a></h2>
-<div style="break-before: page; page-break-before: always;"></div><h2 id="刻印负面数据"><a class="header" href="#刻印负面数据">刻印负面数据</a></h2>
+<div style="break-before: page; page-break-before: always;"></div><p>取名</p>
+<ul>
+<li>
+<p>崩崩</p>
+<ul>
+<li>天霄蒂丝琳兰竾：九霄、宁蒂、菲米莉丝、西琳、芙兰（枪术）</li>
+<li>天竾：德莉莎、符华、布诺妮娅、琪亚娜、芽衣</li>
+</ul>
+</li>
+<li>
+<p>崩铁</p>
+<ul>
+<li>
+<p>萝莉组：白露、虎克</p>
+</li>
+<li>
+<p>少萝组：银狼、符玄、玲可、青雀、黑塔、佩拉、克拉拉、</p>
+<ul>
+<li>天银符白玲青竾：银狼、符玄、白露、玲可、青雀（女枪）</li>
+<li>天狼玄露可雀竾：银狼、符玄、白露、玲可、青雀（半魔）</li>
+</ul>
+</li>
+<li>
+<p>少女组：镜流、停云、素裳、三月七、桂乃芬、布诺妮娅、艾丝妲、希儿</p>
+<ul>
+<li>天镜停素月桂竾：镜流、停云、素裳、三月七、桂乃芬（格妮薇儿）（刀锋）</li>
+<li>天流云裳月乃竾：镜流、停云、素裳、三月七、桂乃芬（镰刀）</li>
+</ul>
+</li>
+<li>
+<p>御姐组：姬子、卡芙卡、希露瓦、娜塔莎、驭空、</p>
+</li>
+</ul>
+</li>
+<li>
+<p>原神：</p>
+<ul>
+<li>天堇晴雨瑶桃竾：云堇、刻晴、甘雨、瑶瑶、胡桃（气功）</li>
+<li>天柚宫影海华竾：早柚、宵宫、真/影、心海、绫华（墨灵）</li>
+<li>天早宵真绫心竾：早柚、宵宫、真/影、心海、绫华（半魔）</li>
+<li>天琴蒂尔莉娜竾：琴、温蒂、菲谢尔、可莉、莫娜（诗人）</li>
+<li>芙宁娜，琳妮特、夏洛蒂、娜维娅、夏沃蕾</li>
+</ul>
+</li>
+</ul>
+<p>艺术品：代理人，魔咒的遗迹，考古学家的请求，正真的经理，兼职生，爸爸和女儿
+巨人心：抓住杜基，草原的虫子
+岛之心：抓捕罪犯，新书出版，小菜专家，星辰护卫</p>
+<p>冒险物：活跃的魔力</p>
+<h2 id="刻印负面数据"><a class="header" href="#刻印负面数据">刻印负面数据</a></h2>
 <p><strong>精密短刀</strong>：</p>
 <ul>
 <li>0暴击率，旧总伤 <code>100*100=10,000</code>；20暴击率，新总伤 <code>100*80+188*20=11,760</code>，提升 <code>17.6%</code>；</li>
@@ -3940,83 +4035,122 @@ ssh-keygen -t rsa -b 4096 -C &quot;yuanyatianchi@gmail.com&quot;
 </ul>
 <h2 id="女狂"><a class="header" href="#女狂">女狂</a></h2>
 <h3 id="处决者"><a class="header" href="#处决者">处决者</a></h3>
-<p>53选肾上，531 532选咒术人偶</p>
-<div class="table-wrapper"><table><thead><tr><th></th><th>职业暴率</th><th>首领伤</th><th>暴率攻增</th><th>伤增</th><th>攻增</th><th>额外伤</th></tr></thead><tbody>
-<tr><td>专\迅</td><td><strong>处决者</strong></td><td><strong>怨恨</strong></td><td>肾上腺素</td><td><strong>奇袭大师</strong></td><td>咒术人偶</td><td><strong>迅捷利刃</strong></td></tr>
-<tr><td><strong>刻印</strong></td><td></td><td></td><td>12</td><td></td><td></td><td>12</td></tr>
-<tr><td><strong>能力石</strong></td><td></td><td>7</td><td></td><td>7</td><td></td><td></td></tr>
-<tr><td><strong>项链</strong></td><td></td><td></td><td></td><td></td><td></td><td>3</td></tr>
-<tr><td><strong>耳环1</strong></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td><strong>耳环2</strong></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td><strong>戒指1</strong></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td><strong>戒指2</strong></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td><td></td><td>15</td></tr>
+<p>双断头：重量强化，500迅捷，断头 5级cd+9级宝石 金疾风 、喷发蓝疾风、残酷打击紫疾风、践踏5级攻速</p>
+<div class="table-wrapper"><table><thead><tr><th></th><th>职业</th><th>怨恨</th><th>肾上腺素</th><th>奇袭大师</th><th>重量强化</th><th>迅捷利刃</th><th>尖刺重锤</th></tr></thead><tbody>
+<tr><td><strong>刻印</strong></td><td>9</td><td></td><td>12</td><td></td><td></td><td></td><td></td></tr>
+<tr><td><strong>能力石</strong></td><td></td><td></td><td></td><td>7</td><td></td><td>7</td><td></td></tr>
+<tr><td><strong>项链</strong></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td><strong>耳环1</strong></td><td></td><td></td><td></td><td>5</td><td></td><td>3</td><td></td></tr>
+<tr><td><strong>耳环2</strong></td><td></td><td></td><td>3</td><td></td><td>5</td><td></td><td></td></tr>
+<tr><td><strong>戒指1</strong></td><td>3</td><td></td><td></td><td></td><td>5</td><td></td><td></td></tr>
+<tr><td><strong>戒指2</strong></td><td>3</td><td></td><td></td><td></td><td>5</td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td></td><td>15</td><td></td></tr>
 </tbody></table>
 </div>
 <h2 id="刀锋"><a class="header" href="#刀锋">刀锋</a></h2>
 <h3 id="刀锋残影"><a class="header" href="#刀锋残影">刀锋残影</a></h3>
-<p>伤害宝石：爆裂&gt;电光+汲魂+月华&gt;虚空+落地(可换cd)</p>
-<p>冷却宝石：刀阵&gt;旋切+电光+汲魂+虚空</p>
-<p>53</p>
-<div class="table-wrapper"><table><thead><tr><th></th><th>职业伤增</th><th>首领伤</th><th>暴率攻增</th><th>伤增</th><th>攻增</th><th>蓄伤增</th></tr></thead><tbody>
-<tr><td>专\会</td><td><strong>刀锋残影3</strong></td><td>怨恨</td><td><strong>肾上腺素</strong></td><td><strong>奇袭大师</strong></td><td><strong>重量强化</strong></td><td><strong>蓄力强化</strong></td></tr>
-<tr><td><strong>刻印</strong></td><td>9</td><td></td><td></td><td></td><td>12</td><td></td></tr>
-<tr><td><strong>能力石</strong></td><td></td><td></td><td>7</td><td>7</td><td></td><td></td></tr>
-<tr><td><strong>项链</strong></td><td></td><td></td><td></td><td>3</td><td></td><td>5</td></tr>
-<tr><td><strong>耳环1</strong></td><td></td><td></td><td>5</td><td></td><td>3</td><td></td></tr>
-<tr><td><strong>耳环2</strong></td><td></td><td></td><td>3</td><td>5</td><td></td><td></td></tr>
-<tr><td><strong>戒指1</strong></td><td>3</td><td></td><td></td><td></td><td></td><td>5</td></tr>
-<tr><td><strong>戒指2</strong></td><td>3</td><td></td><td></td><td></td><td></td><td>5</td></tr>
+<p>宝石</p>
+<ul>
+<li>伤害宝石：爆裂&gt;电光+汲魂+月华&gt;虚空+落地(可换cd)</li>
+<li>冷却宝石：刀阵&gt;旋切+电光+汲魂+虚空</li>
+</ul>
+<p>刻印53：主要考虑更换爆刀的3件首饰要便宜，职业只换2个3点，蓄力要全换，即蓄力和职业必须重合，因此更换3件为</p>
+<ul>
+<li>残影+蓄力 → 爆刀+怨恨/尖刺    x2</li>
+<li>重量+蓄力 → 重量+怨恨/尖刺</li>
+</ul>
+<div class="table-wrapper"><table><thead><tr><th></th><th>爆裂</th><th>迅捷</th><th>怨恨</th><th>奇袭</th><th>肾上</th><th></th><th></th></tr></thead><tbody>
+<tr><td><strong>刻印</strong></td><td></td><td></td><td></td><td>12</td><td>12</td><td></td><td></td></tr>
+<tr><td><strong>能力石</strong></td><td></td><td>6</td><td>7</td><td></td><td></td><td></td><td></td></tr>
+<tr><td><strong>项链</strong></td><td></td><td>3</td><td>5</td><td></td><td></td><td>19000</td><td>攻速-3</td></tr>
+<tr><td><strong>耳环1</strong></td><td></td><td></td><td>3</td><td>3</td><td></td><td>9000</td><td>移速-1</td></tr>
+<tr><td><strong>耳环2</strong></td><td>5</td><td></td><td></td><td></td><td>3</td><td>10000</td><td>防御-3</td></tr>
+<tr><td><strong>戒指1</strong></td><td>5</td><td>3</td><td></td><td></td><td></td><td>4000</td><td>攻速-1</td></tr>
+<tr><td><strong>戒指2</strong></td><td>5</td><td>3</td><td></td><td></td><td></td><td></td><td>移速-2</td></tr>
 </tbody></table>
-</div><div class="table-wrapper"><table><thead><tr><th></th><th>职业伤增</th><th>首领伤</th><th>暴率攻增</th><th>伤增</th><th>攻增</th><th>蓄伤增</th></tr></thead><tbody>
-<tr><td>专\会</td><td><strong>刀锋残影3</strong></td><td>怨恨</td><td><strong>肾上腺素</strong></td><td><strong>奇袭大师</strong></td><td><strong>重量强化</strong></td><td><strong>蓄力强化</strong></td></tr>
-<tr><td><strong>刻印</strong></td><td>9</td><td></td><td></td><td></td><td>12</td><td></td></tr>
-<tr><td><strong>能力石</strong></td><td></td><td></td><td>7</td><td>7</td><td></td><td></td></tr>
-<tr><td><strong>项链</strong></td><td></td><td></td><td>3</td><td></td><td></td><td>5</td></tr>
-<tr><td><strong>耳环1</strong></td><td></td><td></td><td>5</td><td>3</td><td></td><td></td></tr>
-<tr><td><strong>耳环2</strong></td><td></td><td></td><td></td><td>5</td><td>3</td><td></td></tr>
-<tr><td><strong>戒指1</strong></td><td>3</td><td></td><td></td><td></td><td></td><td>5</td></tr>
-<tr><td><strong>戒指2</strong></td><td>3</td><td></td><td></td><td></td><td></td><td>5</td></tr>
+</div><div class="table-wrapper"><table><thead><tr><th></th><th>爆刀</th><th>迅捷</th><th>怨恨</th><th>奇袭</th><th>肾上</th><th></th><th></th></tr></thead><tbody>
+<tr><td><strong>刻印</strong></td><td>9</td><td></td><td></td><td></td><td>12</td><td></td><td></td></tr>
+<tr><td><strong>能力石</strong></td><td></td><td></td><td>7</td><td>7</td><td></td><td></td><td></td></tr>
+<tr><td><strong>项链</strong></td><td></td><td>3</td><td>5</td><td></td><td></td><td>19000</td><td>攻速-3</td></tr>
+<tr><td><strong>耳环1</strong></td><td></td><td>3</td><td></td><td>5</td><td></td><td>10000</td><td>攻击-3</td></tr>
+<tr><td><strong>耳环2</strong></td><td>3</td><td>5</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td><strong>戒指1</strong></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td><strong>戒指2</strong></td><td></td><td></td><td></td><td>3</td><td>3</td><td></td><td></td></tr>
+</tbody></table>
+</div><div class="table-wrapper"><table><thead><tr><th></th><th>残影or爆刀</th><th>肾上腺素</th><th>奇袭大师</th><th>迅捷</th><th>怨恨</th><th></th><th></th></tr></thead><tbody>
+<tr><td>**刻印</td><td></td><td>12</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td><strong>能力石</strong></td><td></td><td></td><td>7</td><td></td><td>7</td><td></td><td></td></tr>
+<tr><td><strong>项链</strong></td><td></td><td></td><td></td><td>3</td><td>5</td><td></td><td></td></tr>
+<tr><td><strong>耳环1</strong></td><td></td><td></td><td>5</td><td>3</td><td></td><td></td><td></td></tr>
+<tr><td><strong>耳环2</strong></td><td>5</td><td>5</td><td>3</td><td>3</td><td></td><td></td><td></td></tr>
+<tr><td><strong>戒指1</strong></td><td>5</td><td></td><td></td><td>3</td><td></td><td></td><td></td></tr>
+<tr><td><strong>戒指2</strong></td><td>5</td><td></td><td></td><td>3</td><td></td><td></td><td></td></tr>
 </tbody></table>
 </div>
-<p>43</p>
-<div class="table-wrapper"><table><thead><tr><th></th><th>职业伤增</th><th>首领伤</th><th>暴率攻增</th><th>伤增</th><th>攻增</th><th>蓄伤增</th></tr></thead><tbody>
-<tr><td>专\会</td><td><strong>刀锋残影3</strong></td><td>怨恨</td><td><strong>肾上腺素</strong></td><td><strong>奇袭大师</strong></td><td><strong>重量强化</strong></td><td><strong>蓄力强化</strong></td></tr>
+<p>便宜：弥留+重量；蓄力+奇袭；肾上+重量</p>
+<div class="table-wrapper"><table><thead><tr><th></th><th>残影</th><th>肾上腺素</th><th>奇袭大师</th><th>重量强化</th><th>蓄力强化</th><th></th></tr></thead><tbody>
 <tr><td><strong>刻印</strong></td><td>9</td><td></td><td></td><td></td><td>12</td><td></td></tr>
-<tr><td><strong>能力石</strong></td><td></td><td></td><td>6</td><td></td><td></td><td>6</td></tr>
-<tr><td><strong>项链</strong></td><td></td><td></td><td>3</td><td></td><td>3</td><td></td></tr>
-<tr><td><strong>耳环1</strong></td><td></td><td></td><td>3</td><td>3</td><td></td><td></td></tr>
-<tr><td><strong>耳环2</strong></td><td></td><td></td><td>3</td><td></td><td></td><td>3</td></tr>
-<tr><td><strong>戒指1</strong></td><td>3</td><td></td><td></td><td></td><td></td><td>3</td></tr>
-<tr><td><strong>戒指2</strong></td><td>3</td><td></td><td></td><td></td><td></td><td>3</td></tr>
+<tr><td><strong>能力石</strong></td><td></td><td>7</td><td>7</td><td></td><td></td><td></td></tr>
+<tr><td><strong>项链</strong>-1000</td><td>3</td><td></td><td></td><td>5</td><td></td><td>防御-2-</td></tr>
+<tr><td><strong>耳环1</strong>-2000</td><td></td><td></td><td>5</td><td></td><td>3</td><td>攻速-1</td></tr>
+<tr><td><strong>耳环2</strong>-1500</td><td></td><td>5</td><td>3</td><td></td><td></td><td>移速-2</td></tr>
+<tr><td><strong>戒指1</strong>-500</td><td></td><td>3</td><td></td><td>5</td><td></td><td>攻击-3-</td></tr>
+<tr><td><strong>戒指2</strong>-6000</td><td><code>3</code></td><td></td><td></td><td><code>5</code></td><td></td><td>防御-2-</td></tr>
 </tbody></table>
 </div>
+<p>刻印43：前期玩爆刀</p>
 <h3 id="爆刀"><a class="header" href="#爆刀">爆刀</a></h3>
-<p>伤害宝石：9级爆裂刀刃 &gt; 电光疾行、汲魂刺 &gt; 虚空侵袭、落地斩</p>
-<p>冷却宝石：旋切、风切、刀阵、点光疾行、汲魂刺、虚空侵袭</p>
-<div class="table-wrapper"><table><thead><tr><th></th><th>职业伤增</th><th>首领伤</th><th>暴率攻增</th><th>伤增</th><th>攻增</th><th>爆伤增</th></tr></thead><tbody>
-<tr><td>专\会</td><td><strong>刀锋残影3</strong></td><td>怨恨</td><td><strong>肾上腺素</strong></td><td><strong>奇袭大师</strong></td><td><strong>重量强化</strong></td><td><strong>尖刺重锤</strong></td></tr>
+<p>宝石</p>
+<ul>
+<li>伤害宝石：9级爆裂刀刃 &gt; 电光疾行、汲魂刺 &gt; 虚空侵袭、落地斩</li>
+<li>冷却宝石：旋切、风切、刀阵、点光疾行、汲魂刺、虚空侵袭</li>
+</ul>
+<p>刻印53：从残影 53切换</p>
+<p>刻印43</p>
+<div class="table-wrapper"><table><thead><tr><th></th><th>职业伤增</th><th>首领伤</th><th>暴率攻增</th><th>伤增</th><th>攻增</th><th>蓄伤增</th></tr></thead><tbody>
+<tr><td>专\会</td><td><strong>刀锋残影3</strong></td><td>怨恨</td><td><strong>肾上腺素</strong></td><td><strong>奇袭大师</strong></td><td><strong>重量强化</strong></td><td><strong>蓄力强化</strong></td></tr>
 <tr><td><strong>刻印</strong></td><td>9</td><td></td><td></td><td></td><td>12</td><td></td></tr>
-<tr><td><strong>能力石</strong></td><td></td><td></td><td>7</td><td>7</td><td></td><td></td></tr>
-<tr><td><strong>项链</strong></td><td></td><td></td><td></td><td>3</td><td></td><td>5</td></tr>
-<tr><td><strong>耳环1</strong></td><td></td><td></td><td>5</td><td></td><td>3</td><td></td></tr>
-<tr><td><strong>耳环2</strong></td><td></td><td></td><td>3</td><td>5</td><td></td><td></td></tr>
-<tr><td><strong>戒指1</strong></td><td>3</td><td></td><td></td><td></td><td></td><td>5</td></tr>
-<tr><td><strong>戒指2</strong></td><td>3</td><td></td><td></td><td></td><td></td><td>5</td></tr>
+<tr><td><strong>能力石</strong></td><td></td><td></td><td>6（可少）</td><td>6（只能多）</td><td></td><td></td></tr>
+<tr><td><strong>项链</strong>（攻击力-3）</td><td></td><td></td><td></td><td>3</td><td>3</td><td></td></tr>
+<tr><td><strong>耳环1</strong>（攻速-2）</td><td></td><td></td><td>2</td><td>3</td><td></td><td></td></tr>
+<tr><td><strong>耳环2</strong></td><td>3</td><td></td><td>2</td><td></td><td></td><td></td></tr>
+<tr><td><strong>戒指1</strong></td><td>3</td><td></td><td>2</td><td></td><td></td><td></td></tr>
+<tr><td><strong>戒指2</strong>（防御力-3)</td><td></td><td></td><td>3</td><td>3</td><td></td><td></td></tr>
+</tbody></table>
+</div>
+<h3 id=""><a class="header" href="#"></a></h3>
+<div class="table-wrapper"><table><thead><tr><th></th><th>弥留爆裂3</th><th>迅捷利刃3</th><th>怨恨3</th><th>肾上腺素3</th><th>奇袭大师12</th><th></th></tr></thead><tbody>
+<tr><td><strong>刻印</strong></td><td></td><td></td><td></td><td>12</td><td>12</td><td></td></tr>
+<tr><td>能力石</td><td></td><td>6</td><td>7</td><td></td><td></td><td></td></tr>
+<tr><td><strong>项链</strong></td><td></td><td>3</td><td>3</td><td></td><td></td><td>4000攻击-3</td></tr>
+<tr><td><strong>耳环1</strong></td><td>5</td><td></td><td></td><td>3</td><td></td><td>1888移速 -3</td></tr>
+<tr><td><strong>耳环2</strong></td><td>5</td><td>3</td><td></td><td></td><td></td><td>888  攻击-1</td></tr>
+<tr><td><strong>戒指1</strong></td><td>5</td><td>3</td><td></td><td></td><td></td><td>5555防御-3</td></tr>
+<tr><td><strong>戒指2</strong></td><td></td><td></td><td>5</td><td></td><td>3</td><td>1999移速-1</td></tr>
+</tbody></table>
+</div>
+<h3 id="-1"><a class="header" href="#-1"></a></h3>
+<div class="table-wrapper"><table><thead><tr><th></th><th>弥留爆裂3</th><th>迅捷利刃3</th><th>怨恨3</th><th>肾上腺素3</th><th>奇袭大师12</th><th></th></tr></thead><tbody>
+<tr><td><strong>刻印</strong></td><td>9</td><td>9</td><td></td><td>12</td><td></td><td></td></tr>
+<tr><td>能力石</td><td></td><td></td><td>7</td><td></td><td>7</td><td></td></tr>
+<tr><td><strong>项链</strong></td><td></td><td></td><td></td><td></td><td></td><td>4000攻击-3</td></tr>
+<tr><td><strong>耳环1</strong></td><td>5</td><td>3</td><td></td><td>3</td><td></td><td>1888移速 -3</td></tr>
+<tr><td><strong>耳环2</strong></td><td>5</td><td></td><td></td><td></td><td></td><td>888  攻击-1</td></tr>
+<tr><td><strong>戒指1</strong></td><td>5</td><td>3</td><td></td><td></td><td></td><td>5555防御-3</td></tr>
+<tr><td><strong>戒指2</strong></td><td></td><td></td><td>5</td><td></td><td>3</td><td>1999移速-1</td></tr>
 </tbody></table>
 </div>
 <h2 id="气功"><a class="header" href="#气功">气功</a></h2>
 <p>迅捷：项链90以上，耳环80以上，戒指70以上</p>
 <h3 id="经脉打通"><a class="header" href="#经脉打通">经脉打通</a></h3>
-<div class="table-wrapper"><table><thead><tr><th></th><th>职业伤增</th><th>首领伤</th><th>暴率攻增</th><th>移比伤</th><th>攻增</th><th>爆伤增</th></tr></thead><tbody>
-<tr><td>专\迅</td><td>经脉打通1</td><td><strong>怨恨</strong></td><td><strong>肾上腺素</strong></td><td><strong>迅捷利刃</strong></td><td><strong>重量强化</strong></td><td><strong>尖刺重锤</strong></td></tr>
-<tr><td><strong>刻印</strong></td><td>9</td><td></td><td></td><td></td><td>12</td><td></td></tr>
-<tr><td><strong>能力石</strong></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td><strong>项链</strong></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td><strong>耳环1</strong></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td><strong>耳环2</strong></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td><strong>戒指1</strong></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td><strong>戒指2</strong></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<div class="table-wrapper"><table><thead><tr><th></th><th>经脉打通1</th><th>怨恨3</th><th>迅捷利刃3</th><th>重量强化3</th><th>肾上腺素2</th><th>觉醒3</th><th></th></tr></thead><tbody>
+<tr><td><strong>刻印</strong></td><td></td><td>9</td><td></td><td>12</td><td></td><td></td><td></td></tr>
+<tr><td>能力石</td><td></td><td></td><td>7</td><td></td><td>7</td><td></td><td></td></tr>
+<tr><td><strong>项链</strong></td><td></td><td>3</td><td></td><td></td><td></td><td>5</td><td>4000攻击-3</td></tr>
+<tr><td><strong>耳环1</strong></td><td></td><td>3</td><td></td><td></td><td></td><td>5</td><td>1888移速 -3</td></tr>
+<tr><td><strong>耳环2</strong></td><td></td><td></td><td>3</td><td></td><td></td><td>5</td><td>888  攻击-1</td></tr>
+<tr><td><strong>戒指1</strong></td><td></td><td></td><td>5</td><td>3</td><td></td><td></td><td>5555防御-3</td></tr>
+<tr><td><strong>戒指2</strong></td><td>5</td><td></td><td></td><td></td><td>3</td><td></td><td>1999移速-1</td></tr>
 </tbody></table>
 </div><div class="table-wrapper"><table><thead><tr><th></th><th>经脉打通</th><th>怨恨</th><th>肾上腺素</th><th>尖刺重锤</th><th>重量强化</th><th>迅捷利刃</th></tr></thead><tbody>
 <tr><td>经脉打通</td><td></td><td>，，</td><td>，，</td><td>，，</td><td>，，</td><td>，，</td></tr>
@@ -4028,21 +4162,100 @@ ssh-keygen -t rsa -b 4096 -C &quot;yuanyatianchi@gmail.com&quot;
 </tbody></table>
 </div>
 <h3 id="逆天之体"><a class="header" href="#逆天之体">逆天之体</a></h3>
-<div class="table-wrapper"><table><thead><tr><th></th><th>职业</th><th>首领伤</th><th>攻增</th><th>爆伤增</th><th>暴率攻增</th><th>职业伤增</th></tr></thead><tbody>
-<tr><td>专\迅</td><td>逆天之体3</td><td><strong>怨恨</strong></td><td><strong>咒术人偶</strong></td><td><strong>尖刺重锤</strong></td><td><strong>肾上腺素</strong></td><td>经脉打通1</td></tr>
-<tr><td><strong>刻印</strong></td><td></td><td></td><td></td><td></td><td>12</td><td></td></tr>
-<tr><td><strong>能力石</strong></td><td></td><td></td><td>7</td><td></td><td></td><td></td></tr>
-<tr><td><strong>项链</strong></td><td></td><td></td><td>5</td><td></td><td></td><td></td></tr>
-<tr><td><strong>耳环1</strong></td><td></td><td>5</td><td></td><td></td><td>3</td><td></td></tr>
-<tr><td><strong>耳环2</strong></td><td>5</td><td></td><td></td><td>3</td><td></td><td></td></tr>
-<tr><td><strong>戒指1</strong></td><td>5</td><td></td><td></td><td>3</td><td></td><td></td></tr>
-<tr><td><strong>戒指2</strong></td><td>5</td><td></td><td></td><td>3</td><td></td><td></td></tr>
+<div class="table-wrapper"><table><thead><tr><th></th><th>逆天之体3</th><th>怨恨</th><th>重量强化</th><th>尖刺重锤</th><th>肾上腺素</th><th>经脉打通1</th><th></th></tr></thead><tbody>
+<tr><td><strong>刻印</strong></td><td>9</td><td></td><td></td><td></td><td>12</td><td></td><td></td></tr>
+<tr><td><strong>能力石</strong></td><td></td><td>7</td><td>7</td><td></td><td></td><td></td><td></td></tr>
+<tr><td><strong>项链</strong></td><td></td><td>3</td><td></td><td></td><td></td><td>5</td><td>防御-3</td></tr>
+<tr><td><strong>耳环1</strong></td><td></td><td>5</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td><strong>耳环2</strong></td><td></td><td></td><td>5</td><td></td><td>3</td><td></td><td>移速-2</td></tr>
+<tr><td><strong>戒指1</strong></td><td>3</td><td></td><td>3</td><td></td><td></td><td></td><td>攻速-3</td></tr>
+<tr><td><strong>戒指2</strong></td><td>3</td><td></td><td>3</td><td></td><td></td><td></td><td>攻速-1</td></tr>
 </tbody></table>
 </div>
 <p>1金书1紫书即可531</p>
 <h2 id="枪术"><a class="header" href="#枪术">枪术</a></h2>
-<h2 id="墨灵"><a class="header" href="#墨灵">墨灵</a></h2>
-
+<p>优先2噩梦，然后4觉醒</p>
+<div class="table-wrapper"><table><thead><tr><th></th><th>巅峰3</th><th>重量强化3</th><th>迅捷利刃3</th><th>尖刺3</th><th>觉醒2</th><th>以太充能</th><th>价格</th><th></th></tr></thead><tbody>
+<tr><td><strong>刻印</strong></td><td></td><td>12</td><td>9</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>能力石</td><td></td><td></td><td></td><td>7</td><td>7</td><td></td><td></td><td></td></tr>
+<tr><td><strong>项链</strong>  专迅</td><td></td><td></td><td>3</td><td></td><td></td><td>5</td><td>1500</td><td>移速-2</td></tr>
+<tr><td><strong>耳环1</strong>迅捷</td><td></td><td>3</td><td></td><td>5</td><td></td><td></td><td></td><td>攻速-2</td></tr>
+<tr><td><strong>耳环2</strong>迅捷</td><td>5</td><td></td><td>3</td><td></td><td></td><td></td><td>888</td><td>防御-3</td></tr>
+<tr><td><strong>戒指1</strong>迅捷</td><td>5</td><td></td><td></td><td>3</td><td></td><td></td><td>300</td><td>防御-2</td></tr>
+<tr><td><strong>戒指2</strong>专长</td><td>5</td><td></td><td></td><td></td><td>3</td><td></td><td>300</td><td>攻击-1</td></tr>
+</tbody></table>
+</div>
+<p>2噩梦（魔力）2支配（觉醒）2绝地（背击）</p>
+<div class="table-wrapper"><table><thead><tr><th></th><th>巅峰3</th><th>重量强化3</th><th>奇袭3</th><th>迅捷利刃3</th><th>怨恨3</th><th>价格</th><th>缺攻速或防御</th><th></th></tr></thead><tbody>
+<tr><td><strong>刻印</strong></td><td></td><td>12</td><td></td><td>12</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>能力石</td><td></td><td></td><td>4</td><td></td><td>7</td><td></td><td></td><td></td></tr>
+<tr><td><strong>项链</strong>  专迅 489</td><td></td><td></td><td>3</td><td></td><td>5</td><td>11k</td><td>移速-3</td><td>已入</td></tr>
+<tr><td><strong>耳环2</strong>迅捷 295</td><td>5</td><td></td><td>3</td><td></td><td></td><td>1k-</td><td>移速-1</td><td>已入</td></tr>
+<tr><td><strong>耳环1</strong>迅捷 300</td><td>5</td><td></td><td></td><td>3</td><td></td><td>1k-</td><td>攻击-1</td><td>竞拍</td></tr>
+<tr><td><strong>戒指1</strong>迅捷 200</td><td>5</td><td></td><td></td><td></td><td>3</td><td>1k-</td><td>防御-3</td><td>已入</td></tr>
+<tr><td><strong>戒指2</strong>专长 200</td><td></td><td>3</td><td>5</td><td></td><td></td><td></td><td>攻击-2</td><td>已入</td></tr>
+</tbody></table>
+</div>
+<p>2噩梦（魔力）2支配（觉醒）2绝地（背击）</p>
+<div class="table-wrapper"><table><thead><tr><th></th><th>巅峰3</th><th>重量强化3</th><th>迅捷利刃3</th><th>怨恨3</th><th>奇袭3</th><th>价格</th><th>缺移速</th></tr></thead><tbody>
+<tr><td><strong>刻印</strong></td><td></td><td>12</td><td>9</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>能力石</td><td></td><td></td><td></td><td>7</td><td>7</td><td></td><td></td></tr>
+<tr><td><strong>项链</strong>  专迅 500</td><td></td><td></td><td>3</td><td></td><td>5</td><td>5k</td><td>攻速-3</td></tr>
+<tr><td><strong>耳环1</strong>迅捷</td><td>5</td><td></td><td>3</td><td></td><td></td><td>2k</td><td>攻击-1</td></tr>
+<tr><td><strong>耳环2</strong>迅捷 295 or 296 or 299</td><td>5</td><td></td><td></td><td></td><td>3</td><td>1k</td><td>移速-1or攻速-1or防御-2</td></tr>
+<tr><td><strong>戒指1</strong>迅捷 200or198</td><td>5</td><td></td><td></td><td>3</td><td></td><td>1k</td><td>防御-3or攻速-3</td></tr>
+<tr><td><strong>戒指2</strong>专长 196</td><td></td><td>3</td><td></td><td>5</td><td></td><td></td><td>攻击-3</td></tr>
+</tbody></table>
+</div>
+<p>戒指：</p>
+<p>怨恨3迅捷5：15000</p>
+<p>怨恨5迅捷3：20000</p>
+<p>怨恨3奇袭5：20000</p>
+<p>怨恨5奇袭3：9000</p>
+<p>奇袭3迅捷5：10000</p>
+<p>奇袭5迅捷3：5000</p>
+<h2 id="女枪"><a class="header" href="#女枪">女枪</a></h2>
+<div class="table-wrapper"><table><thead><tr><th></th><th>狩猎3</th><th>迅捷利刃3</th><th>尖刺3</th><th>肾上3</th><th>侧击</th><th>负面</th><th>价格</th></tr></thead><tbody>
+<tr><td><strong>刻印</strong></td><td></td><td>12</td><td></td><td></td><td>12</td><td></td><td></td></tr>
+<tr><td>能力石</td><td></td><td></td><td>7</td><td>5</td><td></td><td></td><td></td></tr>
+<tr><td><strong>项链</strong>  专迅</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td><strong>耳环1</strong>迅捷</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td><strong>耳环2</strong>迅捷</td><td></td><td></td><td></td><td></td><td></td><td></td><td>600</td></tr>
+<tr><td><strong>戒指1</strong>迅捷</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td><strong>戒指2</strong>专长</td><td></td><td></td><td></td><td></td><td></td><td></td><td>500</td></tr>
+</tbody></table>
+</div>
+<h2 id="奶妈"><a class="header" href="#奶妈">奶妈</a></h2>
+<p>妙手重甲：3+5 1800  5+3 1000</p>
+<div class="table-wrapper"><table><thead><tr><th></th><th>盛放/迫切救赎</th><th>妙手回春</th><th>觉醒</th><th>重甲</th><th>法力爆发</th></tr></thead><tbody>
+<tr><td>刻印</td><td>9</td><td></td><td>9</td><td></td><td></td></tr>
+<tr><td>能力石</td><td></td><td>7</td><td></td><td>7</td><td></td></tr>
+<tr><td>项链1-专迅</td><td></td><td>3</td><td></td><td></td><td>5</td></tr>
+<tr><td>耳环1-迅捷</td><td>3</td><td></td><td></td><td></td><td>5</td></tr>
+<tr><td>耳环2-迅捷</td><td>3</td><td></td><td></td><td></td><td>5</td></tr>
+<tr><td>戒指1-专长</td><td></td><td>5</td><td></td><td>3</td><td></td></tr>
+<tr><td>戒指2-迅捷</td><td></td><td></td><td>3</td><td>5</td><td></td></tr>
+</tbody></table>
+</div><div class="table-wrapper"><table><thead><tr><th></th><th>职业</th><th>妙手回春</th><th>觉醒</th><th>重甲</th><th>举步生风</th><th>法力爆发</th></tr></thead><tbody>
+<tr><td>刻印</td><td>9</td><td>9</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>能力石</td><td></td><td></td><td>7</td><td>7</td><td></td><td></td></tr>
+<tr><td>项链1-专迅</td><td></td><td></td><td></td><td>3</td><td></td><td>5</td></tr>
+<tr><td>耳环1-专长</td><td></td><td></td><td>3</td><td>5</td><td></td><td></td></tr>
+<tr><td>耳环2-迅捷</td><td>3</td><td></td><td></td><td></td><td></td><td>5</td></tr>
+<tr><td>戒指1-专长</td><td></td><td>3</td><td>5</td><td></td><td></td><td></td></tr>
+<tr><td>戒指2-迅捷</td><td>3</td><td></td><td></td><td></td><td></td><td>5</td></tr>
+</tbody></table>
+</div><div class="table-wrapper"><table><thead><tr><th></th><th>职业</th><th>暴率攻增</th><th>攻增</th><th>蓄伤增</th></tr></thead><tbody>
+<tr><td>专\会</td><td>迫切救赎</td><td>妙手回春</td><td>重甲</td><td>举步生风</td></tr>
+<tr><td><strong>刻印</strong></td><td>6</td><td>9</td><td></td><td></td></tr>
+<tr><td><strong>能力石</strong></td><td></td><td>7</td><td></td><td>6</td></tr>
+<tr><td><strong>项链</strong>专迅</td><td></td><td></td><td></td><td></td></tr>
+<tr><td><strong>耳环1</strong>专长180</td><td>3</td><td></td><td></td><td>2</td></tr>
+<tr><td><strong>耳环2</strong>迅捷</td><td></td><td></td><td></td><td>2</td></tr>
+<tr><td><strong>戒指1</strong>专长18</td><td>3</td><td></td><td></td><td>2</td></tr>
+<tr><td><strong>戒指2</strong>迅捷160</td><td>3</td><td></td><td></td><td>3</td></tr>
+</tbody></table>
+</div>
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
