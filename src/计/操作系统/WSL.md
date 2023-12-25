@@ -4,21 +4,9 @@
 
 
 
-## 家庭版安装 hyper-v
+## ---快开---
 
-> [Win11 家庭版/专业版开启 Hyper-V](https://zhuanlan.zhihu.com/p/577980646)；
 
-桌面空白处右键-新建-文本文档，命名为 `hyper-v.cmd`，编辑添加如下内容
-
-```shell
-pushd "%~dp0"
-dir /b %SystemRoot%\servicing\Packages\*Hyper-V*.mum >hyper-v.txt
-for /f %%i in ('findstr /i . hyper-v.txt 2^>nul') do dism /online /norestart /add-package:"%SystemRoot%\servicing\Packages\%%i"
-del hyper-v.txt
-Dism /online /enable-feature /featurename:Microsoft-Hyper-V-All /LimitAccess /ALL
-```
-
-右击文件-以管理员身份运行，下载完成后输入 y 重启。
 
 ## 启用 windows 功能
 
@@ -64,13 +52,43 @@ wsl --update
 
 ### WslRegisterDistribution failed with error: 0x800701bc
 
+> [下载 Linux 内核更新包](https://learn.microsoft.com/zh-cn/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package)；
+
 下载 适用于 x64 计算机的 WSL2 Linux 内核[更新包](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi)；
 
 
 
-## ~~KVM on WSL~~
+## KVM on WSL
 
-**放弃了，guest os 连不上外部网络**；
+### 安装 hyper-v
+
+#### 专业版
+
+在 `Windows 功能` 中启用 `Hyper-V` ji'ke
+
+#### 家庭版
+
+> 不需要安装hyper-v也能安装wsl，安装hyper-v用于调整wsl上的kvm虚拟机网络；
+>
+> [Win11 家庭版/专业版开启 Hyper-V](https://zhuanlan.zhihu.com/p/577980646)；
+
+桌面空白处右键-新建-文本文档，命名为 `hyper-v.cmd`，编辑添加如下内容
+
+```shell
+pushd "%~dp0"
+dir /b %SystemRoot%\servicing\Packages\*Hyper-V*.mum >hyper-v.txt
+for /f %%i in ('findstr /i . hyper-v.txt 2^>nul') do dism /online /norestart /add-package:"%SystemRoot%\servicing\Packages\%%i"
+del hyper-v.txt
+Dism /online /enable-feature /featurename:Microsoft-Hyper-V-All /LimitAccess /ALL
+```
+
+右击文件-以管理员身份运行，下载完成后输入 y 重启。
+
+
+
+
+
+> **放弃了，guest os 连不上外部网络**；
 
 https://www.bilibili.com/video/av201187993
 
