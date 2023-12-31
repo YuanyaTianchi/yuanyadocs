@@ -16,7 +16,7 @@ tags = ["it", "versioncontrol"]
 
 # 快开
 
-### 安装
+## 安装
 
 > [下载](https://git-scm.com/downloads)；
 
@@ -24,19 +24,13 @@ tags = ["it", "versioncontrol"]
 apt install -y git
 ```
 
-### 配置 gitconfig
+## 配置 gitconfig
 
 - 仓库配置：`<git-repository>/.git/config`；
 - 全局配置：`~/.gitconfig`；
 
 ```shell
 cat > ~/.gitconfig <<EOF
-[core]
-  # 关闭 quotepath，使中文不以八进制的字符编码显示，而是显示汉字
-  quotepath=false
-[user]
-  name = LyonTianchi
-  email = yuanyatianchi@gmail.com
 [alias]
   st = status
   co = commit
@@ -44,7 +38,9 @@ cat > ~/.gitconfig <<EOF
   ch = checkout
   lg = log --graph --abbrev-commit --pretty=oneline
   rebh = git rebase -i HEAD~
-
+[core]
+  # 关闭 quotepath，使中文不以八进制的字符编码显示，而是显示汉字
+  quotepath=false
 [http]
   # http 代理
   proxy = http://<proxy_server_ip>:<port>
@@ -53,6 +49,9 @@ cat > ~/.gitconfig <<EOF
   proxy = https://<proxy_server_ip>:<port>
   # 关闭证书校验
   sslVerify = false
+[user]
+  name = Tianchi
+  email = yuanyatianchi@gmail.com
 EOF
 # 查看
 git config --list
@@ -60,7 +59,7 @@ git config --list
 
 
 
-### 配置 gitignore
+## 配置 gitignore
 
 > [.gitignore常用配置](https://gist.github.com/octocat/9257657)
 
@@ -68,20 +67,39 @@ git config --list
 .idea
 ```
 
-### 配置 GitHub 加速
+## 配置 GitHub 可访问/加速
 
-> [让你访问github提速到2MB每秒](https://zhuanlan.zhihu.com/p/248356236) - 知乎..
+### hosts
 
-修改系统Hosts文件
+配置 GitHub 所需资源相关域名 hosts 使资源可访问，但不一定能使仓库操作加速。
+
+配置 hosts 适用于任何无法加载资源的域名，通过 chrome/edge 插件 [Proxy SwitchyOmega](https://chromewebstore.google.com/detail/proxy-switchyomega/padekgcemlokbadohgkifijomclgjgif) 查看未加载资源域名（或通过 F12 查看，不推荐），然后访问 [IPADDRESS.COM](https://www.ipaddress.com/) 查询域名地址（或  [IP.cn](https://ip.cn/) ，不推荐）。
+
+以下是常用条目（大部分稳定，如仍无法访问请查询后更新）：
 
 ```host
 cat >> /etc/hosts << EOF
 
 
-140.82.114.3   github.com
-151.101.1.194  github.global.ssl.fastly.net
+# search from ipaddress.com
+140.82.113.4    github.com
+151.101.1.194   github.global.ssl.fastly.net
+185.199.108.154 github.githubassets.com
+185.199.111.133 raw.githubusercontent.com
+172.253.115.97 googletagmanager.com
+172.253.122.94 recaptcha.net
 EOF
 ```
+
+windows 更改后仍无法访问请打开终端执行 `ipconfig /flushdns` 命令，仍然无法访问请**重启**系统。
+
+
+
+### Github Desktop
+
+> [GitHub Desktop](https://desktop.github.com/)；
+
+通过 Github Desktop 操作仓库，速度拉满。
 
 
 
