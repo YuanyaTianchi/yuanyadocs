@@ -183,24 +183,18 @@ tags = [&quot;it&quot;, &quot;versioncontrol&quot;]</p>
 <p><a href="https://git-scm.com/">官网</a>；</p>
 </blockquote>
 <h1 id="快开"><a class="header" href="#快开">快开</a></h1>
-<h3 id="安装"><a class="header" href="#安装">安装</a></h3>
+<h2 id="安装"><a class="header" href="#安装">安装</a></h2>
 <blockquote>
 <p><a href="https://git-scm.com/downloads">下载</a>；</p>
 </blockquote>
 <pre><code class="language-shell">apt install -y git
 </code></pre>
-<h3 id="配置-gitconfig"><a class="header" href="#配置-gitconfig">配置 gitconfig</a></h3>
+<h2 id="配置-gitconfig"><a class="header" href="#配置-gitconfig">配置 gitconfig</a></h2>
 <ul>
 <li>仓库配置：<code>&lt;git-repository&gt;/.git/config</code>；</li>
 <li>全局配置：<code>~/.gitconfig</code>；</li>
 </ul>
 <pre><code class="language-shell">cat &gt; ~/.gitconfig &lt;&lt;EOF
-[core]
-  # 关闭 quotepath，使中文不以八进制的字符编码显示，而是显示汉字
-  quotepath=false
-[user]
-  name = LyonTianchi
-  email = yuanyatianchi@gmail.com
 [alias]
   st = status
   co = commit
@@ -208,7 +202,9 @@ tags = [&quot;it&quot;, &quot;versioncontrol&quot;]</p>
   ch = checkout
   lg = log --graph --abbrev-commit --pretty=oneline
   rebh = git rebase -i HEAD~
-
+[core]
+  # 关闭 quotepath，使中文不以八进制的字符编码显示，而是显示汉字
+  quotepath=false
 [http]
   # http 代理
   proxy = http://&lt;proxy_server_ip&gt;:&lt;port&gt;
@@ -217,28 +213,42 @@ tags = [&quot;it&quot;, &quot;versioncontrol&quot;]</p>
   proxy = https://&lt;proxy_server_ip&gt;:&lt;port&gt;
   # 关闭证书校验
   sslVerify = false
+[user]
+  name = Tianchi
+  email = yuanyatianchi@gmail.com
 EOF
 # 查看
 git config --list
 </code></pre>
-<h3 id="配置-gitignore"><a class="header" href="#配置-gitignore">配置 gitignore</a></h3>
+<h2 id="配置-gitignore"><a class="header" href="#配置-gitignore">配置 gitignore</a></h2>
 <blockquote>
 <p><a href="https://gist.github.com/octocat/9257657">.gitignore常用配置</a></p>
 </blockquote>
 <pre><code class="language-shell">.idea
 </code></pre>
-<h3 id="配置-github-加速"><a class="header" href="#配置-github-加速">配置 GitHub 加速</a></h3>
-<blockquote>
-<p><a href="https://zhuanlan.zhihu.com/p/248356236">让你访问github提速到2MB每秒</a> - 知乎..</p>
-</blockquote>
-<p>修改系统Hosts文件</p>
+<h2 id="配置-github-可访问加速"><a class="header" href="#配置-github-可访问加速">配置 GitHub 可访问/加速</a></h2>
+<h3 id="hosts"><a class="header" href="#hosts">hosts</a></h3>
+<p>配置 GitHub 所需资源相关域名 hosts 使资源可访问，但不一定能使仓库操作加速。</p>
+<p>配置 hosts 适用于任何无法加载资源的域名，通过 chrome/edge 插件 <a href="https://chromewebstore.google.com/detail/proxy-switchyomega/padekgcemlokbadohgkifijomclgjgif">Proxy SwitchyOmega</a> 查看未加载资源域名（或通过 F12 查看，不推荐），然后访问 <a href="https://www.ipaddress.com/">IPADDRESS.COM</a> 查询域名地址（或  <a href="https://ip.cn/">IP.cn</a> ，不推荐）。</p>
+<p>以下是常用条目（大部分稳定，如仍无法访问请查询后更新）：</p>
 <pre><code class="language-host">cat &gt;&gt; /etc/hosts &lt;&lt; EOF
 
 
-140.82.114.3   github.com
-151.101.1.194  github.global.ssl.fastly.net
+# search from ipaddress.com
+140.82.113.4    github.com
+151.101.1.194   github.global.ssl.fastly.net
+185.199.108.154 github.githubassets.com
+185.199.111.133 raw.githubusercontent.com
+172.253.115.97 googletagmanager.com
+172.253.122.94 recaptcha.net
 EOF
 </code></pre>
+<p>windows 更改后仍无法访问请打开终端执行 <code>ipconfig /flushdns</code> 命令，仍然无法访问请<strong>重启</strong>系统。</p>
+<h3 id="github-desktop"><a class="header" href="#github-desktop">Github Desktop</a></h3>
+<blockquote>
+<p><a href="https://desktop.github.com/">GitHub Desktop</a>；</p>
+</blockquote>
+<p>通过 Github Desktop 操作仓库，速度拉满。</p>
 <h1 id="基操"><a class="header" href="#基操">基操</a></h1>
 <h3 id="rebase-pull"><a class="header" href="#rebase-pull">rebase pull</a></h3>
 <p>避免产生 merge commit 记录</p>
