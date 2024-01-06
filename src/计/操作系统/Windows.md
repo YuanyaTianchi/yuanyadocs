@@ -12,17 +12,32 @@ tags = ["it", "base"]
 
 # Windows
 
-
-
-[vscode](https://code.visualstudio.com/)；
-
-[360zip](https://yasuo.360.cn/)；
-
-[Q-Dir](http://www.q-dir.com/)；
+> [vscode](https://code.visualstudio.com/)；
+>
+> [360zip](https://yasuo.360.cn/)；
+>
+> [Q-Dir](http://www.q-dir.com/)；
 
 
 
-### 删除软件安装注册表
+## win11 跳过联网
+
+Shift+F10 打开 cmd，执行命令 `oobe\bypassnro`，等待重启后即可跳过
+
+
+
+## win11 专业版激活
+
+```
+slmgr /ipk W269N-WFGWX-YVC9B-4J6C9-T83GX
+# slmgr /skms kms.03k.org
+slmgr /skms kms.0t.net.cn
+slmgr /ato
+```
+
+
+
+## 删除软件安装注册表
 
 > [删除软件安装记录](https://jingyan.baidu.com/article/a3a3f811a2f4628da2eb8a18.html)；
 
@@ -116,12 +131,16 @@ https://dev.mysql.com/downloads/
 
 ## 环境变量
 
+
+
 ### 增变量
 
 | key    | value                                                        |
 | ------ | ------------------------------------------------------------ |
 | path   | E:\it\front-end\Node<br/>E:\it\go\Go\bin<br/>E:\it\java\Java\jdk1.8.0_231\bin<br/>E:\it\java\Java\jdk1.8.0_231\jre\bin<br/>E:\it\python\Python27<br/>E:\it\version-control\Git\cmd |
 | GOPATH | E:\it\go\GoProjects                                          |
+
+
 
 ### 原变量
 
@@ -142,10 +161,5 @@ https://dev.mysql.com/downloads/
 | TMP                    | %SystemRoot%\TEMP                                            |
 | USERNAME               | SYSTEM                                                       |
 | windir                 | %SystemRoot%                                                 |
-
-
-
-
-
 
 
