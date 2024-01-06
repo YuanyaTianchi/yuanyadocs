@@ -6,7 +6,7 @@
 
 ## ---快开---
 
-> [安装](https://criu.org/Installation)；
+> [安装](https://criu.org/Installation)；---
 
 
 

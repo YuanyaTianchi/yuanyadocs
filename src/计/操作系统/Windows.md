@@ -12,6 +12,10 @@ tags = ["it", "base"]
 
 # Windows
 
+> [Windows下载](https://www.microsoft.com/zh-cn/software-download)；
+>
+> 
+>
 > [vscode](https://code.visualstudio.com/)；
 >
 > [360zip](https://yasuo.360.cn/)；
@@ -161,5 +165,4 @@ https://dev.mysql.com/downloads/
 | TMP                    | %SystemRoot%\TEMP                                            |
 | USERNAME               | SYSTEM                                                       |
 | windir                 | %SystemRoot%                                                 |
-
 
