@@ -174,9 +174,9 @@
                 <div id="content" class="content">
                     <main>
                         <p>+++</p>
-<p>title = &quot;eBPF&quot;
-description = &quot;it.os.linux.eBPF&quot;
-tags = [&quot;it&quot;,&quot;os&quot;,&quot;linux&quot;]</p>
+<p>title = "eBPF"
+description = "it.os.linux.eBPF"
+tags = ["it","os","linux"]</p>
 <p>+++</p>
 <h1 id="ebpf"><a class="header" href="#ebpf">eBPF</a></h1>
 <blockquote>
@@ -217,18 +217,18 @@ CONFIG_DEBUG_INFO_BTF_MODULES=y
 $ bpftool btf dump file /sys/kernel/btf/vmlinux format c &gt; vmlinux.h
 </code></pre>
 <h2 id="bpf-prog"><a class="header" href="#bpf-prog">BPF prog</a></h2>
-<pre><code class="language-c">#include &quot;vmlinux.h&quot;
+<pre><code class="language-c">#include "vmlinux.h"
 
 #include &lt;bpf/bpf_helpers.h&gt;
 #include &lt;bpf/bpf_tracing.h&gt;
 
-SEC(&quot;&lt;bpf_type&gt;/&lt;trace_name&gt;&quot;)
+SEC("&lt;bpf_type&gt;/&lt;trace_name&gt;")
 int kprobe__do_sys_openat2(struct pt_regs *ctx)
 {
     char file_name[256];
     bpf_probe_read(file_name, sizeof(file_name), PT_REGS_PARM2(ctx));
 
-    char fmt[] = &quot;open file %s\n&quot;;
+    char fmt[] = "open file %s\n";
     bpf_trace_printk(fmt, sizeof(fmt), &amp;file_name);
 
     return 0;
@@ -241,18 +241,18 @@ int kprobe__do_sys_openat2(struct pt_regs *ctx)
 <pre><code class="language-makefile"></code></pre>
 <h3 id="类型"><a class="header" href="#类型">类型</a></h3>
 <h3 id="kprobes"><a class="header" href="#kprobes">kprobes</a></h3>
-<pre><code class="language-c">#include &quot;vmlinux.h&quot;
+<pre><code class="language-c">#include "vmlinux.h"
 
 #include &lt;bpf/bpf_helpers.h&gt;
 #include &lt;bpf/bpf_tracing.h&gt;
 
-SEC(&quot;kprobe/do_sys_openat2&quot;)
+SEC("kprobe/do_sys_openat2")
 int kprobe__do_sys_openat2(struct pt_regs *ctx)
 {
     char file_name[256];
     bpf_probe_read(file_name, sizeof(file_name), PT_REGS_PARM2(ctx));
 
-    char fmt[] = &quot;open file %s\n&quot;;
+    char fmt[] = "open file %s\n";
     bpf_trace_printk(fmt, sizeof(fmt), &amp;file_name);
 
     return 0;
@@ -304,19 +304,19 @@ DBGVMLINUX = /usr/lib/debug/boot/vmlinux-$(shell uname -r)
 vmlinuxh: $(VMLINUXH)
 $(VMLINUXH): $(OUTPUT)
 ifeq ($(wildcard $(BPFTOOL)),)
-	@echo &quot;ERROR: could not find bpftool&quot;
+	@echo "ERROR: could not find bpftool"
 	@exit 1
 endif
 	@if [ -f $(DBGVMLINUX) ]; then \
-		echo &quot;INFO: found dbg kernel, generating $(VMLINUXH) from $(DBGVMLINUX)&quot;; \
+		echo "INFO: found dbg kernel, generating $(VMLINUXH) from $(DBGVMLINUX)"; \
 		$(BPFTOOL) btf dump file $(DBGVMLINUX) format c &gt; $(VMLINUXH); \
 	fi
 	@if [ ! -f $(BTFFILE) ] &amp;&amp; [ ! -f $(DBGVMLINUX) ]; then \
-		echo &quot;ERROR: kernel does not seem to support BTF&quot;; \
+		echo "ERROR: kernel does not seem to support BTF"; \
 		exit 1; \
 	fi
 	@if [ ! -f $(VMLINUXH) ]; then \
-		echo &quot;INFO: generating $(VMLINUXH) from $(BTFFILE)&quot;; \
+		echo "INFO: generating $(VMLINUXH) from $(BTFFILE)"; \
 		$(BPFTOOL) btf dump file $(BTFFILE) format c &gt; $(VMLINUXH); \
 	fi
 
@@ -333,7 +333,7 @@ GIT = $(shell which git || /bin/false)
 
 $(LIBBPF_SRC):
 ifeq ($(wildcard $@), )
-	echo &quot;INFO: updating submodule 'libbpf'&quot;
+	echo "INFO: updating submodule 'libbpf'"
 	$(GIT) submodule update --init --recursive
 endif
 $(LIBBPF_DST):
@@ -352,7 +352,7 @@ LDFLAGS =
 .PHONY: libbpf-static
 libbpf-static: $(LIBBPF_OBJ)
 $(LIBBPF_OBJ): $(LIBBPF_SRC) $(wildcard $(LIBBPF_SRC)/*.[ch]) | $(LIBBPF_DST)
-	CC=&quot;$(CC)&quot; CFLAGS=&quot;$(CFLAGS)&quot; LD_FLAGS=&quot;$(LDFLAGS)&quot; \
+	CC="$(CC)" CFLAGS="$(CFLAGS)" LD_FLAGS="$(LDFLAGS)" \
 	$(MAKE) -C $(LIBBPF_SRC) \
 		BUILD_STATIC_ONLY=1 \
 		DESTDIR=$(LIBBPF_DESTDIR) \
@@ -362,8 +362,8 @@ $(LIBBPF_OBJ): $(LIBBPF_SRC) $(wildcard $(LIBBPF_SRC)/*.[ch]) | $(LIBBPF_DST)
 
 # ---------------- ---------------- libbpf dynamic
 # libbpf dynamic:
-CGO_CFGLAGS_DYN = &quot;-I. -I/usr/include/&quot;
-CGO_LDFLAGS_DYN = &quot;-lelf -lz -lbpf&quot;
+CGO_CFGLAGS_DYN = "-I. -I/usr/include/"
+CGO_LDFLAGS_DYN = "-lelf -lz -lbpf"
 CGO_EXTLDFLAGS_DYN = '-w'
 
 .PHONY: libbpf-dynamic
@@ -377,8 +377,8 @@ PROGRAM = ytrace
 # bpf prog: clang -O2 -Wall -target bpf
 CLANG = clang
 BPF_SRC = $(abspath $(ROOT)/pkg/bpf)
-BPF_CFLAGS_STATIC = &quot;-I$(abspath $(OUTPUT))&quot;
-BPF_LDFLAGS_STATIC = &quot;-lelf -lz $(LIBBPF_OBJ)&quot;
+BPF_CFLAGS_STATIC = "-I$(abspath $(OUTPUT))"
+BPF_LDFLAGS_STATIC = "-lelf -lz $(LIBBPF_OBJ)"
 
 .PHONY: $(PROGRAM).bpf.c
 $(PROGRAM).bpf.o: $(PROGRAM).bpf.c | vmlinuxh
@@ -392,9 +392,9 @@ OS := $(shell uname -s)
 ARCH := $(shell uname -m)
 ARCH := $(subst x86_64,amd64,$(ARCH))
 GOARCH := $(ARCH)
-CGO_CFLAGS_STATIC = &quot;-I$(abspath $(OUTPUT))&quot;
-CGO_LDFLAGS_STATIC = &quot;-lelf -lz $(LIBBPF_OBJ)&quot;
-CGO_EXTLDFLAGS_STATIC = '-w -extldflags &quot;-static&quot;'
+CGO_CFLAGS_STATIC = "-I$(abspath $(OUTPUT))"
+CGO_LDFLAGS_STATIC = "-lelf -lz $(LIBBPF_OBJ)"
+CGO_EXTLDFLAGS_STATIC = '-w -extldflags "-static"'
 
 .PHONY: $(PROGRAM)
 $(PROGRAM): libbpf | $(PROGRAM).bpf.o
@@ -417,18 +417,18 @@ clean:
 
 </code></pre>
 <p>ebpf/c/</p>
-<pre><code class="language-c">#include &quot;vmlinux.h&quot;
+<pre><code class="language-c">#include "vmlinux.h"
 
 #include &lt;bpf/bpf_helpers.h&gt;
 #include &lt;bpf/bpf_tracing.h&gt;
 
-SEC(&quot;kprobe/do_sys_openat2&quot;)
+SEC("kprobe/do_sys_openat2")
 int kprobe__do_sys_openat2(struct pt_regs *ctx)
 {
     char file_name[256];
     bpf_probe_read(file_name, sizeof(file_name), PT_REGS_PARM2(ctx));
 
-    char fmt[] = &quot;open file %s\n&quot;;
+    char fmt[] = "open file %s\n";
     bpf_trace_printk(fmt, sizeof(fmt), &amp;file_name);
 
     return 0;
@@ -454,9 +454,9 @@ int kprobe__do_sys_openat2(struct pt_regs *ctx)
 <pre><code class="language-shell"># 
 
 # libbpf 在 tracee 项目 make 中的安装方式
-CC=&quot;clang&quot; \
-CFLAGS=&quot;&quot;-fPIC&quot;&quot; \
-LD_FLAGS=&quot;&quot; \
+CC="clang" \
+CFLAGS=""-fPIC"" \
+LD_FLAGS="" \
 make \
 -C ./3rdparty/libbpf/src \
 BUILD_STATIC_ONLY=1 \
@@ -484,19 +484,19 @@ var Definitions = eventDefinitions{
         // 参考 VfsWrite 定义实现 VfsRead 定义
         VfsRead: {
 			ID32Bit: sys32undefined,
-			Name:    &quot;vfs_read&quot;,
+			Name:    "vfs_read",
 			Probes: []probeDependency{
 				{Handle: probes.VfsRead, Required: true},
 				{Handle: probes.VfsReadRet, Required: true},
 			},
 			Sets: []string{},
 			Params: []trace.ArgMeta{
-				{Type: &quot;const char*&quot;, Name: &quot;pathname&quot;},
-				{Type: &quot;dev_t&quot;, Name: &quot;dev&quot;},
-				{Type: &quot;unsigned long&quot;, Name: &quot;inode&quot;},
-				{Type: &quot;size_t&quot;, Name: &quot;count&quot;},
-				{Type: &quot;off_t&quot;, Name: &quot;pos&quot;},
-				{Type: &quot;unsigned int&quot;, Name: &quot;flags&quot;}, // 顺手添加一个 flags
+				{Type: "const char*", Name: "pathname"},
+				{Type: "dev_t", Name: "dev"},
+				{Type: "unsigned long", Name: "inode"},
+				{Type: "size_t", Name: "count"},
+				{Type: "off_t", Name: "pos"},
+				{Type: "unsigned int", Name: "flags"}, // 顺手添加一个 flags
 			},
 		},
         VfsWrite: { /*...*/ },
@@ -515,10 +515,10 @@ const (
 // Init initializes a Probes interface
 func Init(module *bpf.Module, netEnabled bool) (Probes, error) {
 	allProbes := map[Handle]Probe{
-		VfsRead:                   &amp;traceProbe{eventName: &quot;vfs_read&quot;, probeType: kprobe, programName: &quot;trace_vfs_read&quot;},        // 注册入参探针
-		VfsReadRet:                &amp;traceProbe{eventName: &quot;vfs_read&quot;, probeType: kretprobe, programName: &quot;trace_ret_vfs_read&quot;}, // 注册出参探针
-		VfsWrite:                   &amp;traceProbe{eventName: &quot;vfs_write&quot;, probeType: kprobe, programName: &quot;trace_vfs_write&quot;},
-		VfsWriteRet:                &amp;traceProbe{eventName: &quot;vfs_write&quot;, probeType: kretprobe, programName: &quot;trace_ret_vfs_write&quot;},
+		VfsRead:                   &amp;traceProbe{eventName: "vfs_read", probeType: kprobe, programName: "trace_vfs_read"},        // 注册入参探针
+		VfsReadRet:                &amp;traceProbe{eventName: "vfs_read", probeType: kretprobe, programName: "trace_ret_vfs_read"}, // 注册出参探针
+		VfsWrite:                   &amp;traceProbe{eventName: "vfs_write", probeType: kprobe, programName: "trace_vfs_write"},
+		VfsWriteRet:                &amp;traceProbe{eventName: "vfs_write", probeType: kretprobe, programName: "trace_ret_vfs_write"},
     }
 }
 </code></pre>
@@ -609,10 +609,10 @@ do_file_read_operation(struct pt_regs *ctx, u32 event_id, u32 tail_call_id)
     return 0;
 }
 
-SEC(&quot;kprobe/vfs_read&quot;)
+SEC("kprobe/vfs_read")
 TRACE_ENT_FUNC(vfs_read, VFS_READ);
 
-SEC(&quot;kretprobe/vfs_read&quot;)
+SEC("kretprobe/vfs_read")
 int BPF_KPROBE(trace_ret_vfs_read)
 {
     return do_file_read_operation(ctx, VFS_READ, TAIL_VFS_READ);
@@ -634,12 +634,12 @@ clang \
 	-o dist/tracee.bpf.core.o
 make ./dist/btfhub
 make btfhub
-GOOS=linux CC=clang GOARCH=amd64 CGO_CFLAGS=&quot;-I/root/projects/github.com/tracee/dist/libbpf&quot; CGO_LDFLAGS=&quot;-lelf  -lz  /root/projects/github.com/tracee/dist/libbpf/libbpf.a&quot; go build \
+GOOS=linux CC=clang GOARCH=amd64 CGO_CFLAGS="-I/root/projects/github.com/tracee/dist/libbpf" CGO_LDFLAGS="-lelf  -lz  /root/projects/github.com/tracee/dist/libbpf/libbpf.a" go build \
 	-tags core,ebpf \
-	-ldflags=&quot;-w \
-		-extldflags \&quot;\&quot; \
-		-X main.version=\&quot;v0.8.0\&quot; \
-		&quot; \
+	-ldflags="-w \
+		-extldflags \"\" \
+		-X main.version=\"v0.8.0\" \
+		" \
 	-v -o dist/tracee-ebpf \
 	./cmd/tracee-ebpf
 make[1]: “dist/btfhub”已是最新。
@@ -667,12 +667,12 @@ TIME             UID    COMM             PID     TID     RET              EVENT 
 <pre><code class="language-makefile">.PHONY: build-binary build-container run-container clean
 
 build-binary:
-	GOOS=linux CC=clang GOARCH=amd64 CGO_CFLAGS=&quot;-I/root/projects/github.com/tracee/dist/libbpf&quot; CGO_LDFLAGS=&quot;-lelf  -lz  /root/projects/github.com/tracee/dist/libbpf/libbpf.a&quot; go build \
+	GOOS=linux CC=clang GOARCH=amd64 CGO_CFLAGS="-I/root/projects/github.com/tracee/dist/libbpf" CGO_LDFLAGS="-lelf  -lz  /root/projects/github.com/tracee/dist/libbpf/libbpf.a" go build \
     	-tags core,ebpf \
-    	-ldflags=&quot;-w \
-    		-extldflags \&quot;\&quot; \
-    		-X main.version=\&quot;v0.8.0\&quot; \
-    		&quot; \
+    	-ldflags="-w \
+    		-extldflags \"\" \
+    		-X main.version=\"v0.8.0\" \
+    		" \
     	-v -o bin/tracee-ebpf \
     	./cmd/tracee-ebpf
 
@@ -696,7 +696,7 @@ COPY /usr/lib64/libelf.so.1 /lib64/libelf.so.1
 
 COPY bin/tracee-ebpf /tracee/tracee-ebpf
 
-ENTRYPOINT [&quot;sh&quot;,&quot;-c&quot;,&quot;/tracee/tracee-ebpf --trace container --trace event=vfs_write --trace event=vfs_read&quot;]
+ENTRYPOINT ["sh","-c","/tracee/tracee-ebpf --trace container --trace event=vfs_write --trace event=vfs_read"]
 </code></pre>
 <p>测试运行</p>
 <pre><code class="language-shell">$ make -f Makefile.minimal run-container

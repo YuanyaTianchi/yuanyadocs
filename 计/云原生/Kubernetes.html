@@ -174,9 +174,9 @@
                 <div id="content" class="content">
                     <main>
                         <p>+++</p>
-<p>title = &quot;kubernetes&quot;
-description = &quot;it.cloud.kubernetes&quot;
-tags = [&quot;it&quot;, &quot;cloud&quot;, &quot;kubernetes&quot;]</p>
+<p>title = "kubernetes"
+description = "it.cloud.kubernetes"
+tags = ["it", "cloud", "kubernetes"]</p>
 <p>+++</p>
 <h1 id="kubernetes"><a class="header" href="#kubernetes">kubernetes</a></h1>
 <h2 id="--快开--"><a class="header" href="#--快开--">- 快开 -</a></h2>
@@ -217,7 +217,7 @@ apt install -y apt-transport-https ca-certificates curl gnupg lsb-release
 <pre><code class="language-shell"># GPG密钥
 curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg
 # apt源
-echo &quot;deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://mirrors.aliyun.com/kubernetes/apt/ kubernetes-xenial main&quot; | sudo tee /etc/apt/sources.list.d/kubernetes.list
+echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://mirrors.aliyun.com/kubernetes/apt/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 
 # 查看版本。如果出现版本错误可能需要降低尝 kubenetes 版本
 apt update &amp;&amp; apt-cache madison kubeadm | grep 1.26
@@ -263,11 +263,11 @@ systemctl status kubelet
 <p><a href="https://kubernetes.io/zh-cn/docs/tasks/tools/install-kubectl-linux/">安装kubectl</a>。</p>
 </blockquote>
 <pre><code class="language-shell"># kubectl
-curl -LO &quot;https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl&quot;
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 # 校验和
-curl -LO &quot;https://dl.k8s.io/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256&quot;
+curl -LO "https://dl.k8s.io/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
 # 校验
-echo &quot;$(cat kubectl.sha256)  kubectl&quot; | sha256sum --check
+echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check
 # 移动
 mv kubectl /usr/local/bin
 </code></pre>
@@ -353,7 +353,7 @@ Alternatively, if you are the root user, you can run:
 
 # 如何安装 pod 网络
 You should now deploy a pod network to the cluster.
-Run &quot;kubectl apply -f [podnetwork].yaml&quot; with one of the options listed at:
+Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
   https://kubernetes.io/docs/concepts/cluster-administration/addons/
 
 # 如何添加控制平面节点
@@ -445,19 +445,19 @@ $ cfssl print-defaults csr &gt; csr.json
 # 根据 config.json 文件的格式创建如下的 ca-config.json 文件，过期时间设置成了 87600h
 $ cat &gt; ca-config.json &lt;&lt;EOF
 {
-  &quot;signing&quot;: {
-    &quot;default&quot;: {
-      &quot;expiry&quot;: &quot;87600h&quot;
+  "signing": {
+    "default": {
+      "expiry": "87600h"
     },
-    &quot;profiles&quot;: {
-      &quot;kubernetes&quot;: {
-        &quot;usages&quot;: [
-            &quot;signing&quot;,
-            &quot;key encipherment&quot;,
-            &quot;server auth&quot;,
-            &quot;client auth&quot;
+    "profiles": {
+      "kubernetes": {
+        "usages": [
+            "signing",
+            "key encipherment",
+            "server auth",
+            "client auth"
         ],
-        &quot;expiry&quot;: &quot;87600h&quot;
+        "expiry": "87600h"
       }
     }
   }
@@ -474,30 +474,30 @@ EOF
 <p>创建 CA 证书签名请求文件</p>
 <pre><code class="language-shell">cat &gt; ca-csr.json &lt;&lt; EOF
 &gt; {
-&gt;   &quot;CN&quot;: &quot;kubernetes&quot;,
-&gt;   &quot;key&quot;: {
-&gt;     &quot;algo&quot;: &quot;rsa&quot;,
-&gt;     &quot;size&quot;: 2048
+&gt;   "CN": "kubernetes",
+&gt;   "key": {
+&gt;     "algo": "rsa",
+&gt;     "size": 2048
 &gt;   },
-&gt;   &quot;names&quot;: [
+&gt;   "names": [
 &gt;     {
-&gt;       &quot;C&quot;: &quot;CN&quot;,
-&gt;       &quot;ST&quot;: &quot;BeiJing&quot;,
-&gt;       &quot;L&quot;: &quot;BeiJing&quot;,
-&gt;       &quot;O&quot;: &quot;k8s&quot;,
-&gt;       &quot;OU&quot;: &quot;System&quot;
+&gt;       "C": "CN",
+&gt;       "ST": "BeiJing",
+&gt;       "L": "BeiJing",
+&gt;       "O": "k8s",
+&gt;       "OU": "System"
 &gt;     }
 &gt;   ],
-&gt;     &quot;ca&quot;: {
-&gt;        &quot;expiry&quot;: &quot;87600h&quot;
+&gt;     "ca": {
+&gt;        "expiry": "87600h"
 &gt;     }
 &gt; }
 &gt; EOF
 </code></pre>
 <p>字段说明：</p>
 <ul>
-<li>&quot;CN&quot;：<code>Common Name</code>，kube-apiserver 从证书中提取该字段作为请求的用户名 (User Name)；浏览器使用该字段验证网站是否合法；</li>
-<li>&quot;O&quot;：<code>Organization</code>，kube-apiserver 从证书中提取该字段作为请求用户所属的组 (Group)；</li>
+<li>"CN"：<code>Common Name</code>，kube-apiserver 从证书中提取该字段作为请求的用户名 (User Name)；浏览器使用该字段验证网站是否合法；</li>
+<li>"O"：<code>Organization</code>，kube-apiserver 从证书中提取该字段作为请求用户所属的组 (Group)；</li>
 </ul>
 <p><strong>生成 CA 证书和私钥</strong>。</p>
 <pre><code class="language-shell">$ cfssl gencert -initca ca-csr.json | cfssljson -bare ca
@@ -508,32 +508,32 @@ ca-config.json  ca.csr  ca-csr.json  ca-key.pem  ca.pem
 <p>创建 kubernetes 证书签名请求文件</p>
 <pre><code class="language-shell">$ cat &gt; kubernetes-csr.json &lt;&lt; EOF
 &gt; {
-&gt;     &quot;CN&quot;: &quot;kubernetes&quot;,
-&gt;     &quot;hosts&quot;: [
-&gt;       &quot;127.0.0.1&quot;,
-&gt;       &quot;172.20.0.112&quot;,
-&gt;       &quot;172.20.0.113&quot;,
-&gt;       &quot;172.20.0.114&quot;,
-&gt;       &quot;172.20.0.115&quot;,
-&gt;       &quot;10.254.0.1&quot;,
-&gt;       &quot;kubernetes&quot;,
-&gt;       &quot;kubernetes.default&quot;,
-&gt;       &quot;kubernetes.default.svc&quot;,
-&gt;       &quot;kubernetes.default.svc.cluster&quot;,
-        &quot;algo&quot;: &quot;rsa&quot;,
-&gt;       &quot;kubernetes.default.svc.cluster.local&quot;
+&gt;     "CN": "kubernetes",
+&gt;     "hosts": [
+&gt;       "127.0.0.1",
+&gt;       "172.20.0.112",
+&gt;       "172.20.0.113",
+&gt;       "172.20.0.114",
+&gt;       "172.20.0.115",
+&gt;       "10.254.0.1",
+&gt;       "kubernetes",
+&gt;       "kubernetes.default",
+&gt;       "kubernetes.default.svc",
+&gt;       "kubernetes.default.svc.cluster",
+        "algo": "rsa",
+&gt;       "kubernetes.default.svc.cluster.local"
 &gt;     ],
-&gt;     &quot;key&quot;: {
-&gt;         &quot;algo&quot;: &quot;rsa&quot;,
-&gt;         &quot;size&quot;: 2048
+&gt;     "key": {
+&gt;         "algo": "rsa",
+&gt;         "size": 2048
 &gt;     },
-&gt;     &quot;names&quot;: [
+&gt;     "names": [
 &gt;         {
-&gt;             &quot;C&quot;: &quot;CN&quot;,
-&gt;             &quot;ST&quot;: &quot;BeiJing&quot;,
-&gt;             &quot;L&quot;: &quot;BeiJing&quot;,
-&gt;             &quot;O&quot;: &quot;k8s&quot;,
-&gt;             &quot;OU&quot;: &quot;System&quot;
+&gt;             "C": "CN",
+&gt;             "ST": "BeiJing",
+&gt;             "L": "BeiJing",
+&gt;             "O": "k8s",
+&gt;             "OU": "System"
 &gt;         }
 &gt;     ]
 &gt; }
@@ -552,19 +552,19 @@ kubernetes.csr  kubernetes-csr.json  kubernetes-key.pem  kubernetes.pem
 <p>创建 admin 证书签名请求文件</p>
 <pre><code class="language-shell">$ cat &gt; admin-csr.json &lt;&lt; EOF
 &gt; {
-&gt;   &quot;CN&quot;: &quot;admin&quot;,
-&gt;   &quot;hosts&quot;: [],
-&gt;   &quot;key&quot;: {
-&gt;     &quot;algo&quot;: &quot;rsa&quot;,
-&gt;     &quot;size&quot;: 2048
+&gt;   "CN": "admin",
+&gt;   "hosts": [],
+&gt;   "key": {
+&gt;     "algo": "rsa",
+&gt;     "size": 2048
 &gt;   },
-&gt;   &quot;names&quot;: [
+&gt;   "names": [
 &gt;     {
-&gt;       &quot;C&quot;: &quot;CN&quot;,
-&gt;       &quot;ST&quot;: &quot;BeiJing&quot;,
-&gt;       &quot;L&quot;: &quot;BeiJing&quot;,
-&gt;       &quot;O&quot;: &quot;system:masters&quot;,
-&gt;       &quot;OU&quot;: &quot;System&quot;
+&gt;       "C": "CN",
+&gt;       "ST": "BeiJing",
+&gt;       "L": "BeiJing",
+&gt;       "O": "system:masters",
+&gt;       "OU": "System"
 &gt;     }
 &gt;   ]
 &gt; }
@@ -587,12 +587,12 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   annotations:
-    rbac.authorization.kubernetes.io/autoupdate: &quot;true&quot;
+    rbac.authorization.kubernetes.io/autoupdate: "true"
   creationTimestamp: 2017-04-11T11:20:42Z
   labels:
     kubernetes.io/bootstrapping: rbac-defaults
   name: cluster-admin
-  resourceVersion: &quot;52&quot;
+  resourceVersion: "52"
   selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/cluster-admin
   uid: e61b97b2-1ea8-11e7-8cd7-f4e9d49f8ed0
 roleRef:
@@ -608,19 +608,19 @@ subjects:
 <p>创建 kube-proxy 证书签名请求文件</p>
 <pre><code class="language-shell">$ cat &gt; kube-proxy-csr.json &lt;&lt; EOF
 &gt; {
-&gt;   &quot;CN&quot;: &quot;system:kube-proxy&quot;,
-&gt;   &quot;hosts&quot;: [],
-&gt;   &quot;key&quot;: {
-&gt;     &quot;algo&quot;: &quot;rsa&quot;,
-&gt;     &quot;size&quot;: 2048
+&gt;   "CN": "system:kube-proxy",
+&gt;   "hosts": [],
+&gt;   "key": {
+&gt;     "algo": "rsa",
+&gt;     "size": 2048
 &gt;   },
-&gt;   &quot;names&quot;: [
+&gt;   "names": [
 &gt;     {
-&gt;       &quot;C&quot;: &quot;CN&quot;,
-&gt;       &quot;ST&quot;: &quot;BeiJing&quot;,
-&gt;       &quot;L&quot;: &quot;BeiJing&quot;,
-&gt;       &quot;O&quot;: &quot;k8s&quot;,
-&gt;       &quot;OU&quot;: &quot;System&quot;
+&gt;       "C": "CN",
+&gt;       "ST": "BeiJing",
+&gt;       "L": "BeiJing",
+&gt;       "O": "k8s",
+&gt;       "OU": "System"
 &gt;     }
 &gt;   ]
 &gt; }
@@ -678,58 +678,58 @@ Certificate:
 <h6 id="使用cfssl-certinfo"><a class="header" href="#使用cfssl-certinfo">使用cfssl-certinfo</a></h6>
 <pre><code class="language-shell">cfssl-certinfo -cert kubernetes.pem
 {
-  &quot;subject&quot;: {
-    &quot;common_name&quot;: &quot;kubernetes&quot;,
-    &quot;country&quot;: &quot;CN&quot;,
-    &quot;organization&quot;: &quot;k8s&quot;,
-    &quot;organizational_unit&quot;: &quot;System&quot;,
-    &quot;locality&quot;: &quot;BeiJing&quot;,
-    &quot;province&quot;: &quot;BeiJing&quot;,
-    &quot;names&quot;: [
-      &quot;CN&quot;,
-      &quot;BeiJing&quot;,
-      &quot;BeiJing&quot;,
-      &quot;k8s&quot;,
-      &quot;System&quot;,
-      &quot;kubernetes&quot;
+  "subject": {
+    "common_name": "kubernetes",
+    "country": "CN",
+    "organization": "k8s",
+    "organizational_unit": "System",
+    "locality": "BeiJing",
+    "province": "BeiJing",
+    "names": [
+      "CN",
+      "BeiJing",
+      "BeiJing",
+      "k8s",
+      "System",
+      "kubernetes"
     ]
   },
-  &quot;issuer&quot;: {
-    &quot;common_name&quot;: &quot;kubernetes&quot;,
-    &quot;country&quot;: &quot;CN&quot;,
-    &quot;organization&quot;: &quot;k8s&quot;,
-    &quot;organizational_unit&quot;: &quot;System&quot;,
-    &quot;locality&quot;: &quot;BeiJing&quot;,
-    &quot;province&quot;: &quot;BeiJing&quot;,
-    &quot;names&quot;: [
-      &quot;CN&quot;,
-      &quot;BeiJing&quot;,
-      &quot;BeiJing&quot;,
-      &quot;k8s&quot;,
-      &quot;System&quot;,
-      &quot;kubernetes&quot;
+  "issuer": {
+    "common_name": "kubernetes",
+    "country": "CN",
+    "organization": "k8s",
+    "organizational_unit": "System",
+    "locality": "BeiJing",
+    "province": "BeiJing",
+    "names": [
+      "CN",
+      "BeiJing",
+      "BeiJing",
+      "k8s",
+      "System",
+      "kubernetes"
     ]
   },
-  &quot;serial_number&quot;: &quot;17454907659222183176468532411310969421540133388&quot;,
-  &quot;sans&quot;: [
-    &quot;kubernetes&quot;,
-    &quot;kubernetes.default&quot;,
-    &quot;kubernetes.default.svc&quot;,
-    &quot;kubernetes.default.svc.cluster&quot;,
-    &quot;kubernetes.default.svc.cluster.local&quot;,
-    &quot;127.0.0.1&quot;,
-    &quot;172.20.0.112&quot;,
-    &quot;172.20.0.113&quot;,
-    &quot;172.20.0.114&quot;,
-    &quot;172.20.0.115&quot;,
-    &quot;10.254.0.1&quot;
+  "serial_number": "17454907659222183176468532411310969421540133388",
+  "sans": [
+    "kubernetes",
+    "kubernetes.default",
+    "kubernetes.default.svc",
+    "kubernetes.default.svc.cluster",
+    "kubernetes.default.svc.cluster.local",
+    "127.0.0.1",
+    "172.20.0.112",
+    "172.20.0.113",
+    "172.20.0.114",
+    "172.20.0.115",
+    "10.254.0.1"
   ],
-  &quot;not_before&quot;: &quot;2022-03-12T12:04:00Z&quot;,
-  &quot;not_after&quot;: &quot;2032-03-09T12:04:00Z&quot;,
-  &quot;sigalg&quot;: &quot;SHA256WithRSA&quot;,
-  &quot;authority_key_id&quot;: &quot;&quot;,
-  &quot;subject_key_id&quot;: &quot;B7:15:10:43:1B:E1:53:B0:6A:12:56:5B:A5:CD:EF:77:E4:A0:79:F4&quot;,
-  &quot;pem&quot;: &quot;-----BEGIN CERTIFICATE-----\nMIIEajCCA1KgAwIBAgIUAw60g15tAvq/YiGqN0fxxIj0igwwDQYJKoZIhvcNAQEL\nBQAwZTELMAkGA1UEBhMCQ04xEDAOBgNVBAgTB0JlaUppbmcxEDAOBgNVBAcTB0Jl\naUppbmcxDDAKBgNVBAoTA2s4czEPMA0GA1UECxMGU3lzdGVtMRMwEQYDVQQDEwpr\ndWJlcm5ldGVzMB4XDTIyMDMxMjEyMDQwMFoXDTMyMDMwOTEyMDQwMFowZTELMAkG\nA1UEBhMCQ04xEDAOBgNVBAgTB0JlaUppbmcxEDAOBgNVBAcTB0JlaUppbmcxDDAK\nBgNVBAoTA2s4czEPMA0GA1UECxMGU3lzdGVtMRMwEQYDVQQDEwprdWJlcm5ldGVz\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA3QrEXpJnjVNsYnFGnu4f\nJG99y/P49uL0VTEZP4+6X/NRN1Fq9clX8acDHQcYBPud6OSI2Lvah9hxKQTpmIIQ\nky2lEnA64c9BDU5x0CUP5UOzwryjddFshHfvNOg7dySR3hzOKiKac31RKCtOo3OB\nlVctX+ksm1dAsTuGoAvYXKTl2fbR6p+Ew7tkMjbtaghXS9MXVy3RN1t7G3X9Xj9U\ndHnfdTCtTVxJF6kRrOBuP3ad+YDj6QAk8jXKefkFzfezj+w1g1zPJXcTtSko/YiH\n9A0lfiKxiv+6RGoXWQRnMT1J2Or8sKP0yWb0qLkk/+jINCiNulLL+mDQrEVlSSn3\ncwIDAQABo4IBEDCCAQwwDgYDVR0PAQH/BAQDAgWgMB0GA1UdJQQWMBQGCCsGAQUF\nBwMBBggrBgEFBQcDAjAMBgNVHRMBAf8EAjAAMB0GA1UdDgQWBBS3FRBDG+FTsGoS\nVlulze935KB59DCBrQYDVR0RBIGlMIGiggprdWJlcm5ldGVzghJrdWJlcm5ldGVz\nLmRlZmF1bHSCFmt1YmVybmV0ZXMuZGVmYXVsdC5zdmOCHmt1YmVybmV0ZXMuZGVm\nYXVsdC5zdmMuY2x1c3RlcoIka3ViZXJuZXRlcy5kZWZhdWx0LnN2Yy5jbHVzdGVy\nLmxvY2FshwR/AAABhwSsFABwhwSsFABxhwSsFAByhwSsFABzhwQK/gABMA0GCSqG\nSIb3DQEBCwUAA4IBAQAJTaKt98jCvsRo2vq9RvK732UO4tgYdhyAcQTREvsEyjdT\nYlA85xix0I9j5MlBgyfplQLCIobGjjdmkIdVcJsciPaqRdCjurHkDF5pBs4m/qlr\nfhxjEjZr36aT3/taq5xUA//TkCTb9p8Ijm+3AMdPGxovXE/TokEYcXDNasaVYsLY\naBxKDv3Bymwv9RIzPDrcNnn7llsCba6IX+L8u3TB4GIOxv7yH6XwVhqAFKh1yXUZ\n6H8Wky5z8l91virnRBfi3y4jJsl/odIznp16We8VnWCA36eTzBwOOEZiU3MvlPYc\nei7FKCGN5U3ZwwLsTMH2WzWX+Zw+dZGA97FmDYnX\n-----END CERTIFICATE-----\n&quot;
+  "not_before": "2022-03-12T12:04:00Z",
+  "not_after": "2032-03-09T12:04:00Z",
+  "sigalg": "SHA256WithRSA",
+  "authority_key_id": "",
+  "subject_key_id": "B7:15:10:43:1B:E1:53:B0:6A:12:56:5B:A5:CD:EF:77:E4:A0:79:F4",
+  "pem": "-----BEGIN CERTIFICATE-----\nMIIEajCCA1KgAwIBAgIUAw60g15tAvq/YiGqN0fxxIj0igwwDQYJKoZIhvcNAQEL\nBQAwZTELMAkGA1UEBhMCQ04xEDAOBgNVBAgTB0JlaUppbmcxEDAOBgNVBAcTB0Jl\naUppbmcxDDAKBgNVBAoTA2s4czEPMA0GA1UECxMGU3lzdGVtMRMwEQYDVQQDEwpr\ndWJlcm5ldGVzMB4XDTIyMDMxMjEyMDQwMFoXDTMyMDMwOTEyMDQwMFowZTELMAkG\nA1UEBhMCQ04xEDAOBgNVBAgTB0JlaUppbmcxEDAOBgNVBAcTB0JlaUppbmcxDDAK\nBgNVBAoTA2s4czEPMA0GA1UECxMGU3lzdGVtMRMwEQYDVQQDEwprdWJlcm5ldGVz\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA3QrEXpJnjVNsYnFGnu4f\nJG99y/P49uL0VTEZP4+6X/NRN1Fq9clX8acDHQcYBPud6OSI2Lvah9hxKQTpmIIQ\nky2lEnA64c9BDU5x0CUP5UOzwryjddFshHfvNOg7dySR3hzOKiKac31RKCtOo3OB\nlVctX+ksm1dAsTuGoAvYXKTl2fbR6p+Ew7tkMjbtaghXS9MXVy3RN1t7G3X9Xj9U\ndHnfdTCtTVxJF6kRrOBuP3ad+YDj6QAk8jXKefkFzfezj+w1g1zPJXcTtSko/YiH\n9A0lfiKxiv+6RGoXWQRnMT1J2Or8sKP0yWb0qLkk/+jINCiNulLL+mDQrEVlSSn3\ncwIDAQABo4IBEDCCAQwwDgYDVR0PAQH/BAQDAgWgMB0GA1UdJQQWMBQGCCsGAQUF\nBwMBBggrBgEFBQcDAjAMBgNVHRMBAf8EAjAAMB0GA1UdDgQWBBS3FRBDG+FTsGoS\nVlulze935KB59DCBrQYDVR0RBIGlMIGiggprdWJlcm5ldGVzghJrdWJlcm5ldGVz\nLmRlZmF1bHSCFmt1YmVybmV0ZXMuZGVmYXVsdC5zdmOCHmt1YmVybmV0ZXMuZGVm\nYXVsdC5zdmMuY2x1c3RlcoIka3ViZXJuZXRlcy5kZWZhdWx0LnN2Yy5jbHVzdGVy\nLmxvY2FshwR/AAABhwSsFABwhwSsFABxhwSsFAByhwSsFABzhwQK/gABMA0GCSqG\nSIb3DQEBCwUAA4IBAQAJTaKt98jCvsRo2vq9RvK732UO4tgYdhyAcQTREvsEyjdT\nYlA85xix0I9j5MlBgyfplQLCIobGjjdmkIdVcJsciPaqRdCjurHkDF5pBs4m/qlr\nfhxjEjZr36aT3/taq5xUA//TkCTb9p8Ijm+3AMdPGxovXE/TokEYcXDNasaVYsLY\naBxKDv3Bymwv9RIzPDrcNnn7llsCba6IX+L8u3TB4GIOxv7yH6XwVhqAFKh1yXUZ\n6H8Wky5z8l91virnRBfi3y4jJsl/odIznp16We8VnWCA36eTzBwOOEZiU3MvlPYc\nei7FKCGN5U3ZwwLsTMH2WzWX+Zw+dZGA97FmDYnX\n-----END CERTIFICATE-----\n"
 }
 </code></pre>
 <h5 id="颁发证书"><a class="header" href="#颁发证书">颁发证书</a></h5>
@@ -737,7 +737,7 @@ Certificate:
 <pre><code class="language-shell">mkdir -p /etc/kubernetes/ssl &amp;&amp; cp *.pem /etc/kubernetes/ssl
 </code></pre>
 <h4 id="kubelet"><a class="header" href="#kubelet">kubelet</a></h4>
-<pre><code class="language-shell">export KUBE_APISERVER=&quot;https://kubecpe:6443&quot;
+<pre><code class="language-shell">export KUBE_APISERVER="https://kubecpe:6443"
 
 # 设置集群参数
 kubectl config set-cluster kubernetes \
@@ -767,12 +767,12 @@ kubectl config use-context kubernetes
 <pre><code class="language-shell">export BOOTSTRAP_TOKEN=$(head -c 16 /dev/urandom | od -An -t x | tr -d ' ')
 
 cat &gt; token.csv &lt;&lt;EOF
-${BOOTSTRAP_TOKEN},kubelet-bootstrap,10001,&quot;system:kubelet-bootstrap&quot;
+${BOOTSTRAP_TOKEN},kubelet-bootstrap,10001,"system:kubelet-bootstrap"
 EOF
 
 # 检查 token.csv 文件，确认其中的 ${BOOTSTRAP_TOKEN} 环境变量已经被真实的值替换
 cat token.csv
-c16e2aa67b2d10569d68ee176af17017,kubelet-bootstrap,10001,&quot;system:kubelet-bootstrap&quot;
+c16e2aa67b2d10569d68ee176af17017,kubelet-bootstrap,10001,"system:kubelet-bootstrap"
 </code></pre>
 <p><strong>BOOTSTRAP_TOKEN</strong> 将被写入到 kube-apiserver 使用的 token.csv 文件和 kubelet 使用的 <code>bootstrap.kubeconfig</code> 文件，如果后续重新生成了 BOOTSTRAP_TOKEN，则需要：</p>
 <ol>
@@ -785,7 +785,7 @@ c16e2aa67b2d10569d68ee176af17017,kubelet-bootstrap,10001,&quot;system:kubelet-bo
 </code></pre>
 <h5 id="kubelet-bootstrapping-kubeconfig"><a class="header" href="#kubelet-bootstrapping-kubeconfig">kubelet bootstrapping kubeconfig</a></h5>
 <pre><code class="language-shell">cd /etc/kubernetes
-export KUBE_APISERVER=&quot;https://kubecpe:6443&quot;
+export KUBE_APISERVER="https://kubecpe:6443"
 
 # 设置集群参数
 kubectl config set-cluster kubernetes \
@@ -813,7 +813,7 @@ kubectl config use-context default --kubeconfig=bootstrap.kubeconfig
 <li>设置客户端认证参数时<strong>没有</strong>指定秘钥和证书，后续由 <code>kube-apiserver</code> 自动生成；</li>
 </ul>
 <h5 id="kube-proxy-kubeconfig"><a class="header" href="#kube-proxy-kubeconfig">kube-proxy kubeconfig</a></h5>
-<pre><code class="language-shell">export KUBE_APISERVER=&quot;https://172.20.0.113:6443&quot;
+<pre><code class="language-shell">export KUBE_APISERVER="https://172.20.0.113:6443"
 # 设置集群参数
 kubectl config set-cluster kubernetes \
   --certificate-authority=/etc/kubernetes/ssl/ca.pem \
@@ -894,14 +894,14 @@ WantedBy=multi-user.target
 <p>环境变量配置文件<code>/etc/etcd/etcd.conf</code>。</p>
 <pre><code class="language-ini"># [member]
 ETCD_NAME=infra1
-ETCD_DATA_DIR=&quot;/var/lib/etcd&quot;
-ETCD_LISTEN_PEER_URLS=&quot;https://172.20.0.113:2380&quot;
-ETCD_LISTEN_CLIENT_URLS=&quot;https://172.20.0.113:2379&quot;
+ETCD_DATA_DIR="/var/lib/etcd"
+ETCD_LISTEN_PEER_URLS="https://172.20.0.113:2380"
+ETCD_LISTEN_CLIENT_URLS="https://172.20.0.113:2379"
 
 #[cluster]
-ETCD_INITIAL_ADVERTISE_PEER_URLS=&quot;https://172.20.0.113:2380&quot;
-ETCD_INITIAL_CLUSTER_TOKEN=&quot;etcd-cluster&quot;
-ETCD_ADVERTISE_CLIENT_URLS=&quot;https://172.20.0.113:2379&quot;
+ETCD_INITIAL_ADVERTISE_PEER_URLS="https://172.20.0.113:2380"
+ETCD_INITIAL_CLUSTER_TOKEN="etcd-cluster"
+ETCD_ADVERTISE_CLIENT_URLS="https://172.20.0.113:2379"
 </code></pre>
 <h2 id="--基操--"><a class="header" href="#--基操--">- 基操 -</a></h2>
 <h2 id="强制删除"><a class="header" href="#强制删除">强制删除</a></h2>

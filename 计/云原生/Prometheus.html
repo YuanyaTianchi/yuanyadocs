@@ -174,9 +174,9 @@
                 <div id="content" class="content">
                     <main>
                         <p>+++</p>
-<p>title = &quot;prometheus&quot;
-description = &quot;prometheus&quot;
-tags = [&quot;it&quot;, &quot;cloud&quot;, &quot;prometheus&quot;]</p>
+<p>title = "prometheus"
+description = "prometheus"
+tags = ["it", "cloud", "prometheus"]</p>
 <p>+++</p>
 <h1 id="prometheus"><a class="header" href="#prometheus">prometheus</a></h1>
 <h2 id="cadvisor"><a class="header" href="#cadvisor">cAdvisor</a></h2>
@@ -189,7 +189,7 @@ kubectl create clusterrolebinding cadvisor-crb --clusterrole=cluster-admin --ser
 kubectl get secret -n monitoring
 kubectl describe secret cadvisor-sa-token-&lt;xxxxx&gt; -n monitoring
 # 通过 http 访问
-curl https://127.0.0.1:10250/metrics/cadvisor -k -H &quot;Authorization: Bearer &lt;token&gt;&quot;
+curl https://127.0.0.1:10250/metrics/cadvisor -k -H "Authorization: Bearer &lt;token&gt;"
 </code></pre>
 <h2 id="grafana"><a class="header" href="#grafana">Grafana</a></h2>
 <blockquote>
@@ -209,7 +209,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: &quot;/mnt/data/grafana&quot;
+    path: "/mnt/data/grafana"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -267,10 +267,10 @@ spec:
           imagePullPolicy: IfNotPresent
           securityContext:
             runAsUser: 0
-          command: ['chown', '-R', &quot;472:0&quot;, &quot;/var/lib/grafana&quot;]
+          command: ['chown', '-R', "472:0", "/var/lib/grafana"]
           volumeMounts:
             - name: grafana-volume
-              mountPath: &quot;/var/lib/grafana&quot;
+              mountPath: "/var/lib/grafana"
               subPath: grafana-subpath
       containers:
         - name: grafana
@@ -299,9 +299,9 @@ spec:
             timeoutSeconds: 1
           env: # 配置环境变量，设置 Grafana 的默认管理员用户名/密码
             - name: GF_SECURITY_ADMIN_USER
-              value: &quot;admin&quot;
+              value: "admin"
             - name: GF_SECURITY_ADMIN_PASSWORD
-              value: &quot;admin&quot;
+              value: "admin"
           resources:
             requests:
               cpu: 250m
@@ -310,7 +310,7 @@ spec:
             runAsUser: 472
           volumeMounts:
             - name: grafana-volume
-              mountPath: &quot;/var/lib/grafana&quot;
+              mountPath: "/var/lib/grafana"
               subPath: grafana-subpath
       volumes:
         - name: grafana-volume
