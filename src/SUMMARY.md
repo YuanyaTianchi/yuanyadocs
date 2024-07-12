@@ -3,45 +3,40 @@
 [Root](README.md)
 
 - [模板](模板.md)
-
 - [番](番.md)
 
 # 技
 
 - [操作系统]()
-  - [Linux](计/操作系统/Linux.md)
-    - [Linux.eBPF](计/操作系统/Linux.eBPF.md)
+- [Linux](计/操作系统/Linux.md)
+  - [Linux.eBPF](计\操作系统\Linux.eBPF.md)
   - [WSL](计\操作系统\WSL.md)
   - [WSL2](计\操作系统\WSL.md)
   - [Windows](计\操作系统\Windows.md)
 - [虚拟化]()
-  - [OVS](计/虚拟化/OVS.md)
+  - [OVS](计\虚拟化\OVS.md)
   - [OVN]()
   - [虚拟网络技术](计/虚拟化/虚拟网络.md)
 - [云原生]()
   - [container]()
-      - [engine]()
-          - [Docker](计/云原生/容器.Docker.md)
-  
-      - [cri]()
-          - [Containerd]()
-          - [CRI-o]()
-          - [CRI-dockerd]()
-  
-      - [oci]()
-          - [Runc]()
-          - [Kata]()
-          - [Gvisor]()
-  
+    - [engine]()
+      - [Docker](计/云原生/容器.Docker.md)
+    - [cri]()
+      - [Containerd]()
+      - [CRI-o]()
+      - [CRI-dockerd]()
+    - [oci]()
+      - [Runc]()
+      - [Kata]()
+      - [Gvisor]()
   - [Kuberntes](计/云原生/Kubernetes.md)
     - [operator](计/云原生/Kubernetes.operator.md)
   - [Prometheus](计/云原生/Prometheus.md)
   - [Sealos](计/云原生/Sealos.md)
   - [Kube-OVN]()
   - [dfx]()
-      - [checkpoint-restore]()
-          - [CRIU](计/云原生/CRIU.md)
-  
+    - [checkpoint-restore]()
+      - [CRIU](计/云原生/CRIU.md)
 - [AI]()
   - [深度学习](计/AI/深度学习.md)
     - [概念](计\AI\机器学习.概念.md)
@@ -51,26 +46,15 @@
   - [VSCode](计/工具/VSCode.md)
   - [Git](计/工具/Git.md)
 
-
-
-
 # 数
 
 - [高等代数]()
-
-
 
 # 戏
 
 - [崩坏星穹铁道](戏/崩坏星穹铁道.md)
 - [noita](戏/noita.md)
 - [命运方舟](戏/命运方舟.md)
-
-
-
-
-
-
 
 ## 计
 

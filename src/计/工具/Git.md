@@ -4,13 +4,7 @@
 
 # ---快开---
 
-### Github Desktop
-
-> [GitHub Desktop](https://desktop.github.com/)；
-
-通过 Github Desktop 操作仓库，速度拉满。
-
-### 安装
+## 安装
 
 > [下载](https://git-scm.com/downloads)；
 
@@ -18,7 +12,7 @@
 apt install -y git
 ```
 
-### 配置 gitconfig
+## 配置 gitconfig
 
 - 仓库配置：`<git-repository>/.git/config`；
 - 全局配置：`~/.gitconfig`；
@@ -51,17 +45,24 @@ EOF
 git config --list
 ```
 
-### 配置 gitignore
+## 配置 gitignore
 
 > [.gitignore常用配置](https://gist.github.com/octocat/9257657)
 
 ```shell
-.idea
+bin
+build
 ```
 
-### 配置 GitHub 可访问/加速
+## GitHub
 
-##### hosts
+### Github Desktop
+
+> [GitHub Desktop](https://desktop.github.com/)；
+
+通过 Github Desktop 操作仓库，速度拉满。
+
+### hosts
 
 配置 GitHub 所需资源相关域名 hosts 使资源可访问，但不一定能使仓库操作加速。
 
@@ -87,7 +88,7 @@ EOF
 
 windows 更改后仍无法访问请打开终端执行 `ipconfig /flushdns` 命令，仍然无法访问请**重启**系统。
 
-# 基操
+# ---基操---
 
 ### rebase pull
 
