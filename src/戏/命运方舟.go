@@ -216,12 +216,19 @@ func main() {
 	// DamagePrintWithOptions(0.2, 怨恨3, 精密短刀3, 肾上腺素3, 尖刺重锤3)
 	// DamagePrintWithOptions(0.2, 精密短刀3, 重量强化3, 肾上腺素3, 尖刺重锤3)
 
-	DamagePrintWithOptions(0.2, 尖刺重锤3)
-	DamagePrintWithOptions(0.2, 精密短刀3)
-	DamagePrintWithOptions(0.2, 重量强化3)
-	DamagePrintWithOptions(0.2, 精密短刀3, 尖刺重锤3)
-	DamagePrintWithOptions(0.2, 重量强化3, 尖刺重锤3)
-	DamagePrintWithOptions(0.2, 重量强化3, 怨恨3)
+	// DamagePrintWithOptions(0.2, 尖刺重锤3)
+	// DamagePrintWithOptions(0.2, 精密短刀3)
+	// DamagePrintWithOptions(0.2, 重量强化3)
+	// DamagePrintWithOptions(0.2, 精密短刀3, 尖刺重锤3)
+	// DamagePrintWithOptions(0.2, 重量强化3, 尖刺重锤3)
+	// DamagePrintWithOptions(0.2, 重量强化3, 怨恨3)
+	
+	// 逆天、怨恨、肾上、尖刺、精密
+	// 逆天、怨恨、肾上、尖刺、重量
+
+	DamagePrintWithOptions(0.2, 怨恨3,肾上腺素3,尖刺重锤3,精密短刀3)
+	DamagePrintWithOptions(0.2, 怨恨3,肾上腺素3,尖刺重锤3,重量强化3)
+	DamagePrintWithOptions(0.2, 怨恨3,肾上腺素3,精密短刀3,重量强化3)
 }
 
 func OS(num float64) float64 {

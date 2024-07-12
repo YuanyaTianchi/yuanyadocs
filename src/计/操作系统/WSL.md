@@ -30,6 +30,12 @@ dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /nores
 
 ## 安装系统
 
+### 微软商店（推荐）
+
+搜索 Ubuntu 安装即可
+
+### 命令行
+
 Win11 [wsl 安装](https://learn.microsoft.com/zh-cn/windows/wsl/install) 默认版本即为 wsl2
 
 ```powershell
