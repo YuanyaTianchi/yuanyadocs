@@ -2,11 +2,7 @@
 
 当前版本 [linux-msft-wsl-5.15.90.1](https://github.com/microsoft/WSL2-Linux-Kernel/archive/refs/tags/linux-msft-wsl-5.15.90.1.tar.gz)。
 
-
-
 ## ---快开---
-
-
 
 ## 启用 windows 功能
 
@@ -54,15 +50,11 @@ wsl --update
 
 然后可以打开 ubuntu，在 windows terminal 中也可以选择
 
-
-
 ### WslRegisterDistribution failed with error: 0x800701bc
 
 > [下载 Linux 内核更新包](https://learn.microsoft.com/zh-cn/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package)；
 
 下载 适用于 x64 计算机的 WSL2 Linux 内核[更新包](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi)；
-
-
 
 ## KVM on WSL
 
@@ -89,10 +81,6 @@ Dism /online /enable-feature /featurename:Microsoft-Hyper-V-All /LimitAccess /AL
 ```
 
 右击文件-以管理员身份运行，下载完成后输入 y 重启。
-
-
-
-
 
 > **放弃了，guest os 连不上外部网络**；
 
@@ -161,8 +149,6 @@ kvm-ok
 
 之后到wsl上 `uanme -a` 查看内核编译时间确认一下即可
 
-
-
 使用 M 模块加载模式使用如下操作
 
 ```shell
@@ -193,8 +179,6 @@ kvm-amd
 EOF
 ```
 
-
-
 [官方支持的启用systemd](https://www.cnblogs.com/wswind/p/wsl2-official-systemd.html)；
 
 ```shell
@@ -204,11 +188,7 @@ echo -e "[boot]\nsystemd=true" | sudo tee -a /etc/wsl.conf
 ps --no-headers -o comm 1
 ```
 
-
-
 [通过 genie 启用 systemd](https://www.ddupan.top/posts/wsl2-kvm/)（新版 wsl 不再需要了）；[22.04 .NET 安装文档](https://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu#2204-microsoft-package-feed)。
-
-
 
 [安装 virt-manager](https://www.myfreax.com/how-to-install-kvm-on-ubuntu-20-04/)。
 
@@ -217,8 +197,6 @@ ps --no-headers -o comm 1
 sudo apt install -y qemu qemu-kvm libvirt-daemon libvirt-clients bridge-utils virt-manager
 # 已有 systemd，此时 libvirt-daemon 可以正常运行，未启动重启 wsl 以启动
 ```
-
-
 
 ### WSL 桥接网络
 
@@ -268,7 +246,7 @@ ip addr
 
 > [integration-with-a-windows-dhcp-server](https://netplan.io/examples#integration-with-a-windows-dhcp-server)；
 
-ps：当创建一个桥接设备 `virbr01` 并绑定到 WSL2 系统中的 `eth0` 接口时，它会接管 WSL2 系统与外部网络之间的网络配置 `eth0` 并负责转发数据包。这意味着`eth0`将无法再直接与外部网络通信。**放弃了不折腾了**。
+ps：当创建一个桥接设备 `virbr01` 并绑定到 WSL2 系统中的 `eth0` 接口时，它会接管 WSL2 系统与外部网络之间的网络配置 `eth0` 并负责转发数据包。这意味着 `eth0`将无法再直接与外部网络通信。**放弃了不折腾了**。
 
 ~~在 WSL 上创建桥接设备，之后创建 Guest OS 时选择 bridge 模式，指定该设备即可~~。
 
@@ -282,8 +260,6 @@ ip addr add 192.168.31.100/24 brd 192.168.31.255 dev virbr01
 # 启用/停止：up/down
 ip link set dev virbr01 up
 ```
-
-
 
 ## vscode插件
 
@@ -301,19 +277,11 @@ export LANGUAGE=ZH-CN.UTF-8
 EOF
 ```
 
-
-
-
-
 ## 其他
 
 ```shell
 sudo apt install -y lsb-core
 ```
-
-
-
-
 
 ## Nvidia cuda
 
@@ -367,7 +335,7 @@ distribution=$(. /etc/os-release;echo $ID$VERSION_ID) \
 sudo apt update && sudo apt install -y nvidia-container-toolkit
 ```
 
-最后一行报错`/sbin/ldconfig.real: /usr/lib/wsl/lib/libcuda.so.1 is not a symbolic link`
+最后一行报错 `/sbin/ldconfig.real: /usr/lib/wsl/lib/libcuda.so.1 is not a symbolic link`
 
 ```shell
 # 软链
@@ -392,8 +360,6 @@ pytorch/pytorch:2.0.0-cuda11.7-cudnn8-runtime bash
 # 进入容器后运行一下命令查看是否支持 cuda 计算
 python -c 'import torch; print(torch.cuda.is_available())'
 ```
-
-
 
 ```shell
 # 第一次先激活 conda activate 命令
@@ -422,8 +388,6 @@ docker compose --profile download up --build
 # [ui] 从 invoke | auto | auto-cpu | sygil | sygil-sl 中选择，我们选择最流行的 auto
 docker compose --profile auto up --build
 ```
-
-
 
 ### stable-diffusion-docker-2
 
