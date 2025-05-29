@@ -12,46 +12,72 @@ WSL2 上无需安装 Nvidia 驱动，Win 上安装了即可，WSL2 上仅需安�
 > [Enable NVIDIA CUDA on WSL](https://learn.microsoft.com/en-us/windows/ai/directml/gpu-cuda-in-wsl)；
 >
 > [CUDA on WSL2 (nvidia.com)](https://docs.nvidia.com/cuda/wsl-user-guide/contents.html)；
+>
+> cuda 版本列表：[CUDA Toolkit Archive | NVIDIA Developer](https://developer.nvidia.com/cuda-toolkit-archive)；
+>
+> cuda 对应 nvidia 驱动版本，基本是向下兼容，不用担心：https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html#id7
+>
+> WSL 安装 CUDA：[CUDA Toolkit Downloads | NVIDIA Developer](https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&Distribution=WSL-Ubuntu&target_version=2.0&target_type=deb_local)；
 
-下载 cuda on wsl2
+下载 cuda on wsl2（ #注意使用国内源，否则下面安装时出现E: Unable to correct problems, you have held broken packages.
 
-```
+```shell
 # 参考引用获取最新版本
 wget https://developer.download.nvidia.com/compute/cuda/repos/wsl-ubuntu/x86_64/cuda-wsl-ubuntu.pin
 sudo mv cuda-wsl-ubuntu.pin /etc/apt/preferences.d/cuda-repository-pin-600
-wget https://developer.download.nvidia.com/compute/cuda/12.6.1/local_installers/cuda-repo-wsl-ubuntu-12-6-local_12.6.1-1_amd64.deb
-sudo dpkg -i cuda-repo-wsl-ubuntu-12-6-local_12.6.1-1_amd64.deb
-sudo cp /var/cuda-repo-wsl-ubuntu-12-6-local/cuda-*-keyring.gpg /usr/share/keyrings/
+wget https://developer.download.nvidia.com/compute/cuda/12.1.1/local_installers/cuda-repo-wsl-ubuntu-12-1-local_12.1.1-1_amd64.deb
+sudo dpkg -i cuda-repo-wsl-ubuntu-12-1-local_12.1.1-1_amd64.deb
+sudo cp /var/cuda-repo-wsl-ubuntu-12-1-local/cuda-*-keyring.gpg /usr/share/keyrings/
 sudo apt-get update
-sudo apt-get -y install cuda-toolkit-12-6
+sudo apt-get -y install cuda
 ```
 
-检查
+检查：nvidia-smi 显示的 CUDA Version 取决于 Driver Version 对应的版本，非 wsl 上安装的版本，不必理会
 
 ```
 $ nvidia-smi
-+-----------------------------------------------------------------------------+
-| NVIDIA-SMI xxx.xx.xx    Driver Version: 528.24       CUDA Version: 12.0     |
-|-------------------------------+----------------------+----------------------+
-| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
-| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
-|                               |                      |               MIG M. |
-|===============================+======================+======================|
-|   0  NVIDIA GeForce ...  On   | 00000000:01:00.0  On |                  N/A |
-|  0%   38C    P8    21W / 340W |   2776MiB / 16376MiB |     13%      Default |
-|                               |                      |                  N/A |
-+-------------------------------+----------------------+----------------------+
-                                                         
-+-----------------------------------------------------------------------------+
-| Processes:                                                                  |
-|  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
-|        ID   ID                                                   Usage      |
-|=============================================================================|
-|    0   N/A  N/A        28      G   /Xwayland                       N/A      |
-|    0   N/A  N/A        32      G   /Xwayland                       N/A      |
-|    0   N/A  N/A        35      G   /Xwayland                       N/A      |
-+-----------------------------------------------------------------------------+
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 560.35.02              Driver Version: 560.94         CUDA Version: 12.6     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA GeForce RTX 4080        On  |   00000000:01:00.0  On |                  N/A |
+| 30%   42C    P8             26W /  340W |    2028MiB /  16376MiB |     10%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+                                                                                         
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI        PID   Type   Process name                              GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
 ```
+
+卸载
+
+> 如果使用包管理器安装则需要使用包管理器卸载：[How to uninstall cuda 12.4 - Graphics / Linux / Linux - NVIDIA Developer Forums](https://forums.developer.nvidia.com/t/how-to-uninstall-cuda-12-4/287741)；
+>
+> [wsl linux CUDA安装、卸载、清理、版本降级、升级过程详解_cuda降级-CSDN博客](https://blog.csdn.net/xiangshangdemayi/article/details/144918217)
+
+```shell
+sudo apt-get --purge remove 'cuda*'
+sudo apt-get --purge remove 'nvidia*'
+sudo rm -rf /usr/local/cuda*
+sudo dpkg --purge --force-all cuda-repo-wsl-ubuntu-12-1-local
+sudo rm -rf /var/cuda-repo-wsl-ubuntu-12-1-local
+sudo apt-get purge 'cuda*'
+sudo apt-get autoremove -y
+grep -r "cuda" /etc/apt/sources.list /etc/apt/sources.list.d/
+
+sudo rm /etc/apt/sources.list.d/cuda-wsl-ubuntu-12-1-local.list
+sudo rm -rf /var/lib/apt/lists/*
+```
+
+
 
 ### 容器工具包
 
