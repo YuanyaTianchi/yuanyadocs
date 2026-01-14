@@ -5,7 +5,9 @@
 
 ### Nvidia 驱动
 
-WSL2 上无需安装 Nvidia 驱动，Win 上安装了即可，WSL2 上仅需安装 cuda
+WSL2 上无需安装 Nvidia 驱动，Win 上安装了即可；WSL2 上仅需安装 cuda 和 cudnn；
+
+如果使用容器，无需安装 cuda 和 cudnn，wsl2 上只需要安装 nvidia-container-toolkit，并在 windows 上在 docker desktop - setting- Resource - WSL integration 中上启用 wsl enghene。
 
 ### CUDA支持
 
@@ -145,3 +147,19 @@ $ docker pull ubuntu && sudo docker run --rm --runtime=nvidia --gpus all ubuntu 
 |    0   N/A  N/A        38      G   /Xwayland                       N/A      |
 +-----------------------------------------------------------------------------+
 ```
+
+
+
+
+
+
+
+sd-webui-forge
+
+```shell
+docker run --gpus all -it --name sd-webui-forge \
+    -v /home/tianchi/techn/compute/code/ai_lm/stable-diffusion-webui-forge:/workspace/stable-diffusion-webui-forge \
+    -p 7860:7860 \
+    pytorch/pytorch:2.3.1-cuda12.1-cudnn8-devel
+```
+
